@@ -1,6 +1,8 @@
 #ifndef HELMATH_VEC2_H
 #define HELMATH_VEC2_H
 
+#include <cmath>
+
 namespace hm {
 
 template<typename T>
