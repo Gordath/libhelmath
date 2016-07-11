@@ -9,18 +9,18 @@ template<typename T>
 class Vec2 {
 public:
     union {
-        // x value alias for positions.
+        // x - value alias for positions.
         T x;
 
-        // s value alias for textures.
+        // s - value alias for textures.
         T s;
     };
 
     union {
-        // y value alias for positions.
+        // y - value alias for positions.
         T y;
 
-        // t value alias for positions.
+        // t - value alias for positions.
         T t;
     };
 
@@ -31,6 +31,12 @@ public:
     { }
 
 };
+
+using Vec2f = Vec2<float>;
+using Vec2d = Vec2<double>;
+using Vec2i = Vec2<int>;
+using Vec2l = Vec2<long>;
+using Vec2ul = Vec2<unsigned long>;
 
 }
 

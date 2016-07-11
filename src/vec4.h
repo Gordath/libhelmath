@@ -9,34 +9,47 @@ template<typename T>
 class Vec4 {
 public:
     union {
-        // x value alias for positions.
+        // x - value alias for positions.
         T x;
 
-        // s value alias for textures.
+        // r - value alias for colors.
+        T r;
+
+        // s - value alias for textures.
         T s;
     };
 
     union {
-        // y value alias for positions.
+        // y - value alias for positions.
         T y;
 
-        // t value alias for textures.
+        // g - value alias for colors.
+        T g;
+
+        // t - value alias for textures.
         T t;
     };
 
     union {
-        // z value alias for positions.
+        // z - value alias for positions.
         T z;
 
-        // u value alias for textures.
-        T u;
+        // b - value alias for colors.
+        T b;
+
+        // u - value alias for textures.
+        T p;
     };
 
     union {
-        // w value alias for positions.
+        // w - value alias for positions.
         T w;
 
-        // something alias for textures.
+        // a - value alias for colors.
+        T a;
+
+        // q - value alias for textures.
+        T q;
     };
 
     Vec4() : x(0), y(0), z(0), w(0)
@@ -87,6 +100,12 @@ public:
 
     //TODO: Finish the swizzle functions
 };
+
+using Vec4f = Vec4<float>;
+using Vec4d = Vec4<double>;
+using Vec4i = Vec4<int>;
+using Vec4l = Vec4<long>;
+using Vec4ul = Vec4<unsigned long>;
 
 }
 

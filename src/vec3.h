@@ -10,36 +10,36 @@ template<typename T>
 class Vec3 {
 public:
     union {
-        // x value alias for positions.
+        // x - value alias for positions.
         T x;
 
-        // r value alias for colors.
+        // r - value alias for colors.
         T r;
 
-        // s value alias for textures.
+        // s - value alias for textures.
         T s;
     };
 
     union {
-        // x value alias for positions.
+        // x - value alias for positions.
         T y;
 
-        // g value alias for colors.
+        // g - value alias for colors.
         T g;
 
-        // t value alias for textures.
+        // t - value alias for textures.
         T t;
     };
 
     union {
-        // z value alias for positions.
+        // z - value alias for positions.
         T z;
 
-        // b value alias for colors.
+        // b - value alias for colors.
         T b;
 
-        // u value alias for textures.
-        T u;
+        // p - value alias for textures.
+        T p;
     };
 
     Vec3() : x(0), y(0), z(0)
