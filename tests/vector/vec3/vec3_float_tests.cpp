@@ -1,9 +1,11 @@
 #include "gtest/gtest.h"
 #include "helmath.h"
 
+using namespace hm;
+
 TEST(Vec3_tests, test_length)
 {
-    hm::Vec3f v{10.0f, 20.0f, 30.0f};
+    Vec3f v{10.0f, 20.0f, 30.0f};
 
     float length = v.lengthf();
 
@@ -12,7 +14,7 @@ TEST(Vec3_tests, test_length)
 
 TEST(Vec3_tests, test_normalize)
 {
-    hm::Vec3f v{10.0f, 20.0f, 30.f};
+    Vec3f v{10.0f, 20.0f, 30.f};
 
     v.normalize();
 

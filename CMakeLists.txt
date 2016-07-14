@@ -8,12 +8,8 @@ include_directories(src)
 add_subdirectory(tests)
 
 set(SOURCE_FILES
-        src/vec3.h
-        src/vec3.cpp
         src/helmath.h
-        src/vec2.h
-        src/vec4.h
-        src/vec4.cpp
-        src/vec2.cpp)
+        src/vector.h
+        src/vector.cpp)
 
 add_library(helmath ${SOURCE_FILES})
