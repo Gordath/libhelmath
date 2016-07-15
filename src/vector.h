@@ -79,7 +79,6 @@ private:
             return *(Vec2<T> *) this;
         }
 
-        //TODO: Test these operators (swizzle, scalar)
         inline Vec2<T> operator+(T rhs)
         {
             return Vec2<T>{v[A] + rhs, v[B] + rhs};
@@ -99,6 +98,38 @@ private:
         {
             return Vec2<T>{v[A] / rhs, v[B] / rhs};
         }
+
+        inline Vec2<T> &operator+=(T rhs)
+        {
+            v[A] += rhs;
+            v[B] += rhs;
+
+            return *(Vec2<T> *) this;
+        }
+
+        inline Vec2<T> &operator-=(T rhs)
+        {
+            v[A] -= rhs;
+            v[B] -= rhs;
+
+            return *(Vec2<T> *) this;
+        }
+
+        inline Vec2<T> &operator*=(T rhs)
+        {
+            v[A] *= rhs;
+            v[B] *= rhs;
+
+            return *(Vec2<T> *) this;
+        }
+
+        inline Vec2<T> &operator/=(T rhs)
+        {
+            v[A] /= rhs;
+            v[B] /= rhs;
+
+            return *(Vec2<T> *) this;
+        }
     };
 
     template<int A>
@@ -110,6 +141,26 @@ private:
         operator Vec2()
         {
             return Vec2<T>{v[A]};
+        }
+
+        inline Vec2<T> operator+(T rhs)
+        {
+            return Vec2<T>{v[A] + rhs, v[A] + rhs};
+        }
+
+        inline Vec2<T> operator-(T rhs)
+        {
+            return Vec2<T>{v[A] - rhs, v[A] - rhs};
+        }
+
+        inline Vec2<T> operator*(T rhs)
+        {
+            return Vec2<T>{v[A] * rhs, v[A] * rhs};
+        }
+
+        inline Vec2<T> operator/(T rhs)
+        {
+            return Vec2<T>{v[A] / rhs, v[A] / rhs};
         }
     };
 

@@ -626,3 +626,219 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_div_equals_operator_yx_yy)
     ASSERT_FLOAT_EQ(lhs.x, 1.0f);
     ASSERT_FLOAT_EQ(lhs.y, 1.0f);
 }
+
+// --------------------------------------------
+// Swizzle operator + tests (swizzle + scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_plus_operator_xy_scalar)
+{
+    Vec2f res = lhs.xy + 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_plus_operator_yx_scalar)
+{
+    Vec2f res = lhs.yx + 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_plus_operator_xx_scalar)
+{
+    Vec2f res = lhs.xx + 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_plus_operator_yy_scalar)
+{
+    Vec2f res = lhs.yy + 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator - tests (swizzle - scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_minus_operator_xy_scalar)
+{
+    Vec2f res = lhs.xy - 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 0.0f);
+    ASSERT_FLOAT_EQ(res.y, 0.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_minus_operator_yx_scalar)
+{
+    Vec2f res = lhs.yx - 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 0.0f);
+    ASSERT_FLOAT_EQ(res.y, 0.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_minus_operator_xx_scalar)
+{
+    Vec2f res = lhs.xx - 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 0.0f);
+    ASSERT_FLOAT_EQ(res.y, 0.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_minus_operator_yy_scalar)
+{
+    Vec2f res = lhs.yy - 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 0.0f);
+    ASSERT_FLOAT_EQ(res.y, 0.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator * tests (swizzle * scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_star_operator_xy_scalar)
+{
+    Vec2f res = lhs.xy * 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_star_operator_yx_scalar)
+{
+    Vec2f res = lhs.yx * 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_star_operator_xx_scalar)
+{
+    Vec2f res = lhs.xx * 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_star_operator_yy_scalar)
+{
+    Vec2f res = lhs.yy * 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 4.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator / tests (swizzle / scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_div_operator_xy_scalar)
+{
+    Vec2f res = lhs.xy / 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 1.0f);
+    ASSERT_FLOAT_EQ(res.y, 1.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_div_operator_yx_scalar)
+{
+    Vec2f res = lhs.yx / 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 1.0f);
+    ASSERT_FLOAT_EQ(res.y, 1.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_div_operator_xx_scalar)
+{
+    Vec2f res = lhs.xx / 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 1.0f);
+    ASSERT_FLOAT_EQ(res.y, 1.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_div_operator_yy_scalar)
+{
+    Vec2f res = lhs.yy / 2.0f;
+
+    ASSERT_FLOAT_EQ(res.x, 1.0f);
+    ASSERT_FLOAT_EQ(res.y, 1.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator += tests (swizzle += scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_plus_equals_operator_xy_scalar)
+{
+    lhs.xy += 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 4.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_plus_equals_operator_yx_scalar)
+{
+    lhs.yx += 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 4.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 4.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator -= tests (swizzle -= scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_minus_equals_operator_xy_scalar)
+{
+    lhs.xy -= 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 0.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 0.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_minus_equals_operator_yx_scalar)
+{
+    lhs.yx -= 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 0.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 0.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator *= tests (swizzle *= scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_star_equals_operator_xy_scalar)
+{
+    lhs.xy *= 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 4.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 4.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_star_equals_operator_yx_scalar)
+{
+    lhs.yx *= 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 4.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 4.0f);
+}
+
+// --------------------------------------------
+// Swizzle operator /= tests (swizzle /= scalar)
+// --------------------------------------------
+TEST_F(Vec2SwizzleFixture, test_swizzle_div_equals_operator_xy_scalar)
+{
+    lhs.xy /= 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 1.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 1.0f);
+}
+
+TEST_F(Vec2SwizzleFixture, test_swizzle_div_equals_operator_yx_scalar)
+{
+    lhs.yx /= 2.0f;
+
+    ASSERT_FLOAT_EQ(lhs.x, 1.0f);
+    ASSERT_FLOAT_EQ(lhs.y, 1.0f);
+}
