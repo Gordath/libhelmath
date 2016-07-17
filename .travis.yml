@@ -24,7 +24,7 @@ before_script:
 script:
     - make
     - cd tests
-    - ./all_tests --gtest_filter=* --gtest_color=no
+    - ./all_tests
 
 notifications:
   recipients:
