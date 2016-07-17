@@ -5,9 +5,6 @@ namespace hm {
 // Vec2 template class explicit instantiation --------------------------------------------------
 // Integral types
 template
-class Vec2<long>;
-
-template
 class Vec2<std::int8_t>;
 
 template
@@ -43,9 +40,6 @@ class Vec2<std::double_t>;
 // Vec3 template class explicit instantiation --------------------------------------------------
 // Integral types
 template
-class Vec3<long>;
-
-template
 class Vec3<std::int8_t>;
 
 template
@@ -80,9 +74,6 @@ class Vec3<std::double_t>;
 
 // Vec4 template class explicit instantiation --------------------------------------------------
 // Integral types
-template
-class Vec4<long>;
-
 template
 class Vec4<std::int8_t>;
 
