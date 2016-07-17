@@ -1,6 +1,8 @@
 add_subdirectory(lib/googletest)
 add_subdirectory(vector)
 
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
 add_executable(all_tests
         vector/vec2/vec2_swizzle_tests.cpp
         vector/vec3/vec3_double_tests.cpp
