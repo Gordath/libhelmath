@@ -22,3 +22,10 @@ before_script:
     - cmake ..
 
 script: make
+
+notifications:
+  recipients:
+    - agelosbb@gmail.com
+  email:
+    on_success: always
+    on_failure: always
