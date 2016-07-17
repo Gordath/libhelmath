@@ -8,9 +8,6 @@ template
 class Vec2<long>;
 
 template
-class Vec2<unsigned long>;
-
-template
 class Vec2<std::int8_t>;
 
 template
@@ -49,9 +46,6 @@ template
 class Vec3<long>;
 
 template
-class Vec3<unsigned long>;
-
-template
 class Vec3<std::int8_t>;
 
 template
@@ -88,9 +82,6 @@ class Vec3<std::double_t>;
 // Integral types
 template
 class Vec4<long>;
-
-template
-class Vec4<unsigned long>;
 
 template
 class Vec4<std::int8_t>;
