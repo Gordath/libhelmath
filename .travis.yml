@@ -21,7 +21,10 @@ before_script:
     - cd build
     - cmake ..
 
-script: make
+script:
+    - make
+    - cd tests
+    - ./all_tests --gtest_filter=* --gtest_color=no
 
 notifications:
   recipients:
