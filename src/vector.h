@@ -505,7 +505,7 @@ public:
 
     inline std::float_t lengthf() const
     {
-        return std::sqrtf(x * x + y * y + z * z);
+        return sqrtf(x * x + y * y + z * z);
     }
 
     inline void normalize()
