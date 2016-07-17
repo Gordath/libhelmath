@@ -22,7 +22,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_assignment_xy_xy)
 {
     lhs.xy = rhs.xy;
 
-    ASSERT_FLOAT_EQ(lhs.x, rhs.x);
+    ASSERT_FLOAT_EQ(lhs.x, 10000.0);
     ASSERT_FLOAT_EQ(lhs.y, rhs.y);
 }
 
