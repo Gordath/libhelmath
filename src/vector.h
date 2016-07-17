@@ -143,6 +143,26 @@ private:
             return Vec2<T>{v[A]};
         }
 
+        inline Vec2<T> operator+(const Vec2<T> &rhs)
+        {
+            return Vec2<T>{v[A] + rhs.x, v[A] + rhs.y};
+        }
+
+        inline Vec2<T> operator-(const Vec2<T> &rhs)
+        {
+            return Vec2<T>{v[A] - rhs.x, v[A] - rhs.y};
+        }
+
+        inline Vec2<T> operator*(const Vec2<T> &rhs)
+        {
+            return Vec2<T>{v[A] * rhs.x, v[A] * rhs.y};
+        }
+
+        inline Vec2<T> operator/(const Vec2<T> &rhs)
+        {
+            return Vec2<T>{v[A] / rhs.x, v[A] / rhs.y};
+        }
+
         inline Vec2<T> operator+(T rhs)
         {
             return Vec2<T>{v[A] + rhs, v[A] + rhs};
@@ -359,6 +379,26 @@ private:
         operator Vec3()
         {
             return Vec3<T>{v[A]};
+        }
+
+        inline Vec3<T> operator+(const Vec3<T> &rhs)
+        {
+            return Vec3<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z};
+        }
+
+        inline Vec3<T> operator-(const Vec3<T> &rhs)
+        {
+            return Vec3<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z};
+        }
+
+        inline Vec3<T> operator*(const Vec3<T> &rhs)
+        {
+            return Vec3<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z};
+        }
+
+        inline Vec3<T> operator/(const Vec3<T> &rhs)
+        {
+            return Vec3<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z};
         }
 
         inline Vec3<T> operator+(T rhs)
@@ -694,6 +734,26 @@ private:
         operator Vec4()
         {
             return Vec4<T>{v[A]};
+        }
+
+        inline Vec4<T> operator+(const Vec4<T> &rhs)
+        {
+            return Vec4<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z, v[A] + rhs.w};
+        }
+
+        inline Vec4<T> operator-(const Vec4<T> &rhs)
+        {
+            return Vec4<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z, v[A] - rhs.w};
+        }
+
+        inline Vec4<T> operator*(const Vec4<T> &rhs)
+        {
+            return Vec4<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z, v[A] * rhs.w};
+        }
+
+        inline Vec4<T> operator/(const Vec4<T> &rhs)
+        {
+            return Vec4<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z, v[A] / rhs.w};
         }
 
         inline Vec4<T> operator+(T rhs)
