@@ -215,9 +215,6 @@ public:
     Vec2(T val) : x(val), y(val)
     { }
 
-    Vec2(T arr[2]) : x(arr[0]), y(arr[1])
-    { }
-
     Vec2(T x, T y) : x(x), y(y)
     { }
 };
