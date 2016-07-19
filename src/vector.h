@@ -219,12 +219,6 @@ public:
     { }
 };
 
-template<typename T>
-inline Vec2<T> operator+(const Vec2<T> &lhs, const Vec2<T> &rhs)
-{
-    return Vec2<T>{lhs.x + rhs.x, lhs.y + rhs.y};
-}
-
 using Vec2f = Vec2<float>;
 using Vec2d = Vec2<double>;
 using Vec2i = Vec2<int>;
@@ -306,6 +300,7 @@ private:
         {
             v[A] /= rhs.x;
             v[B] /= rhs.y;
+            v[C] /= rhs.z;
 
             return *(Vec3<T> *) this;
         }
@@ -1567,6 +1562,12 @@ template<typename T>
 inline Vec2<T> operator-(const Vec2<T> &rhs)
 {
     return Vec2<T>{-rhs.x, -rhs.y};
+}
+
+template<typename T>
+inline Vec2<T> operator+(const Vec2<T> &lhs, const Vec2<T> &rhs)
+{
+    return Vec2<T>{lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
 template<typename T>
