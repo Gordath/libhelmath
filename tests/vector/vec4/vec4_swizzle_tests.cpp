@@ -1947,3 +1947,13 @@ TEST_F(Vec4SwizzleFixture, test_vector_creation_from_wxxx)
     ASSERT_FLOAT_EQ(res.z, 4.0f);
     ASSERT_FLOAT_EQ(res.w, 4.0f);
 }
+
+TEST_F(Vec4SwizzleFixture, test_vector_creation_from_wxxy)
+{
+    Vec4f res{lhs.wxxy};
+
+    ASSERT_FLOAT_EQ(res.x, 1.0f);
+    ASSERT_FLOAT_EQ(res.y, 4.0f);
+    ASSERT_FLOAT_EQ(res.z, 4.0f);
+    ASSERT_FLOAT_EQ(res.w, 3.0f);
+}
