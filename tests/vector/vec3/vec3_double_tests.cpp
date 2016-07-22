@@ -35,14 +35,3 @@ TEST(Vec3_double_tests, test_operator_overload_vec_mult_scalar)
     ASSERT_DOUBLE_EQ(res.y, 4.0);
     ASSERT_DOUBLE_EQ(res.z, 4.0);
 }
-
-TEST(Vec3_double_tests, test_operator_overload_scalar_mult_vec)
-{
-    Vec3d v{2.0, 2.0, 2.0};
-
-    Vec3d res = 2.0 * v;
-
-    ASSERT_DOUBLE_EQ(res.x, 4.0);
-    ASSERT_DOUBLE_EQ(res.y, 4.0);
-    ASSERT_DOUBLE_EQ(res.z, 4.0);
-}

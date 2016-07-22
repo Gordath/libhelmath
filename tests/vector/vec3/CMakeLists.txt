@@ -7,20 +7,16 @@ add_executable(vec3_swizzle_tests vec3_swizzle_tests.cpp)
 
 target_link_libraries(vec3_double_tests
         gtest
-        gtest_main
-        helmath)
+        gtest_main)
 
 target_link_libraries(vec3_float_tests
         gtest
-        gtest_main
-        helmath)
+        gtest_main)
 
 target_link_libraries(vec3_int_tests
         gtest
-        gtest_main
-        helmath)
+        gtest_main)
 
 target_link_libraries(vec3_swizzle_tests
         gtest
-        gtest_main
-        helmath)
+        gtest_main)

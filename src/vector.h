@@ -217,13 +217,113 @@ public:
 
     Vec2(T x, T y) : x(x), y(y)
     { }
+
+    inline Vec2<T> operator-()
+    {
+        return Vec2<T>{-x, -y};
+    }
+
+    inline Vec2<T> operator+(const Vec2<T> &rhs)
+    {
+        return Vec2<T>{x + rhs.x, y + rhs.y};
+    }
+
+    inline Vec2<T> operator-(const Vec2<T> &rhs)
+    {
+        return Vec2<T>{x - rhs.x, y - rhs.y};
+    }
+
+    inline Vec2<T> operator*(const Vec2<T> &rhs)
+    {
+        return Vec2<T>{x * rhs.x, y * rhs.y};
+    }
+
+    inline Vec2<T> operator/(const Vec2<T> &rhs)
+    {
+        return Vec2<T>{x / rhs.x, y / rhs.y};
+    }
+
+    inline void operator+=(const Vec2<T> &rhs)
+    {
+        x /= rhs.x;
+        y /= rhs.y;
+    }
+
+    inline void operator-=(const Vec2<T> &rhs)
+    {
+        x -= rhs.x;
+        y -= rhs.y;
+    }
+
+    inline void operator*=(const Vec2<T> &rhs)
+    {
+        x *= rhs.x;
+        y *= rhs.x;
+    }
+
+    inline void operator/=(const Vec2<T> &rhs)
+    {
+        x /= rhs.x;
+        y /= rhs.y;
+    }
+
+    inline Vec2<T> operator+(T rhs)
+    {
+        return Vec2<T>{x + rhs, y + rhs};
+    }
+
+    inline Vec2<T> operator-(T rhs)
+    {
+        return Vec2<T>{x - rhs, y - rhs};
+    }
+
+    inline Vec2<T> operator*(T rhs)
+    {
+        return Vec2<T>{x * rhs, y * rhs};
+    }
+
+    inline Vec2<T> operator/(T rhs)
+    {
+        return Vec2<T>{x / rhs, y / rhs};
+    }
+
+    inline void operator+=(T rhs)
+    {
+        x += rhs;
+        y += rhs;
+    }
+
+    inline void operator-=(T rhs)
+    {
+        x -= rhs;
+        y -= rhs;
+    }
+
+    inline void operator*=(T rhs)
+    {
+        x *= rhs;
+        y *= rhs;
+    }
+
+    inline void operator/=(T rhs)
+    {
+        x /= rhs;
+        y /= rhs;
+    }
 };
 
 using Vec2f = Vec2<float>;
 using Vec2d = Vec2<double>;
+using Vec2c = Vec2<char>;
+using Vec2uc = Vec2<unsigned char>;
+using Vec2s = Vec2<short>;
+using Vec2us = Vec2<unsigned short>;
 using Vec2i = Vec2<int>;
+using Vec2ui = Vec2<unsigned int>;
 using Vec2l = Vec2<long>;
 using Vec2ul = Vec2<unsigned long>;
+using Vec2ll = Vec2<long long>;
+using Vec2ull = Vec2<unsigned long long>;
 
 
 template<typename T>
@@ -530,19 +630,19 @@ public:
     Vec3(T x, T y, T z) : x(x), y(y), z(z)
     { }
 
-    inline std::double_t length() const
+    inline double length() const
     {
         return std::sqrt(x * x + y * y + z * z);
     }
 
-    inline std::float_t lengthf() const
+    inline float lengthf() const
     {
         return sqrtf(x * x + y * y + z * z);
     }
 
     inline void normalize()
     {
-        std::double_t len = length();
+        double len = length();
 
         if (!len) {
             return;
@@ -555,7 +655,7 @@ public:
 
     inline Vec3<T> normalized() const
     {
-        std::double_t len = length();
+        double len = length();
 
         if (!len) {
             return Vec3<T>{};
@@ -563,13 +663,121 @@ public:
 
         return Vec3<T>(x / len, y / len, z / len);
     }
+
+    inline Vec3<T> operator-()
+    {
+        return Vec3<T>{-x, -y, -z};
+    }
+
+    inline Vec3<T> operator+(const Vec3<T> &rhs)
+    {
+        return Vec3<T>{x + rhs.x, y + rhs.y, z + rhs.z};
+    }
+
+    inline Vec3<T> operator-(const Vec3<T> &rhs)
+    {
+        return Vec3<T>{x - rhs.x, y - rhs.y, z - rhs.z};
+    }
+
+    inline Vec3<T> operator*(const Vec3<T> &rhs)
+    {
+        return Vec3<T>{x * rhs.x, y * rhs.y, z * rhs.z};
+    }
+
+    inline Vec3<T> operator/(const Vec3<T> &rhs)
+    {
+        return Vec3<T>{x / rhs.x, y / rhs.y, z / rhs.z};
+    }
+
+    inline void operator+=(const Vec3<T> &rhs)
+    {
+        x += rhs.x;
+        y += rhs.y;
+        z += rhs.z;
+    }
+
+    inline void operator-=(const Vec3<T> &rhs)
+    {
+        x -= rhs.x;
+        y -= rhs.y;
+        z -= rhs.z;
+    }
+
+    inline void operator*=(const Vec3<T> &rhs)
+    {
+        x *= rhs.x;
+        y *= rhs.y;
+        z *= rhs.z;
+    }
+
+    inline void operator/=(const Vec3<T> &rhs)
+    {
+        x /= rhs.x;
+        y /= rhs.y;
+        z /= rhs.z;
+    }
+
+    inline Vec3<T> operator+(T rhs)
+    {
+        return Vec3<T>{x + rhs, y + rhs, z + rhs};
+    }
+
+    inline Vec3<T> operator-(T rhs)
+    {
+        return Vec3<T>{x - rhs, y - rhs, z - rhs};
+    }
+
+    inline Vec3<T> operator*(T rhs)
+    {
+        return Vec3<T>{x * rhs, y * rhs, z * rhs};
+    }
+
+    inline Vec3<T> operator/(T rhs)
+    {
+        return Vec3<T>{x / rhs, y / rhs, z / rhs};
+    }
+
+    inline void operator+=(T rhs)
+    {
+        x += rhs;
+        y += rhs;
+        z += rhs;
+    }
+
+    inline void operator-=(T rhs)
+    {
+        x -= rhs;
+        y -= rhs;
+        z -= rhs;
+    }
+
+    inline void operator*=(T rhs)
+    {
+        x *= rhs;
+        y *= rhs;
+        z *= rhs;
+    }
+
+    inline void operator/=(T rhs)
+    {
+        x /= rhs;
+        y /= rhs;
+        z /= rhs;
+    }
 };
 
 using Vec3f = Vec3<float>;
 using Vec3d = Vec3<double>;
+using Vec3s = Vec3<short>;
+using Vec3us = Vec3<unsigned short>;
+using Vec3c = Vec3<char>;
+using Vec3uc = Vec3<unsigned char>;
 using Vec3i = Vec3<int>;
+using Vec3ui = Vec3<unsigned int>;
 using Vec3l = Vec3<long>;
 using Vec3ul = Vec3<unsigned long>;
+using Vec3ll = Vec3<long long>;
+using Vec3ull = Vec3<unsigned long long>;
 
 
 template<typename T>
@@ -1575,19 +1783,19 @@ public:
     Vec4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w)
     { }
 
-    inline std::double_t length() const
+    inline double length() const
     {
         return sqrt(x * x + y * y + z * z + w * w);
     }
 
-    inline std::float_t lengthf() const
+    inline float lengthf() const
     {
         return sqrtf(x * x + y * y + z * z + w * w);
     }
 
     inline void normalize()
     {
-        std::double_t len = length();
+        double len = length();
 
         if (!len) {
             return;
@@ -1601,7 +1809,7 @@ public:
 
     inline Vec4<T> normalized() const
     {
-        std::double_t len = length();
+        double len = length();
 
         if (!len) {
             return Vec4<T>{};
@@ -1609,83 +1817,127 @@ public:
 
         return Vec4<T>(x / len, y / len, z / len, w / len);
     }
+
+    inline Vec4<T> operator-()
+    {
+        return Vec4<T>{-x, -y, -z, -w};
+    }
+
+    inline Vec4<T> operator+(const Vec4<T> &rhs)
+    {
+        return Vec4<T>{x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w};
+    }
+
+    inline Vec4<T> operator-(const Vec4<T> &rhs)
+    {
+        return Vec4<T>{x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w};
+    }
+
+    inline Vec4<T> operator*(const Vec4<T> &rhs)
+    {
+        return Vec4<T>{x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
+    }
+
+    inline Vec4<T> operator/(const Vec4<T> & rhs)
+    {
+        return Vec4<T>{x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
+    }
+
+    inline void operator+=(const Vec4<T> &rhs)
+    {
+        x += rhs.x;
+        y += rhs.y;
+        z += rhs.z;
+        w += rhs.w;
+    }
+
+    inline void operator-=(const Vec4<T> &rhs)
+    {
+        x -= rhs.x;
+        y -= rhs.y;
+        z -= rhs.z;
+        w -= rhs.w;
+    }
+
+    inline void operator*=(const Vec4<T> &rhs)
+    {
+        x *= rhs.x;
+        y *= rhs.y;
+        z *= rhs.z;
+        w *= rhs.w;
+    }
+
+    inline void operator/=(const Vec4<T> &rhs)
+    {
+        x /= rhs.x;
+        y /= rhs.y;
+        z /= rhs.z;
+        w /= rhs.w;
+    }
+
+    inline Vec4<T> operator+(T rhs)
+    {
+        return Vec4<T>{x + rhs, y + rhs, z + rhs, w + rhs};
+    }
+
+    inline Vec4<T> operator-(T rhs)
+    {
+        return Vec4<T>{x - rhs, y - rhs, z - rhs, w - rhs};
+    }
+
+    inline Vec4<T> operator*(T rhs)
+    {
+        return Vec4<T>{x * rhs, y * rhs, z * rhs, w * rhs};
+    }
+
+    inline Vec4<T> operator/(T rhs)
+    {
+        return Vec4<T>{x / rhs, y / rhs, z / rhs, w / rhs};
+    }
+
+    inline void operator+=(T rhs)
+    {
+        x += rhs;
+        y += rhs;
+        z += rhs;
+        w += rhs;
+    }
+
+    inline void operator-=(T rhs)
+    {
+        x -= rhs;
+        y -= rhs;
+        z -= rhs;
+        w -= rhs;
+    }
+
+    inline void operator*=(T rhs)
+    {
+        x *= rhs;
+        y *= rhs;
+        z *= rhs;
+        w *= rhs;
+    }
+
+    inline void operator/=(T rhs)
+    {
+        x /= rhs;
+        y /= rhs;
+        z /= rhs;
+        w /= rhs;
+    }
 };
 
 using Vec4f = Vec4<float>;
 using Vec4d = Vec4<double>;
+using Vec4s = Vec4<short>;
+using Vec4us = Vec4<unsigned short>;
+using Vec4c = Vec4<char>;
+using Vec4uc = Vec4<unsigned char>;
 using Vec4i = Vec4<int>;
+using Vec4ui = Vec4<unsigned int>;
 using Vec4l = Vec4<long>;
 using Vec4ul = Vec4<unsigned long>;
-
-// Vec2 Operators -------------------------------------------------------------
-template<typename T>
-inline Vec2<T> operator-(const Vec2<T> &rhs)
-{
-    return Vec2<T>{-rhs.x, -rhs.y};
-}
-
-template<typename T>
-inline Vec2<T> operator+(const Vec2<T> &lhs, const Vec2<T> &rhs)
-{
-    return Vec2<T>{lhs.x + rhs.x, lhs.y + rhs.y};
-}
-
-template<typename T>
-inline Vec2<T> operator*(const Vec2<T> &lhs, T rhs)
-{
-    return Vec2<T>{lhs.x * rhs, lhs.y * rhs};
-}
-
-template<typename T>
-inline Vec2<T> operator*(T lhs, const Vec2<T> &rhs)
-{
-    return Vec2<T>{rhs.x * lhs, rhs.y * lhs};
-}
-// ----------------------------------------------------------------------------
-
-// Vec3 Operators -------------------------------------------------------------
-template<typename T>
-inline Vec3<T> operator-(const Vec3<T> &rhs)
-{
-    return Vec3<T>{-rhs.x, -rhs.y, -rhs.z};
-}
-
-template<typename T>
-inline Vec3<T> operator*(const Vec3<T> &lhs, T rhs)
-{
-    return Vec3<T>{lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
-}
-
-template<typename T>
-inline Vec3<T> operator*(T lhs, const Vec3<T> &rhs)
-{
-    return Vec3<T>{rhs.x * lhs, rhs.y * lhs, rhs.z * lhs};
-}
-
-template<typename T>
-inline Vec3<T> operator/(const Vec3<T> &lhs, T rhs)
-{
-    return Vec3<T>{lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
-}
-
-template<typename T>
-inline Vec3<T> operator+(const Vec3<T> &lhs, T rhs)
-{
-    return Vec3<T>{lhs.x + rhs, lhs.y + rhs, lhs.z + rhs};
-}
-
-template<typename T>
-inline Vec3<T> operator+(T lhs, const Vec3<T> &rhs)
-{
-    return Vec3<T>{rhs.x + lhs, rhs.y + lhs, rhs.z + lhs};
-}
-
-template<typename T>
-inline Vec3<T> operator-(const Vec3<T> &lhs, T rhs)
-{
-    return Vec3<T>{lhs.x - rhs, lhs.y - rhs, lhs.z - rhs};
-}
-// ----------------------------------------------------------------------------
 
 }
 

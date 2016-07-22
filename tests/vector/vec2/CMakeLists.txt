@@ -4,5 +4,4 @@ add_executable(vec2_swizzle_tests vec2_swizzle_tests.cpp)
 
 target_link_libraries(vec2_swizzle_tests
         gtest
-        gtest_main
-        helmath)
+        gtest_main)

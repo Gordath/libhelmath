@@ -11,5 +11,4 @@ add_executable(all_tests
 
 target_link_libraries(all_tests
         gtest
-        gtest_main
-        helmath)
+        gtest_main)

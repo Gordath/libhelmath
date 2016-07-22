@@ -7,9 +7,9 @@ include_directories(src)
 
 add_subdirectory(tests)
 
-set(SOURCE_FILES
-        src/helmath.h
-        src/vector.h
-        src/vector.cpp)
-
-add_library(helmath ${SOURCE_FILES})
+#set(SOURCE_FILES
+#        src/helmath.h
+#        src/vector.h
+#        )
+#
+#add_library(helmath ${SOURCE_FILES})
