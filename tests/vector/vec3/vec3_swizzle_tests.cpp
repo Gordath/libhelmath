@@ -4,11 +4,11 @@
 using namespace hm;
 
 class Vec3SwizzleFixture : public ::testing::Test {
-public:
+protected:
     Vec3f rhs;
     Vec3f lhs;
 
-    void SetUp()
+    void SetUp() override
     {
         rhs = Vec3f{1.0f, 2.0f, 3.0f};
         lhs = Vec3f{4.0f, 3.0f, 2.0f};
