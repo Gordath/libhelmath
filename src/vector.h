@@ -2318,13 +2318,26 @@ using Vec4ui = Vec4<unsigned int>;
 using Vec4l = Vec4<long>;
 using Vec4ul = Vec4<unsigned long>;
 
-
+/**
+ * Calculates the dot product of two two dimensional vectors.
+ * @tparam T Can be any numeric value.
+ * @param v1
+ * @param v2
+ * @return The result of the dot product as a double float.
+ */
 template<typename T>
 inline double dot(const Vec2<T> &v1, const Vec2<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y;
 }
 
+/**
+ * Calculates the dot product of two two dimensional vectors.
+ * @tparam T Can be any numeric value.
+ * @param v1
+ * @param v2
+ * @return The result of the dot product as a float.
+ */
 template<typename T>
 inline float dotf(const Vec2<T> &v1, const Vec2<T> &v2)
 {
