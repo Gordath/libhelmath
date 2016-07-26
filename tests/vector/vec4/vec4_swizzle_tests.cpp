@@ -8,7 +8,7 @@ public:
     Vec4f rhs;
     Vec4f lhs;
 
-    void SetUp()
+    void SetUp() override
     {
         rhs = Vec4f{1.0f, 2.0f, 3.0f, 4.0f};
         lhs = Vec4f{4.0f, 3.0f, 2.0f, 1.0f};
@@ -7695,4 +7695,3 @@ TEST_F(Vec4SwizzleFixture, test_vector_creation_from_qqqq)
     EXPECT_FLOAT_EQ(res.p, 1.0f);
     EXPECT_FLOAT_EQ(res.q, 1.0f);
 }
-

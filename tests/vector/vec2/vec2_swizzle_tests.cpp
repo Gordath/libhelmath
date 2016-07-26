@@ -8,7 +8,7 @@ public:
     Vec2f rhs;
     Vec2f lhs;
 
-    void SetUp()
+    void SetUp() override
     {
         rhs = Vec2f{1.0f, 2.0f};
         lhs = Vec2f{2.0f, 2.0f};

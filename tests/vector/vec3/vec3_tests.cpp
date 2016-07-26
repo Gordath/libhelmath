@@ -87,7 +87,7 @@ TEST_F(Vec3Fixture, test_member_function_reflected)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_Vec3_plus_operator_vector_plus_vector)
+TEST_F(Vec3Fixture, test_vector_plus_vector)
 {
     Vec3f res{v1 + v2};
 
@@ -96,7 +96,7 @@ TEST_F(Vec3Fixture, test_Vec3_plus_operator_vector_plus_vector)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3Fixture, test_Vec3_minus_operator_vector_minus_vector)
+TEST_F(Vec3Fixture, test_operator_vector_minus_vector)
 {
     Vec3f res{v2 - v1};
 
@@ -105,7 +105,7 @@ TEST_F(Vec3Fixture, test_Vec3_minus_operator_vector_minus_vector)
     EXPECT_FLOAT_EQ(res.z, -2.0f);
 }
 
-TEST_F(Vec3Fixture, test_Vec3_mult_operator_vector_mult_vector)
+TEST_F(Vec3Fixture, test_operator_vector_mult_vector)
 {
     Vec3f res{v1 * v2};
 
@@ -114,13 +114,121 @@ TEST_F(Vec3Fixture, test_Vec3_mult_operator_vector_mult_vector)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_Vec3_div_operator_vector_div_vector)
+TEST_F(Vec3Fixture, test_operator_vector_div_vector)
 {
     Vec3f res{v1 / v2};
 
     EXPECT_FLOAT_EQ(res.x, 0.33333334);
     EXPECT_FLOAT_EQ(res.y, 1.0f);
     EXPECT_FLOAT_EQ(res.z, 3.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_plus_scalar)
+{
+    Vec3f res{v1 + 2.0f};
+
+    EXPECT_FLOAT_EQ(res.x, 3.0f);
+    EXPECT_FLOAT_EQ(res.y, 4.0f);
+    EXPECT_FLOAT_EQ(res.z, 5.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_minus_scalar)
+{
+    Vec3f res{v1 - 2.0f};
+
+    EXPECT_FLOAT_EQ(res.x, -1.0f);
+    EXPECT_FLOAT_EQ(res.y, 0.0f);
+    EXPECT_FLOAT_EQ(res.z, 1.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_mult_scalar)
+{
+    Vec3f res{v1 * 2.0f};
+
+    EXPECT_FLOAT_EQ(res.x, 2.0f);
+    EXPECT_FLOAT_EQ(res.y, 4.0f);
+    EXPECT_FLOAT_EQ(res.z, 6.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_div_scalar)
+{
+    Vec3f res{v1 / 2.0f};
+
+    EXPECT_FLOAT_EQ(res.x, 0.5f);
+    EXPECT_FLOAT_EQ(res.y, 1.0f);
+    EXPECT_FLOAT_EQ(res.z, 1.5f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_plus_equals_vector)
+{
+    v1 += v2;
+
+    EXPECT_FLOAT_EQ(v1.x, 4.0f);
+    EXPECT_FLOAT_EQ(v1.y, 4.0f);
+    EXPECT_FLOAT_EQ(v1.z, 4.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_minus_equals_vector)
+{
+    v1 -= v2;
+
+    EXPECT_FLOAT_EQ(v1.x, -2.0f);
+    EXPECT_FLOAT_EQ(v1.y, 0.0f);
+    EXPECT_FLOAT_EQ(v1.z, 2.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_mult_equals_vector)
+{
+    v1 *= v2;
+
+    EXPECT_FLOAT_EQ(v1.x, 3.0f);
+    EXPECT_FLOAT_EQ(v1.y, 4.0f);
+    EXPECT_FLOAT_EQ(v1.z, 3.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_div_equals_vector)
+{
+    v1 /= v2;
+
+    EXPECT_FLOAT_EQ(v1.x, 0.3333334f);
+    EXPECT_FLOAT_EQ(v1.y, 1.0f);
+    EXPECT_FLOAT_EQ(v1.z, 3.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_plus_equals_scalar)
+{
+    v1 += 2.0f;
+
+    EXPECT_FLOAT_EQ(v1.x, 3.0f);
+    EXPECT_FLOAT_EQ(v1.y, 4.0f);
+    EXPECT_FLOAT_EQ(v1.z, 5.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_minus_equals_scalar)
+{
+    v1 -= 2.0f;
+
+    EXPECT_FLOAT_EQ(v1.x, -1.0f);
+    EXPECT_FLOAT_EQ(v1.y, 0.0f);
+    EXPECT_FLOAT_EQ(v1.z, 1.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_mult_equals_scalar)
+{
+    v1 *= 2.0f;
+
+    EXPECT_FLOAT_EQ(v1.x, 2.0f);
+    EXPECT_FLOAT_EQ(v1.y, 4.0f);
+    EXPECT_FLOAT_EQ(v1.z, 6.0f);
+}
+
+TEST_F(Vec3Fixture, test_operator_vector_div_equals_scalar)
+{
+    v1 /= 2.0f;
+
+    EXPECT_FLOAT_EQ(v1.x, 0.5f);
+    EXPECT_FLOAT_EQ(v1.y, 1.0f);
+    EXPECT_FLOAT_EQ(v1.z, 1.5f);
 }
 
 TEST_F(Vec3Fixture, test_non_member_function_dot)
