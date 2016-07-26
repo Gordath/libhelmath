@@ -12,7 +12,7 @@ namespace hm {
 
 /**
  * @class Vec2
- * @tparam T Can be any numeric value.
+ * @tparam T Can be any numeric type.
  * @brief A class that represents a 2 dimensional vector.
  * @details Vec2 is a class that represents a 2 dimensional
  * vector. It supports accessing the vector values with various
@@ -595,7 +595,7 @@ using Vec2ull = Vec2<unsigned long long>;
 
 /**
  * @class Vec3
- * @tparam T Can be any numeric value.
+ * @tparam T Can be any numeric type.
  * @brief A class that represents a 3 dimensional vector.
  * @details Vec3 is a class that represents a 3 dimensional
  * vector. It supports accessing the vector values with various
@@ -1152,7 +1152,7 @@ using Vec3ull = Vec3<unsigned long long>;
 
 /**
  * @class Vec4
- * @tparam T Can be any numeric value.
+ * @tparam T Can be any numeric type.
  * @brief A class that represents a 4 dimensional vector.
  * @details Vec4 is a class that represents a 4 dimensional
  * vector. It supports accessing the vector values with various
@@ -2307,22 +2307,83 @@ public:
     }
 };
 
+/**
+ * @typedef Vec4f
+ * Defines a four dimensional vector of floats.
+ */
 using Vec4f = Vec4<float>;
+
+/**
+ * @typedef Vec4d
+ * Defines a four dimensional vector of doubles.
+ */
 using Vec4d = Vec4<double>;
+
+/**
+ * @typedef Vec4s
+ * Defines a four dimensional vector of short integers.
+ */
 using Vec4s = Vec4<short>;
+
+/**
+ * @typedef Vec4us
+ * Defines a four dimensional vector of unsigned short integers.
+ */
 using Vec4us = Vec4<unsigned short>;
+
+/**
+ * @typedef Vec4c
+ * Defines a four dimensional vector of characters.
+ */
 using Vec4c = Vec4<char>;
+
+/**
+ * @typedef Vec4uc
+ * Defines a four dimensional vector of unsigned characters.
+ */
 using Vec4uc = Vec4<unsigned char>;
+
+/**
+ * @typedef Vec4i
+ * Defines a four dimensional vector of integers.
+ */
 using Vec4i = Vec4<int>;
+
+/**
+ * @typedef Vec4ui
+ * Defines a four dimensional vector of unsigned integers.
+ */
 using Vec4ui = Vec4<unsigned int>;
+
+/**
+ * @typedef Vec4l
+ * Defines a four dimensional vector of long integers.
+ */
 using Vec4l = Vec4<long>;
+
+/**
+ * @typedef Vec4ul
+ * Defines a four dimensional vector of unsigned long integers.
+ */
 using Vec4ul = Vec4<unsigned long>;
 
 /**
+ * @typedef Vec4ll
+ * Defines a four dimensional vector of long long integers.
+ */
+using Vec4ll = Vec4<long long>;
+
+/**
+ * @typedef Vec4ull
+ * Defines a four dimensional vector of unsigned long long integers.
+ */
+using Vec4ull = Vec4<unsigned long long>;
+
+/**
  * Calculates the dot product of two two dimensional vectors.
- * @tparam T Can be any numeric value.
- * @param v1
- * @param v2
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
  * @return The result of the dot product as a double float.
  */
 template<typename T>
@@ -2333,9 +2394,9 @@ inline double dot(const Vec2<T> &v1, const Vec2<T> &v2)
 
 /**
  * Calculates the dot product of two two dimensional vectors.
- * @tparam T Can be any numeric value.
- * @param v1
- * @param v2
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
  * @return The result of the dot product as a float.
  */
 template<typename T>
@@ -2344,30 +2405,65 @@ inline float dotf(const Vec2<T> &v1, const Vec2<T> &v2)
     return v1.x * v2.x + v1.y * v2.y;
 }
 
+/**
+ * Calculates the dot product of two three dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The result of the dot product as a double float.
+ */
 template<typename T>
 inline double dot(const Vec3<T> &v1, const Vec3<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
+/**
+ * Calculates the dot product of two three dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The result of the dot product as a float.
+ */
 template<typename T>
 inline float dotf(const Vec3<T> &v1, const Vec3<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
+/**
+ * Calculates the dot product of two four dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The result of the dot product as a double float.
+ */
 template<typename T>
 inline double dot(const Vec4<T> &v1, const Vec4<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
 
+/**
+ * Calculates the dot product of two four dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The result of the dot product as a float.
+ */
 template<typename T>
 inline float dotf(const Vec4<T> &v1, const Vec4<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
 
+/**
+ * Calculates the cross product of two three dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The resulting vector from the cross porduct.
+ */
 template<typename T>
 inline Vec3<T> cross(const Vec3<T> &v1, const Vec3<T> &v2)
 {
@@ -2376,18 +2472,42 @@ inline Vec3<T> cross(const Vec3<T> &v1, const Vec3<T> &v2)
                    v1.x * v2.y - v1.y * v2.x};
 }
 
+/**
+ * Calculates the cross product of three four dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @param v3 Third vector argument.
+ * @return The resulting vector from the cross product.
+ */
 template<typename T>
 inline Vec4<T> cross(const Vec4<T> &v1, const Vec4<T> &v2, const Vec4<T> &v3)
 {
     //TODO
 }
 
+/**
+ * Calculates a reflected two dimensional vector based
+ * on a two dimensional normal vector.
+ * @tparam T Can be any numeric type.
+ * @param v The vector to be reflected.
+ * @param normal The normal vector used in the reflection calculation.
+ * @return A new reflected vector.
+ */
 template<typename T>
 inline Vec2<T> reflect(const Vec2<T> v, const Vec2<T> normal)
 {
     return v - normal * 2 * dot(v, normal);
 }
 
+/**
+ * Calculates a reflected three dimensional vector based
+ * on a three dimensional normal vector.
+ * @tparam T Can be any numeric type.
+ * @param v The vector to be reflected.
+ * @param normal The normal vector used in the reflection calculation.
+ * @return A new reflected vector.
+ */
 template<typename T>
 inline Vec3<T> reflect(const Vec3<T> v, const Vec3<T> normal)
 {
