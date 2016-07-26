@@ -914,11 +914,20 @@ public:
     Vec3(T x, T y, T z) : x(x), y(y), z(z)
     { }
 
+    /**
+     * Calculates the length (magnitude) of the vector.
+     * @return The length of the vector as
+     * a double precision floating point number.
+     */
     inline double length() const
     {
         return std::sqrt(x * x + y * y + z * z);
     }
 
+    /**
+     * Calculates the length (magnitude) of the vector.
+     * @return The length of the vector as a floating point number.
+     */
     inline float lengthf() const
     {
         return sqrtf(x * x + y * y + z * z);
@@ -965,11 +974,20 @@ public:
                        x * v.y - y * v.x};
     }
 
+    /**
+     * Calculates the reflected vector.
+     * @param normal The normal vector used for the reflection calculation.
+     */
     inline void reflect(const Vec3<T> normal)
     {
         *this -= normal * 2 * dot(normal);
     }
 
+    /**
+     * Calculates the reflected vector as a new vector.
+     * @param normal The normal vector used for the reflection calculation.
+     * @return A new reflected vector.
+     */
     inline Vec3<T> reflected(const Vec3<T> normal) const
     {
         return *this - normal * 2 * dot(normal);
