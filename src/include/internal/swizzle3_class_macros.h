@@ -1,5 +1,11 @@
-#ifndef HELMATH_SWIZZLE3_CLASS_MACROS_H_H
-#define HELMATH_SWIZZLE3_CLASS_MACROS_H_H
+#ifndef HELMATH_SWIZZLE3_CLASS_MACROS_H
+#define HELMATH_SWIZZLE3_CLASS_MACROS_H
+
+/**
+ * @file
+ * This file contains the definitions for all
+ * the private swizzle classes needed for Vec3.
+ */
 
 #define HM_SWIZZLE3_TEMPLATE_CLASS \
 template<int A, int B, int C> \
@@ -185,4 +191,4 @@ public: \
     } \
 };
 
-#endif //HELMATH_SWIZZLE3_CLASS_MACROS_H_H
+#endif //HELMATH_SWIZZLE3_CLASS_MACROS_H

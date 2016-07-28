@@ -1,6 +1,17 @@
-#ifndef HELMATH_SWIZZLE2_CLASS_MACROS_H_H
-#define HELMATH_SWIZZLE2_CLASS_MACROS_H_H
+#ifndef HELMATH_SWIZZLE2_CLASS_MACROS_H
+#define HELMATH_SWIZZLE2_CLASS_MACROS_H
 
+/**
+ * @file
+ * This file contains the definitions for all
+ * the private swizzle classes needed for Vec2.
+ */
+
+/**
+ * Defines the private templated class _Swizzle.
+ * @details This class is used for swizzles that are not identical
+ * e.g. xy, yx or zc etc.
+ */
 #define HM_SWIZZLE2_TEMPLATE_CLASS \
 template<int A, int B> \
 class _Swizzle { \
@@ -122,6 +133,11 @@ public: \
     } \
 };
 
+/**
+ * Defines a template specialization for the class _Swizzle.
+ * @details This class is used for swizzles that are identical.
+ * e.g. xx, yy or zz.
+ */
 #define HM_SWIZZLE2_TEMPLATE_CLASS_SPEC \
 template<int A> \
 class _Swizzle<A, A> { \
@@ -179,4 +195,4 @@ public: \
     } \
 };
 
-#endif //HELMATH_SWIZZLE2_CLASS_MACROS_H_H
+#endif //HELMATH_SWIZZLE2_CLASS_MACROS_H

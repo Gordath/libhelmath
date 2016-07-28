@@ -1,6 +1,12 @@
 #ifndef HELMATH_SWIZZLE4_CLASS_MACROS_H_H
 #define HELMATH_SWIZZLE4_CLASS_MACROS_H_H
 
+/**
+ * @file
+ * This file contains the definitions for all
+ * the private swizzle classes needed for Vec4.
+ */
+
 #define HM_SWIZZLE4_TEMPLATE_CLASS \
 template<int A, int B, int C, int D> \
 class _Swizzle { \
