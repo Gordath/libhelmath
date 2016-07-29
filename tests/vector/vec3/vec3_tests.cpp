@@ -253,3 +253,11 @@ TEST_F(Vec3Fixture, test_non_member_function_reflect)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
+
+TEST_F(Vec3Fixture, test_foo)
+{
+    Vec2f res = v1.xy;
+
+    EXPECT_FLOAT_EQ(res.x, 1.0f);
+    EXPECT_FLOAT_EQ(res.y, 2.0f);
+}

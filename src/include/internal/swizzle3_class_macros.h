@@ -7,6 +7,11 @@
  * the private swizzle classes needed for Vec3.
  */
 
+/**
+ * Defines the private templated class _Swizzle.
+ * @details This class is used for swizzles that are not identical
+ * e.g. xyy, yxx, zxy etc.
+ */
 #define HM_SWIZZLE3_TEMPLATE_CLASS \
 template<int A, int B, int C> \
 class _Swizzle { \
@@ -138,6 +143,11 @@ public: \
     } \
 };
 
+/**
+ * Defines a template specialization for the class _Swizzle.
+ * @details This class is used for swizzles that are identical.
+ * e.g. xxx, yyy or zzz.
+ */
 #define HM_SWIZZLE3_TEMPLATE_CLASS_SPEC \
 template<int A> \
 class _Swizzle<A, A, A> { \

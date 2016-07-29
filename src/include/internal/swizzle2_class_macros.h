@@ -10,7 +10,7 @@
 /**
  * Defines the private templated class _Swizzle.
  * @details This class is used for swizzles that are not identical
- * e.g. xy, yx or zc etc.
+ * e.g. xy, yx, zx etc.
  */
 #define HM_SWIZZLE2_TEMPLATE_CLASS \
 template<int A, int B> \
@@ -26,7 +26,7 @@ public: \
         return *(Vec2<T> *) this; \
     } \
 \
-    inline operator Vec2() \
+    inline operator Vec2<T>() \
     { \
         return Vec2<T>{v[A], v[B]}; \
     } \
