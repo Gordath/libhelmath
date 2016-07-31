@@ -29,16 +29,14 @@ namespace hm {
  * @note This class uses macros to generate the swizzle classes and
  * the swizzle public members. The macros used are the following:
  * @note Private classes macros:
- * @li @ref HM_SWIZZLE2_TEMPLATE_CLASS
- * @li @ref HM_SWIZZLE2_TEMPLATE_CLASS_SPEC
+ * @li @ref HM_SWIZZLE2_CLASSES
  * @note Swizzle public members macro:
  * @li @ref HM_VEC2_SWIZZLES
  */
 template<typename T>
 class Vec2 {
 private:
-    HM_SWIZZLE2_TEMPLATE_CLASS
-    HM_SWIZZLE2_TEMPLATE_CLASS_SPEC
+    HM_SWIZZLE2_CLASSES(2)
 
 public:
     /**
@@ -126,7 +124,7 @@ public:
 
     /**
      * Normalizes the vector.
-     * @details Divides each coordinate of the vector by the vector length
+     * @details Divides each coordinate of the vector by the vector's length.
      * in order for the vector to have a length (magnitude) of 1.
      */
     inline void normalize()
@@ -142,7 +140,8 @@ public:
 
     /**
      * Constucts a normalized copy of the vector.
-     * @return A normalized copy of the vector.
+     * @details Divides each coordinate of the vector by the vector's length.
+     * @return A new normalized vector.
      */
     inline Vec2<T> normalized() const
     {
@@ -179,7 +178,7 @@ public:
 
     /**
      * Negates the vector coordinates.
-     * @return A negated copy of the vector.
+     * @return A new vector with negated coordinates.
      */
     inline Vec2<T> operator-()
     {
@@ -227,7 +226,7 @@ public:
     }
 
     /**
-     * Adds a vector to the left hand side operand.
+     * Adds a vector to the vector.
      * @param rhs The right hand side vector of the addition.
      */
     inline void operator+=(const Vec2<T> &rhs)
@@ -237,7 +236,7 @@ public:
     }
 
     /**
-     * Subtracts a vector from the left hand side operand.
+     * Subtracts a vector from the vector.
      * @param rhs The right hand side vector of the subtraction.
      */
     inline void operator-=(const Vec2<T> &rhs)
@@ -247,7 +246,7 @@ public:
     }
 
     /**
-     * Multiplies the left hand side operand with a vector.
+     * Multiplies the vector with another vector.
      * @param rhs The right hand side vector of the multiplication.
      */
     inline void operator*=(const Vec2<T> &rhs)
@@ -257,7 +256,7 @@ public:
     }
 
     /**
-     * Divides the left hand side operand by a vector.
+     * Divides the vector by another vector.
      * @param rhs The right hand side vector of the division.
      */
     inline void operator/=(const Vec2<T> &rhs)
@@ -266,44 +265,80 @@ public:
         y /= rhs.y;
     }
 
+    /**
+     * Adds a scalar to the vector.
+     * @param rhs The scalar added to the vector.
+     * @return A new vector as the result of the addition.
+     */
     inline Vec2<T> operator+(T rhs)
     {
         return Vec2<T>{x + rhs, y + rhs};
     }
 
+    /**
+     * Subtracts a scalar from the vector.
+     * @param rhs The scalar subtracted from the vector.
+     * @return A new vector as the result of the subtraction.
+     */
     inline Vec2<T> operator-(T rhs)
     {
         return Vec2<T>{x - rhs, y - rhs};
     }
 
+    /**
+     * Multiplies the vector with a scalar.
+     * @param rhs The scalar to multiply the vector with.
+     * @return A new vector as the result of the multiplication.
+     */
     inline Vec2<T> operator*(T rhs)
     {
         return Vec2<T>{x * rhs, y * rhs};
     }
 
+    /**
+     * Divides the vector by a scalar.
+     * @param rhs The scaar to divide the vector by.
+     * @return A new vector as the result of the division.
+     */
     inline Vec2<T> operator/(T rhs)
     {
         return Vec2<T>{x / rhs, y / rhs};
     }
 
+    /**
+     * Adds a scalar to the vector.
+     * @param rhs The scalar to add to the vector.
+     */
     inline void operator+=(T rhs)
     {
         x += rhs;
         y += rhs;
     }
 
+    /**
+     * Subtracts a scalar from the vector.
+     * @param rhs The scalar to subtract from the vector.
+     */
     inline void operator-=(T rhs)
     {
         x -= rhs;
         y -= rhs;
     }
 
+    /**
+     * Multiplies the vector with a scalar.
+     * @param rhs The scalar to multiply the vector with.
+     */
     inline void operator*=(T rhs)
     {
         x *= rhs;
         y *= rhs;
     }
 
+    /**
+     * Divides the vector by a scalar.
+     * @param rhs The scalar to divide the vector by.
+     */
     inline void operator/=(T rhs)
     {
         x /= rhs;
@@ -398,317 +433,14 @@ using Vec2ull = Vec2<unsigned long long>;
  * @note This class uses macros to generate the swizzle classes and
  * the swizzle public members. The macros used are the following:
  * @note Private classes macros:
- * @li @ref HM_SWIZZLE3_TEMPLATE_CLASS
- * @li @ref HM_SWIZZLE3_TEMPLATE_CLASS_SPEC
+ * @li @ref HM_SWIZZLE3_CLASSES
  * @note Swizzle public members macro:
  * @li @ref HM_VEC3_SWIZZLES
  */
 template<typename T>
 class Vec3 {
 private:
-    template<int ...A>
-    class _Swizzle;
-
-    template<int A, int B>
-    class _Swizzle<A, B> {
-    private:
-        T v[2];
-    public:
-        inline Vec2<T> &operator=(const Vec2<T> &rhs) {
-            v[A] = rhs.x;
-            v[B] = rhs.y;
-
-            return *(Vec2<T> *) this;
-        }
-
-        inline operator Vec2<T>() {
-            return Vec2<T>{v[A], v[B]};
-        }
-
-        inline Vec2<T> &operator()() {
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> operator+(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] + rhs.x, v[B] + rhs.y};
-        }
-
-        inline Vec2<T> operator-(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] - rhs.x, v[B] - rhs.y};
-        }
-
-        inline Vec2<T> operator*(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] * rhs.x, v[B] * rhs.y};
-        }
-
-        inline Vec2<T> operator/(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] / rhs.x, v[B] / rhs.y};
-        }
-
-        inline Vec2<T> &operator+=(const Vec2<T> &rhs) {
-            v[A] += rhs.x;
-            v[B] += rhs.y;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> &operator-=(const Vec2<T> &rhs) {
-            v[A] -= rhs.x;
-            v[B] -= rhs.y;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> &operator*=(const Vec2<T> &rhs) {
-            v[A] *= rhs.x;
-            v[B] *= rhs.y;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> &operator/=(const Vec2<T> &rhs) {
-            v[A] /= rhs.x;
-            v[B] /= rhs.y;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> operator+(T rhs) {
-            return Vec2<T>{v[A] + rhs, v[B] + rhs};
-        }
-
-        inline Vec2<T> operator-(T rhs) {
-            return Vec2<T>{v[A] - rhs, v[B] - rhs};
-        }
-
-        inline Vec2<T> operator*(T rhs) {
-            return Vec2<T>{v[A] * rhs, v[B] * rhs};
-        }
-
-        inline Vec2<T> operator/(T rhs) {
-            return Vec2<T>{v[A] / rhs, v[B] / rhs};
-        }
-
-        inline Vec2<T> &operator+=(T rhs) {
-            v[A] += rhs;
-            v[B] += rhs;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> &operator-=(T rhs) {
-            v[A] -= rhs;
-            v[B] -= rhs;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> &operator*=(T rhs) {
-            v[A] *= rhs;
-            v[B] *= rhs;
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> &operator/=(T rhs) {
-            v[A] /= rhs;
-            v[B] /= rhs;
-            return *(Vec2<T> *) this;
-        }
-    };
-
-    template<int A>
-    class _Swizzle<A, A> {
-    private:
-        T v[2];
-    public:
-        operator Vec2<T>() {
-            return Vec2<T>{v[A]};
-        }
-
-        inline Vec2<T> &operator()() const {
-            return *(Vec2<T> *) this;
-        }
-
-        inline Vec2<T> operator+(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] + rhs.x, v[A] + rhs.y};
-        }
-
-        inline Vec2<T> operator-(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] - rhs.x, v[A] - rhs.y};
-        }
-
-        inline Vec2<T> operator*(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] * rhs.x, v[A] * rhs.y};
-        }
-
-        inline Vec2<T> operator/(const Vec2<T> &rhs) {
-            return Vec2<T>{v[A] / rhs.x, v[A] / rhs.y};
-        }
-
-        inline Vec2<T> operator+(T rhs) {
-            return Vec2<T>{v[A] + rhs, v[A] + rhs};
-        }
-
-        inline Vec2<T> operator-(T rhs) {
-            return Vec2<T>{v[A] - rhs, v[A] - rhs};
-        }
-
-        inline Vec2<T> operator*(T rhs) {
-            return Vec2<T>{v[A] * rhs, v[A] * rhs};
-        }
-
-        inline Vec2<T> operator/(T rhs) {
-            return Vec2<T>{v[A] / rhs, v[A] / rhs};
-        }
-    };
-
-    template<int A, int B, int C>
-    class _Swizzle<A, B, C> {
-    private:
-        T v[3];
-
-    public:
-        inline Vec3<T> &operator=(const Vec3<T> &rhs) {
-            v[A] = rhs.x;
-            v[B] = rhs.y;
-            v[C] = rhs.z;
-
-            return *(Vec3<T> *) this;
-        }
-
-        inline operator Vec3() const {
-            return Vec3<T>{v[A], v[B], v[C]};
-        }
-
-        inline Vec3<T> &operator()() const {
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> operator+(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] + rhs.x, v[B] + rhs.y, v[C] + rhs.z};
-        }
-
-        inline Vec3<T> operator-(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] - rhs.x, v[B] - rhs.y, v[C] - rhs.z};
-        }
-
-        inline Vec3<T> operator*(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] * rhs.x, v[B] * rhs.y, v[C] * rhs.z};
-        }
-
-        inline Vec3<T> operator/(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] / rhs.x, v[B] / rhs.y, v[C] / rhs.z};
-        }
-
-        inline Vec3<T> &operator+=(const Vec3<T> &rhs) {
-            v[A] += rhs.x;
-            v[B] += rhs.y;
-            v[C] += rhs.z;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> &operator-=(const Vec3<T> &rhs) {
-            v[A] -= rhs.x;
-            v[B] -= rhs.y;
-            v[C] -= rhs.z;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> &operator*=(const Vec3<T> &rhs) {
-            v[A] *= rhs.x;
-            v[B] *= rhs.y;
-            v[C] *= rhs.z;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> &operator/=(const Vec3<T> &rhs) {
-            v[A] /= rhs.x;
-            v[B] /= rhs.y;
-            v[C] /= rhs.z;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> operator+(T rhs) const {
-            return Vec3<T>{v[A] + rhs, v[B] + rhs, v[C] + rhs};
-        }
-
-        inline Vec3<T> operator-(T rhs) const {
-            return Vec3<T>{v[A] - rhs, v[B] - rhs, v[C] - rhs};
-        }
-
-        inline Vec3<T> operator*(T rhs) const {
-            return Vec3<T>{v[A] * rhs, v[B] * rhs, v[C] * rhs};
-        }
-
-        inline Vec3<T> operator/(T rhs) const {
-            return Vec3<T>{v[A] / rhs, v[B] / rhs, v[C] / rhs};
-        }
-
-        inline Vec3<T> &operator+=(T rhs) {
-            v[A] += rhs;
-            v[B] += rhs;
-            v[C] += rhs;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> &operator-=(T rhs) {
-            v[A] -= rhs;
-            v[B] -= rhs;
-            v[C] -= rhs;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> &operator*=(T rhs) {
-            v[A] *= rhs;
-            v[B] *= rhs;
-            v[C] *= rhs;
-            return *(Vec3<T> *) this;
-        }
-
-        inline Vec3<T> &operator/=(T rhs) {
-            v[A] /= rhs;
-            v[B] /= rhs;
-            v[C] /= rhs;
-            return *(Vec3<T> *) this;
-        }
-    };
-
-    template<int A>
-    class _Swizzle<A, A, A> {
-    private:
-        T v[3];
-
-    public:
-        inline operator Vec3<T>() const {
-            return Vec3<T>{v[A]};
-        }
-
-        inline Vec3<T> operator+(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z};
-        }
-
-        inline Vec3<T> operator-(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z};
-        }
-
-        inline Vec3<T> operator*(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z};
-        }
-
-        inline Vec3<T> operator/(const Vec3<T> &rhs) const {
-            return Vec3<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z};
-        }
-
-        inline Vec3<T> operator+(T rhs) const {
-            return Vec3<T>{v[A] + rhs, v[A] + rhs, v[A] + rhs};
-        }
-
-        inline Vec3<T> operator-(T rhs) const {
-            return Vec3<T>{v[A] - rhs, v[A] - rhs, v[A] - rhs};
-        }
-
-        inline Vec3<T> operator*(T rhs) const {
-            return Vec3<T>{v[A] * rhs, v[A] * rhs, v[A] * rhs};
-        }
-
-        inline Vec3<T> operator/(T rhs) const {
-            return Vec3<T>{v[A] / rhs, v[A] / rhs, v[A] / rhs};
-        }
-    };
+    HM_SWIZZLE3_CLASSES(3)
 
 public:
     union {
@@ -732,7 +464,6 @@ public:
 
         T v[3];
 
-        HM_VEC2_SWIZZLES
         HM_VEC3_SWIZZLES
     };
 
@@ -1013,16 +744,14 @@ using Vec3ull = Vec3<unsigned long long>;
  * @note This class uses macros to generate the swizzle classes and
  * the swizzle public members. The macros used are the following:
  * @note Private classes macros:
- * @li @ref HM_SWIZZLE4_TEMPLATE_CLASS
- * @li @ref HM_SWIZZLE4_TEMPLATE_CLASS_SPEC
+ * @li @ref HM_SWIZZLE4_CLASSES
  * @note Swizzle public members macro:
  * @li @ref HM_VEC4_SWIZZLES
  */
 template<typename T>
 class Vec4 {
 private:
-    HM_SWIZZLE4_TEMPLATE_CLASS
-    HM_SWIZZLE4_TEMPLATE_CLASS_SPEC
+    HM_SWIZZLE4_CLASSES(4)
 
 public:
     union {
