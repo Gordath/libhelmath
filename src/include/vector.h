@@ -86,7 +86,7 @@ public:
     { }
 
     /**
-     * Vec2 single argument constructor.
+     * Vec2's single argument constructor.
      * @details Initializes Vec2's values with the argument passed.
      * @param val The numeric value used to initialize Vec2's values.
      * @return A new Vec2.
@@ -95,7 +95,7 @@ public:
     { }
 
     /**
-     * Vec2 double argument constructor.
+     * Vec2's two argument constructor.
      * @details Initializes Vec2's values with the arguments passed.
      * @param x The x coordinate of the vector.
      * @param y The y coordinate of the vector.
@@ -123,8 +123,28 @@ public:
     }
 
     /**
+     * Calculates the squared length (magnitude) of the vector.
+     * @return The squared length of the vector as a double
+     * precision floating point number.
+     */
+    inline double length_squared() const
+    {
+        return x * x + y * y;
+    }
+
+    /**
+     * Calculates the squared length (magnitude) of the vector.
+     * @return The squared length of the vector as a floating
+     * point number.
+     */
+    inline float length_squaredf() const
+    {
+        return x * x + y * y;
+    }
+
+    /**
      * Normalizes the vector.
-     * @details Divides each coordinate of the vector by the vector's length.
+     * @details Divides each value of the vector by the vector's length.
      * in order for the vector to have a length (magnitude) of 1.
      */
     inline void normalize()
@@ -177,8 +197,8 @@ public:
     }
 
     /**
-     * Negates the vector coordinates.
-     * @return A new vector with negated coordinates.
+     * Negates the vector values.
+     * @return A new vector with negated values.
      */
     inline Vec2<T> operator-()
     {
@@ -187,6 +207,8 @@ public:
 
     /**
      * Calculates the addition of 2 vectors.
+     * @details Adds each value of the right hand side vector operand
+     * to the respective value of the left hand side vector operand.
      * @param rhs The right hand side vector of the addition.
      * @return A new vector as the result of the addition.
      */
@@ -197,6 +219,8 @@ public:
 
     /**
      * Calculates the subtraction of 2 vectors.
+     * @details Subtracts each value of the right hand side vector operand
+     * from the respective value of the left hand side vector operand.
      * @param rhs The right hand side vector of the subtraction.
      * @return A new vector as the result of the subtraction.
      */
@@ -207,6 +231,8 @@ public:
 
     /**
      * Calculates the multiplication of 2 vectors.
+     * @details Multiplies each value of the left hand side vector operand
+     * with the respective value of the right hand side vector operand.
      * @param rhs The right hand side vector of the multiplication.
      * @return A new vector as the result of the multiplication.
      */
@@ -217,6 +243,8 @@ public:
 
     /**
      * Calculates the division of 2 vectors.
+     * @details Divides each value of the left hand side vector operand
+     * by the respective value of the right hand side vector operand.
      * @param rhs The right hand side vector of the division.
      * @return A new vector as the result of the division.
      */
@@ -226,7 +254,8 @@ public:
     }
 
     /**
-     * Adds a vector to the vector.
+     * Adds each value of the right hand side vector operand to the
+     * respective value of the vector.
      * @param rhs The right hand side vector of the addition.
      */
     inline void operator+=(const Vec2<T> &rhs)
@@ -236,7 +265,8 @@ public:
     }
 
     /**
-     * Subtracts a vector from the vector.
+     * Subtracts each value of the right hand side vector operand
+     * from the respective value of the vector.
      * @param rhs The right hand side vector of the subtraction.
      */
     inline void operator-=(const Vec2<T> &rhs)
@@ -246,7 +276,8 @@ public:
     }
 
     /**
-     * Multiplies the vector with another vector.
+     * Multiplies each value of the vector with the respective value
+     * of the right hand side vector operand.
      * @param rhs The right hand side vector of the multiplication.
      */
     inline void operator*=(const Vec2<T> &rhs)
@@ -256,7 +287,8 @@ public:
     }
 
     /**
-     * Divides the vector by another vector.
+     * Divides each value of the vector by the respective value
+     * of the right hand side vector operand.
      * @param rhs The right hand side vector of the division.
      */
     inline void operator/=(const Vec2<T> &rhs)
@@ -266,8 +298,8 @@ public:
     }
 
     /**
-     * Adds a scalar to the vector.
-     * @param rhs The scalar added to the vector.
+     * Adds a scalar to each value of the vector.
+     * @param rhs The scalar added to each value of the vector.
      * @return A new vector as the result of the addition.
      */
     inline Vec2<T> operator+(T rhs)
@@ -276,8 +308,8 @@ public:
     }
 
     /**
-     * Subtracts a scalar from the vector.
-     * @param rhs The scalar subtracted from the vector.
+     * Subtracts a scalar from each value of the vector.
+     * @param rhs The scalar subtracted from each value of the vector.
      * @return A new vector as the result of the subtraction.
      */
     inline Vec2<T> operator-(T rhs)
@@ -286,7 +318,7 @@ public:
     }
 
     /**
-     * Multiplies the vector with a scalar.
+     * Multiplies each value of the vector with a scalar.
      * @param rhs The scalar to multiply the vector with.
      * @return A new vector as the result of the multiplication.
      */
@@ -296,8 +328,8 @@ public:
     }
 
     /**
-     * Divides the vector by a scalar.
-     * @param rhs The scaar to divide the vector by.
+     * Divides each value of the vector by a scalar.
+     * @param rhs The scalar to divide each value of the vector by.
      * @return A new vector as the result of the division.
      */
     inline Vec2<T> operator/(T rhs)
@@ -306,7 +338,7 @@ public:
     }
 
     /**
-     * Adds a scalar to the vector.
+     * Adds a scalar to each value of the vector.
      * @param rhs The scalar to add to the vector.
      */
     inline void operator+=(T rhs)
@@ -316,8 +348,8 @@ public:
     }
 
     /**
-     * Subtracts a scalar from the vector.
-     * @param rhs The scalar to subtract from the vector.
+     * Subtracts a scalar from each value of the vector.
+     * @param rhs The scalar to subtract from each value of the vector.
      */
     inline void operator-=(T rhs)
     {
@@ -326,8 +358,8 @@ public:
     }
 
     /**
-     * Multiplies the vector with a scalar.
-     * @param rhs The scalar to multiply the vector with.
+     * Multiplies each value of the vector with a scalar.
+     * @param rhs The scalar to multiply each value of the vector with.
      */
     inline void operator*=(T rhs)
     {
@@ -336,8 +368,8 @@ public:
     }
 
     /**
-     * Divides the vector by a scalar.
-     * @param rhs The scalar to divide the vector by.
+     * Divides each value of the vector by a scalar.
+     * @param rhs The scalar to divide each value of the vector by.
      */
     inline void operator/=(T rhs)
     {
@@ -467,12 +499,31 @@ public:
         HM_VEC3_SWIZZLES
     };
 
+    /**
+     * Default Vec3 constructor.
+     * @details Initializes Vec3's values to 0.
+     * @return A new Vec3.
+     */
     Vec3() : x(0), y(0), z(0)
     { }
 
+    /**
+     * Vec3's single argument constructor.
+     * @details Initializes Vec3's values with the argument passed.
+     * @param val The numeric value used to initialize Vec3's values.
+     * @return A new Vec3.
+     */
     explicit Vec3(T val) : x(val), y(val), z(val)
     { }
 
+    /**
+     * Vec3's three argument constructor.
+     * @details Initializes Vec3's values with the arguments passed.
+     * @param x The x coordinate of the vector.
+     * @param y The y coordinate of the vector.
+     * @param z The z coordinate of the vector.
+     * @return A new Vec3.
+     */
     Vec3(T x, T y, T z) : x(x), y(y), z(z)
     { }
 
@@ -495,6 +546,31 @@ public:
         return sqrtf(x * x + y * y + z * z);
     }
 
+    /**
+     * Calculates the squared length (magnitude) of the vector.
+     * @return The squared length of the vector as a double
+     * precision floating point number.
+     */
+    inline double length_squared() const
+    {
+        return x * x + y * y + z * z;
+    }
+
+    /**
+     * Calculates the squared length (magnitude) of the vector.
+     * @return The squared length of the vector as a floating point
+     * number.
+     */
+    inline float length_squaredf() const
+    {
+        return x * x + y * y + z * z;
+    }
+
+    /**
+     * Normalizes the vector.
+     * @details Divides each value of the vector by the vector's length.
+     * in order for the vector to have a length (magnitude) of 1.
+     */
     inline void normalize()
     {
         double len = length();
@@ -506,6 +582,11 @@ public:
         *this /= len;
     }
 
+    /**
+     * Constucts a normalized copy of the vector.
+     * @details Divides each coordinate of the vector by the vector's length.
+     * @return A new normalized vector.
+     */
     inline Vec3<T> normalized() const
     {
         double len = length();
@@ -519,11 +600,22 @@ public:
                        static_cast<T>(z / len)};
     }
 
+    /**
+     * Calculates the dot product.
+     * @param v The vector with whom the dot product will be calculated.
+     * @return The value of the dot product as a
+     * double precision floating point number.
+     */
     inline double dot(const Vec3<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z;
     }
 
+    /**
+     * Calculates the dot product.
+     * @param v The vector with whom the dot product will be calculated.
+     * @return The value of the dot product as a floating point number.
+     */
     inline float dotf(const Vec3<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z;
@@ -781,25 +873,78 @@ public:
        HM_VEC4_SWIZZLES
     };
 
+    /**
+     * Default Vec4 constructor.
+     * @details Initializes Vec4's values to 0.
+     * @return A new Vec4.
+     */
     Vec4() : x(0), y(0), z(0), w(0)
     { }
 
+    /**
+     * Vec4's single argument constructor.
+     * @details Initializes Vec4's values with the argument passed.
+     * @param val The numeric value used to initialize Vec4's values.
+     * @return A new Vec4.
+     */
     explicit Vec4(T val) : x(val), y(val), z(val), w(val)
     { }
 
+    /**
+     * Vec4's two argument constructor.
+     * @details Initializes Vec4's values with the arguments passed.
+     * @param x The x coordinate of the vector.
+     * @param y The y coordinate of the vector.
+     * @param z The z coordinate of the vector.
+     * @param w Thw w coordinate of the vector.
+     * @return A new Vec4.
+     */
     Vec4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w)
     { }
 
+    /**
+     * Calculates the length (magnitude) of the vector.
+     * @return The length of the vector as
+     * a double precision floating point number.
+     */
     inline double length() const
     {
         return sqrt(x * x + y * y + z * z + w * w);
     }
 
+    /**
+     * Calculates the length (magnitude) of the vector.
+     * @return The length of the vector as a floating point number.
+     */
     inline float lengthf() const
     {
         return sqrtf(x * x + y * y + z * z + w * w);
     }
 
+    /**
+     * Calculates the squared length (magnitude) of the vector.
+     * @return The squared length of the vector as a double
+     * precision floating point number.
+     */
+    inline double length_squared() const
+    {
+        return x * x + y * y + z * z + w * w;
+    }
+
+    /**
+     * Calculates the squared length (magnitude) of the vector.
+     * @return The squared length of the vector as a floating point number.
+     */
+    inline float length_squaredf() const
+    {
+        return x * x + y * y + z * z + w * w;
+    }
+
+    /**
+     * Normalizes the vector.
+     * @details Divides each value of the vector by the vector's length.
+     * in order for the vector to have a length (magnitude) of 1.
+     */
     inline void normalize()
     {
         double len = length();
@@ -820,6 +965,32 @@ public:
         }
 
         return Vec4<T>{*this /= len};
+    }
+
+    /**
+     * Calculates the dot product.
+     * @param v The vector with whom the dot product will be calculated.
+     * @return The value of the dot product as a
+     * double precision floating point number.
+     */
+    inline double dot(const Vec4<T> &v) const
+    {
+        return x * v.x + y * v.y + z * v.z + w * v.w;
+    }
+
+    /**
+     * Calculates the dot product.
+     * @param v The vector with whom the dot product will be calculated.
+     * @return The value of the dot product as a floating point number.
+     */
+    inline float dotf(const Vec4<T> &v) const
+    {
+        return x * v.x + y * v.y + z * v.z + w * v.w;
+    }
+
+    inline Vec4<T> cross(const Vec4<T> &v) const
+    {
+        //TODO
     }
 
     inline Vec4<T> operator-() const
