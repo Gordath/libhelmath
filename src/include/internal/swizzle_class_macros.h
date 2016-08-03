@@ -28,118 +28,118 @@ class _Swizzle<A, B> { \
 private: \
     T v[array_size]; \
 public: \
-    inline Vec2<T> &operator=(const Vec2<T> &rhs) \
+    inline Vector2<T> &operator=(const Vector2<T> &rhs) \
     { \
         v[A] = rhs.x; \
         v[B] = rhs.y; \
 \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline operator Vec2<T>() \
+    inline operator Vector2<T>() \
     { \
-        return Vec2<T>{v[A], v[B]}; \
+        return Vector2<T>{v[A], v[B]}; \
     } \
 \
-    inline Vec2<T> &operator()() \
+    inline Vector2<T> &operator()() \
     { \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> operator+(const Vec2<T> &rhs) \
+    inline Vector2<T> operator+(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] + rhs.x, v[B] + rhs.y}; \
+        return Vector2<T>{v[A] + rhs.x, v[B] + rhs.y}; \
     } \
 \
-    inline Vec2<T> operator-(const Vec2<T> &rhs) \
+    inline Vector2<T> operator-(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] - rhs.x, v[B] - rhs.y}; \
+        return Vector2<T>{v[A] - rhs.x, v[B] - rhs.y}; \
     } \
 \
-    inline Vec2<T> operator*(const Vec2<T> &rhs) \
+    inline Vector2<T> operator*(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] * rhs.x, v[B] * rhs.y}; \
+        return Vector2<T>{v[A] * rhs.x, v[B] * rhs.y}; \
     } \
 \
-    inline Vec2<T> operator/(const Vec2<T> &rhs) \
+    inline Vector2<T> operator/(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] / rhs.x, v[B] / rhs.y}; \
+        return Vector2<T>{v[A] / rhs.x, v[B] / rhs.y}; \
     } \
 \
-    inline Vec2<T> &operator+=(const Vec2<T> &rhs) \
+    inline Vector2<T> &operator+=(const Vector2<T> &rhs) \
     { \
         v[A] += rhs.x; \
         v[B] += rhs.y; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> &operator-=(const Vec2<T> &rhs) \
+    inline Vector2<T> &operator-=(const Vector2<T> &rhs) \
     { \
         v[A] -= rhs.x; \
         v[B] -= rhs.y; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> &operator*=(const Vec2<T> &rhs) \
+    inline Vector2<T> &operator*=(const Vector2<T> &rhs) \
     { \
         v[A] *= rhs.x; \
         v[B] *= rhs.y; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> &operator/=(const Vec2<T> &rhs) \
+    inline Vector2<T> &operator/=(const Vector2<T> &rhs) \
     { \
         v[A] /= rhs.x; \
         v[B] /= rhs.y; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> operator+(T rhs) \
+    inline Vector2<T> operator+(T rhs) \
     { \
-        return Vec2<T>{v[A] + rhs, v[B] + rhs}; \
+        return Vector2<T>{v[A] + rhs, v[B] + rhs}; \
     } \
 \
-    inline Vec2<T> operator-(T rhs) \
+    inline Vector2<T> operator-(T rhs) \
     { \
-        return Vec2<T>{v[A] - rhs, v[B] - rhs}; \
+        return Vector2<T>{v[A] - rhs, v[B] - rhs}; \
     } \
 \
-    inline Vec2<T> operator*(T rhs) \
+    inline Vector2<T> operator*(T rhs) \
     { \
-        return Vec2<T>{v[A] * rhs, v[B] * rhs}; \
+        return Vector2<T>{v[A] * rhs, v[B] * rhs}; \
     } \
 \
-    inline Vec2<T> operator/(T rhs) \
+    inline Vector2<T> operator/(T rhs) \
     { \
-        return Vec2<T>{v[A] / rhs, v[B] / rhs}; \
+        return Vector2<T>{v[A] / rhs, v[B] / rhs}; \
     } \
 \
-    inline Vec2<T> &operator+=(T rhs) \
+    inline Vector2<T> &operator+=(T rhs) \
     { \
         v[A] += rhs; \
         v[B] += rhs; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> &operator-=(T rhs) \
+    inline Vector2<T> &operator-=(T rhs) \
     { \
         v[A] -= rhs; \
         v[B] -= rhs; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> &operator*=(T rhs) \
+    inline Vector2<T> &operator*=(T rhs) \
     { \
         v[A] *= rhs; \
         v[B] *= rhs; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> &operator/=(T rhs) \
+    inline Vector2<T> &operator/=(T rhs) \
     { \
         v[A] /= rhs; \
         v[B] /= rhs; \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 };
 
@@ -154,60 +154,60 @@ class _Swizzle<A, A> { \
 private: \
     T v[array_size]; \
 public: \
-    operator Vec2<T>() \
+    operator Vector2<T>() \
     { \
-        return Vec2<T>{v[A]}; \
+        return Vector2<T>{v[A]}; \
     } \
 \
-    inline Vec2<T> &operator()() const \
+    inline Vector2<T> &operator()() const \
     { \
-        return *(Vec2<T> *) this; \
+        return *(Vector2<T> *) this; \
     } \
 \
-    inline Vec2<T> operator+(const Vec2<T> &rhs) \
+    inline Vector2<T> operator+(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] + rhs.x, v[A] + rhs.y}; \
+        return Vector2<T>{v[A] + rhs.x, v[A] + rhs.y}; \
     } \
 \
-    inline Vec2<T> operator-(const Vec2<T> &rhs) \
+    inline Vector2<T> operator-(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] - rhs.x, v[A] - rhs.y}; \
+        return Vector2<T>{v[A] - rhs.x, v[A] - rhs.y}; \
     } \
 \
-    inline Vec2<T> operator*(const Vec2<T> &rhs) \
+    inline Vector2<T> operator*(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] * rhs.x, v[A] * rhs.y}; \
+        return Vector2<T>{v[A] * rhs.x, v[A] * rhs.y}; \
     } \
 \
-    inline Vec2<T> operator/(const Vec2<T> &rhs) \
+    inline Vector2<T> operator/(const Vector2<T> &rhs) \
     { \
-        return Vec2<T>{v[A] / rhs.x, v[A] / rhs.y}; \
+        return Vector2<T>{v[A] / rhs.x, v[A] / rhs.y}; \
     } \
 \
-    inline Vec2<T> operator+(T rhs) \
+    inline Vector2<T> operator+(T rhs) \
     { \
-        return Vec2<T>{v[A] + rhs, v[A] + rhs}; \
+        return Vector2<T>{v[A] + rhs, v[A] + rhs}; \
     } \
 \
-    inline Vec2<T> operator-(T rhs) \
+    inline Vector2<T> operator-(T rhs) \
     { \
-        return Vec2<T>{v[A] - rhs, v[A] - rhs}; \
+        return Vector2<T>{v[A] - rhs, v[A] - rhs}; \
     } \
 \
-    inline Vec2<T> operator*(T rhs) \
+    inline Vector2<T> operator*(T rhs) \
     { \
-        return Vec2<T>{v[A] * rhs, v[A] * rhs}; \
+        return Vector2<T>{v[A] * rhs, v[A] * rhs}; \
     } \
 \
-    inline Vec2<T> operator/(T rhs) \
+    inline Vector2<T> operator/(T rhs) \
     { \
-        return Vec2<T>{v[A] / rhs, v[A] / rhs}; \
+        return Vector2<T>{v[A] / rhs, v[A] / rhs}; \
     } \
 };
 
 /**
  * Upon expansion it generates all the templated classes needed
- * for the swizzles of Vec2.
+ * for the swizzles of Vector2.
  */
 #define HM_SWIZZLE2_CLASSES(array_size) \
 HM_SWIZZLE_VARIADIC_TEMPLATE_CLASS \
@@ -227,127 +227,127 @@ private: \
     T v[array_size]; \
 \
 public: \
-    inline Vec3<T> &operator=(const Vec3<T> &rhs) \
+    inline Vector3<T> &operator=(const Vector3<T> &rhs) \
     { \
         v[A] = rhs.x; \
         v[B] = rhs.y; \
         v[C] = rhs.z; \
 \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline operator Vec3<T>() const \
+    inline operator Vector3<T>() const \
     { \
-        return Vec3<T>{v[A], v[B], v[C]}; \
+        return Vector3<T>{v[A], v[B], v[C]}; \
     } \
 \
-    inline Vec3<T> &operator()() const \
+    inline Vector3<T> &operator()() const \
     { \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> operator+(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator+(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] + rhs.x, v[B] + rhs.y, v[C] + rhs.z}; \
+        return Vector3<T>{v[A] + rhs.x, v[B] + rhs.y, v[C] + rhs.z}; \
     } \
 \
-    inline Vec3<T> operator-(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator-(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] - rhs.x, v[B] - rhs.y, v[C] - rhs.z}; \
+        return Vector3<T>{v[A] - rhs.x, v[B] - rhs.y, v[C] - rhs.z}; \
     } \
 \
-    inline Vec3<T> operator*(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator*(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] * rhs.x, v[B] * rhs.y, v[C] * rhs.z}; \
+        return Vector3<T>{v[A] * rhs.x, v[B] * rhs.y, v[C] * rhs.z}; \
     } \
 \
-    inline Vec3<T> operator/(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator/(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] / rhs.x, v[B] / rhs.y, v[C] / rhs.z}; \
+        return Vector3<T>{v[A] / rhs.x, v[B] / rhs.y, v[C] / rhs.z}; \
     } \
 \
-    inline Vec3<T> &operator+=(const Vec3<T> &rhs) \
+    inline Vector3<T> &operator+=(const Vector3<T> &rhs) \
     { \
         v[A] += rhs.x; \
         v[B] += rhs.y; \
         v[C] += rhs.z; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> &operator-=(const Vec3<T> &rhs) \
+    inline Vector3<T> &operator-=(const Vector3<T> &rhs) \
     { \
         v[A] -= rhs.x; \
         v[B] -= rhs.y; \
         v[C] -= rhs.z; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> &operator*=(const Vec3<T> &rhs) \
+    inline Vector3<T> &operator*=(const Vector3<T> &rhs) \
     { \
         v[A] *= rhs.x; \
         v[B] *= rhs.y; \
         v[C] *= rhs.z; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> &operator/=(const Vec3<T> &rhs) \
+    inline Vector3<T> &operator/=(const Vector3<T> &rhs) \
     { \
         v[A] /= rhs.x; \
         v[B] /= rhs.y; \
         v[C] /= rhs.z; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> operator+(T rhs) const \
+    inline Vector3<T> operator+(T rhs) const \
     { \
-        return Vec3<T>{v[A] + rhs, v[B] + rhs, v[C] + rhs}; \
+        return Vector3<T>{v[A] + rhs, v[B] + rhs, v[C] + rhs}; \
     } \
 \
-    inline Vec3<T> operator-(T rhs) const \
+    inline Vector3<T> operator-(T rhs) const \
     { \
-        return Vec3<T>{v[A] - rhs, v[B] - rhs, v[C] - rhs}; \
+        return Vector3<T>{v[A] - rhs, v[B] - rhs, v[C] - rhs}; \
     } \
 \
-    inline Vec3<T> operator*(T rhs) const \
+    inline Vector3<T> operator*(T rhs) const \
     { \
-        return Vec3<T>{v[A] * rhs, v[B] * rhs, v[C] * rhs}; \
+        return Vector3<T>{v[A] * rhs, v[B] * rhs, v[C] * rhs}; \
     } \
 \
-    inline Vec3<T> operator/(T rhs) const \
+    inline Vector3<T> operator/(T rhs) const \
     { \
-        return Vec3<T>{v[A] / rhs, v[B] / rhs, v[C] / rhs}; \
+        return Vector3<T>{v[A] / rhs, v[B] / rhs, v[C] / rhs}; \
     } \
 \
-    inline Vec3<T> &operator+=(T rhs) \
+    inline Vector3<T> &operator+=(T rhs) \
     { \
         v[A] += rhs; \
         v[B] += rhs; \
         v[C] += rhs; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> &operator-=(T rhs) \
+    inline Vector3<T> &operator-=(T rhs) \
     { \
         v[A] -= rhs; \
         v[B] -= rhs; \
         v[C] -= rhs; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> &operator*=(T rhs) \
+    inline Vector3<T> &operator*=(T rhs) \
     { \
         v[A] *= rhs; \
         v[B] *= rhs; \
         v[C] *= rhs; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 \
-    inline Vec3<T> &operator/=(T rhs) \
+    inline Vector3<T> &operator/=(T rhs) \
     { \
         v[A] /= rhs; \
         v[B] /= rhs; \
         v[C] /= rhs; \
-        return *(Vec3<T> *) this; \
+        return *(Vector3<T> *) this; \
     } \
 };
 
@@ -363,55 +363,55 @@ private: \
     T v[array_size]; \
 \
 public: \
-    inline operator Vec3<T>() const \
+    inline operator Vector3<T>() const \
     { \
-        return Vec3<T>{v[A]}; \
+        return Vector3<T>{v[A]}; \
     } \
 \
-    inline Vec3<T> operator+(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator+(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z}; \
+        return Vector3<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z}; \
     } \
 \
-    inline Vec3<T> operator-(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator-(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z}; \
+        return Vector3<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z}; \
     } \
 \
-    inline Vec3<T> operator*(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator*(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z}; \
+        return Vector3<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z}; \
     } \
 \
-    inline Vec3<T> operator/(const Vec3<T> &rhs) const \
+    inline Vector3<T> operator/(const Vector3<T> &rhs) const \
     { \
-        return Vec3<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z}; \
+        return Vector3<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z}; \
     } \
 \
-    inline Vec3<T> operator+(T rhs) const \
+    inline Vector3<T> operator+(T rhs) const \
     { \
-        return Vec3<T>{v[A] + rhs, v[A] + rhs, v[A] + rhs}; \
+        return Vector3<T>{v[A] + rhs, v[A] + rhs, v[A] + rhs}; \
     } \
 \
-    inline Vec3<T> operator-(T rhs) const \
+    inline Vector3<T> operator-(T rhs) const \
     { \
-        return Vec3<T>{v[A] - rhs, v[A] - rhs, v[A] - rhs}; \
+        return Vector3<T>{v[A] - rhs, v[A] - rhs, v[A] - rhs}; \
     } \
 \
-    inline Vec3<T> operator*(T rhs) const \
+    inline Vector3<T> operator*(T rhs) const \
     { \
-        return Vec3<T>{v[A] * rhs, v[A] * rhs, v[A] * rhs}; \
+        return Vector3<T>{v[A] * rhs, v[A] * rhs, v[A] * rhs}; \
     } \
 \
-    inline Vec3<T> operator/(T rhs) const \
+    inline Vector3<T> operator/(T rhs) const \
     { \
-        return Vec3<T>{v[A] / rhs, v[A] / rhs, v[A] / rhs}; \
+        return Vector3<T>{v[A] / rhs, v[A] / rhs, v[A] / rhs}; \
     } \
 };
 
 /**
  * Upon expansion it generates all the templated classes needed
- * for the swizzles of Vec3.
+ * for the swizzles of Vector3.
  */
 #define HM_SWIZZLE3_CLASSES(array_size) \
 HM_SWIZZLE2_CLASSES(array_size) \
@@ -431,130 +431,130 @@ private: \
     T v[array_size]; \
 \
 public: \
-    inline Vec4<T> &operator=(const Vec4<T> &rhs) \
+    inline Vector4<T> &operator=(const Vector4<T> &rhs) \
     { \
         v[A] = rhs.x; \
         v[B] = rhs.y; \
         v[C] = rhs.z; \
         v[D] = rhs.w; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline operator Vec4<T>() const \
+    inline operator Vector4<T>() const \
     { \
-        return Vec4<T>{v[A], v[B], v[C], v[D]}; \
+        return Vector4<T>{v[A], v[B], v[C], v[D]}; \
     } \
 \
-    inline Vec4<T> operator+(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator+(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] + rhs.x, v[B] + rhs.y, v[C] + rhs.z, v[D] + rhs.w}; \
+        return Vector4<T>{v[A] + rhs.x, v[B] + rhs.y, v[C] + rhs.z, v[D] + rhs.w}; \
     } \
 \
-    inline Vec4<T> operator-(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator-(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] - rhs.x, v[B] - rhs.y, v[C] - rhs.z, v[D] - rhs.w}; \
+        return Vector4<T>{v[A] - rhs.x, v[B] - rhs.y, v[C] - rhs.z, v[D] - rhs.w}; \
     } \
 \
-    inline Vec4<T> operator*(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator*(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] * rhs.x, v[B] * rhs.y, v[C] * rhs.z, v[D] * rhs.w}; \
+        return Vector4<T>{v[A] * rhs.x, v[B] * rhs.y, v[C] * rhs.z, v[D] * rhs.w}; \
     } \
 \
-    inline Vec4<T> operator/(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator/(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] / rhs.x, v[B] / rhs.y, v[C] / rhs.z, v[D] / rhs.w}; \
+        return Vector4<T>{v[A] / rhs.x, v[B] / rhs.y, v[C] / rhs.z, v[D] / rhs.w}; \
     } \
 \
-    inline Vec4<T> &operator+=(const Vec4<T> &rhs) \
+    inline Vector4<T> &operator+=(const Vector4<T> &rhs) \
     { \
         v[A] += rhs.x; \
         v[B] += rhs.y; \
         v[C] += rhs.z; \
         v[D] += rhs.w; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> &operator-=(const Vec4<T> &rhs) \
+    inline Vector4<T> &operator-=(const Vector4<T> &rhs) \
     { \
         v[A] -= rhs.x; \
         v[B] -= rhs.y; \
         v[C] -= rhs.z; \
         v[D] -= rhs.w; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> &operator*=(const Vec4<T> &rhs) \
+    inline Vector4<T> &operator*=(const Vector4<T> &rhs) \
     { \
         v[A] *= rhs.x; \
         v[B] *= rhs.y; \
         v[C] *= rhs.z; \
         v[D] *= rhs.w; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> &operator/=(const Vec4<T> &rhs) \
+    inline Vector4<T> &operator/=(const Vector4<T> &rhs) \
     { \
         v[A] /= rhs.x; \
         v[B] /= rhs.y; \
         v[C] /= rhs.z; \
         v[D] /= rhs.w; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> operator+(T rhs) const \
+    inline Vector4<T> operator+(T rhs) const \
     { \
-        return Vec4<T>{v[A] + rhs, v[B] + rhs, v[C] + rhs, v[D] + rhs}; \
+        return Vector4<T>{v[A] + rhs, v[B] + rhs, v[C] + rhs, v[D] + rhs}; \
     } \
 \
-    inline Vec4<T> operator-(T rhs) const \
+    inline Vector4<T> operator-(T rhs) const \
     { \
-        return Vec4<T>{v[A] - rhs, v[B] - rhs, v[C] - rhs, v[D] - rhs}; \
+        return Vector4<T>{v[A] - rhs, v[B] - rhs, v[C] - rhs, v[D] - rhs}; \
     } \
 \
-    inline Vec4<T> operator*(T rhs) const \
+    inline Vector4<T> operator*(T rhs) const \
     { \
-        return Vec4<T>{v[A] * rhs, v[B] * rhs, v[C] * rhs, v[D] * rhs}; \
+        return Vector4<T>{v[A] * rhs, v[B] * rhs, v[C] * rhs, v[D] * rhs}; \
     } \
 \
-    inline Vec4<T> operator/(T rhs) const \
+    inline Vector4<T> operator/(T rhs) const \
     { \
-        return Vec4<T>{v[A] / rhs, v[B] / rhs, v[C] / rhs, v[D] / rhs}; \
+        return Vector4<T>{v[A] / rhs, v[B] / rhs, v[C] / rhs, v[D] / rhs}; \
     } \
 \
-    inline Vec4<T> &operator+=(T rhs) \
+    inline Vector4<T> &operator+=(T rhs) \
     { \
         v[A] += rhs; \
         v[B] += rhs; \
         v[C] += rhs; \
         v[D] += rhs; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> &operator-=(T rhs) \
+    inline Vector4<T> &operator-=(T rhs) \
     { \
         v[A] -= rhs; \
         v[B] -= rhs; \
         v[C] -= rhs; \
         v[D] -= rhs; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> &operator*=(T rhs) \
+    inline Vector4<T> &operator*=(T rhs) \
     { \
         v[A] *= rhs; \
         v[B] *= rhs; \
         v[C] *= rhs; \
         v[D] *= rhs; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 \
-    inline Vec4<T> &operator/=(T rhs) \
+    inline Vector4<T> &operator/=(T rhs) \
     { \
         v[A] /= rhs; \
         v[B] /= rhs; \
         v[C] /= rhs; \
         v[D] /= rhs; \
-        return *(Vec4<T> *) this; \
+        return *(Vector4<T> *) this; \
     } \
 }; \
 
@@ -570,55 +570,55 @@ private: \
     T v[array_size]; \
 \
 public: \
-    operator Vec4<T>() const \
+    operator Vector4<T>() const \
     { \
-        return Vec4<T>{v[A]}; \
+        return Vector4<T>{v[A]}; \
     } \
 \
-    inline Vec4<T> operator+(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator+(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z, v[A] + rhs.w}; \
+        return Vector4<T>{v[A] + rhs.x, v[A] + rhs.y, v[A] + rhs.z, v[A] + rhs.w}; \
     } \
 \
-    inline Vec4<T> operator-(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator-(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z, v[A] - rhs.w}; \
+        return Vector4<T>{v[A] - rhs.x, v[A] - rhs.y, v[A] - rhs.z, v[A] - rhs.w}; \
     } \
 \
-    inline Vec4<T> operator*(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator*(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z, v[A] * rhs.w}; \
+        return Vector4<T>{v[A] * rhs.x, v[A] * rhs.y, v[A] * rhs.z, v[A] * rhs.w}; \
     } \
 \
-    inline Vec4<T> operator/(const Vec4<T> &rhs) const \
+    inline Vector4<T> operator/(const Vector4<T> &rhs) const \
     { \
-        return Vec4<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z, v[A] / rhs.w}; \
+        return Vector4<T>{v[A] / rhs.x, v[A] / rhs.y, v[A] / rhs.z, v[A] / rhs.w}; \
     } \
 \
-    inline Vec4<T> operator+(T rhs) const \
+    inline Vector4<T> operator+(T rhs) const \
     { \
-        return Vec4<T>{v[A] + rhs, v[A] + rhs, v[A] + rhs, v[A] + rhs}; \
+        return Vector4<T>{v[A] + rhs, v[A] + rhs, v[A] + rhs, v[A] + rhs}; \
     } \
 \
-    inline Vec4<T> operator-(T rhs) const \
+    inline Vector4<T> operator-(T rhs) const \
     { \
-        return Vec4<T>{v[A] - rhs, v[A] - rhs, v[A] - rhs, v[A] - rhs}; \
+        return Vector4<T>{v[A] - rhs, v[A] - rhs, v[A] - rhs, v[A] - rhs}; \
     } \
 \
-    inline Vec4<T> operator*(T rhs) const \
+    inline Vector4<T> operator*(T rhs) const \
     { \
-        return Vec4<T>{v[A] * rhs, v[A] * rhs, v[A] * rhs, v[A] * rhs}; \
+        return Vector4<T>{v[A] * rhs, v[A] * rhs, v[A] * rhs, v[A] * rhs}; \
     } \
 \
-    inline Vec4<T> operator/(T rhs) const \
+    inline Vector4<T> operator/(T rhs) const \
     { \
-        return Vec4<T>{v[A] / rhs, v[A] / rhs, v[A] / rhs, v[A] / rhs}; \
+        return Vector4<T>{v[A] / rhs, v[A] / rhs, v[A] / rhs, v[A] / rhs}; \
     } \
 }; \
 
 /**
  * Upon expansion it generates all the templated classes needed
- * for the swizzles of Vec4.
+ * for the swizzles of Vector4.
  */
 #define HM_SWIZZLE4_CLASSES(array_size) \
 HM_SWIZZLE3_CLASSES(array_size) \

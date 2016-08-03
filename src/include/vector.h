@@ -17,12 +17,12 @@
 namespace hm {
 
 /**
- * @class Vec2
+ * @class Vector2
  * @tparam T Can be any numeric type.
  * @brief A class that represents a 2 dimensional vector.
- * @details Vec2 is a class that represents a 2 dimensional
- * vector. It supports accessing the vector values with various
- * ways to accommodate various use cases:
+ * @details Vector2 is a class that represents a 2 dimensional
+ * vector. It supports accessing the vector's values in various
+ * ways to accommodate different use cases:
  * @li position coordinates
  * @li texture coordinates
  * @details Swizzles are available for all data representations.
@@ -34,7 +34,7 @@ namespace hm {
  * @li @ref HM_VEC2_SWIZZLES
  */
 template<typename T>
-class Vec2 {
+class Vector2 {
 private:
     HM_SWIZZLE2_CLASSES(2)
 
@@ -54,7 +54,7 @@ public:
      * @details e.g.:
      * @details Asume a vector v(1.0f, 2.0f). Using the xx swizzle:
      * @code
-     * Vec2<float> v2 = v.xx;
+     * Vector2<float> v2 = v.xx;
      * @endcode
      * @details Then v2 values are v2(1.0f, 1.0f).
      */
@@ -78,30 +78,30 @@ public:
     };
 
     /**
-     * Default Vec2 constructor.
-     * @details Initializes Vec2's values to 0.
-     * @return A new Vec2.
+     * Default Vector2 constructor.
+     * @details Initializes Vector2's values to 0.
+     * @return A new Vector2.
      */
-    Vec2() : x(0), y(0)
+    Vector2() : x(0), y(0)
     { }
 
     /**
-     * Vec2's single argument constructor.
-     * @details Initializes Vec2's values with the argument passed.
-     * @param val The numeric value used to initialize Vec2's values.
-     * @return A new Vec2.
+     * Vector2's single argument constructor.
+     * @details Initializes Vector2's values with the argument passed.
+     * @param val The numeric value used to initialize Vector2's values.
+     * @return A new Vector2.
      */
-    explicit Vec2(T val) : x(val), y(val)
+    explicit Vector2(T val) : x(val), y(val)
     { }
 
     /**
-     * Vec2's two argument constructor.
-     * @details Initializes Vec2's values with the arguments passed.
+     * Vector2's two argument constructor.
+     * @details Initializes Vector2's values with the arguments passed.
      * @param x The x coordinate of the vector.
      * @param y The y coordinate of the vector.
-     * @return A new Vec2.
+     * @return A new Vector2.
      */
-    Vec2(T x, T y) : x(x), y(y)
+    Vector2(T x, T y) : x(x), y(y)
     { }
 
     /**
@@ -163,16 +163,16 @@ public:
      * @details Divides each coordinate of the vector by the vector's length.
      * @return A new normalized vector.
      */
-    inline Vec2<T> normalized() const
+    inline Vector2<T> normalized() const
     {
         double len = length();
 
         if(!len) {
-            return Vec2<T>{};
+            return Vector2<T>{};
         }
 
-        return Vec2<T>{static_cast<T>(x / len),
-                       static_cast<T>(y / len)};
+        return Vector2<T>{static_cast<T>(x / len),
+                          static_cast<T>(y / len)};
     }
 
     /**
@@ -181,7 +181,7 @@ public:
      * @return The value of the dot product as a
      * double precision floating point number.
      */
-    inline double dot(const Vec2<T> &v)
+    inline double dot(const Vector2<T> &v)
     {
         return x * v.x + y * v.y;
     }
@@ -191,7 +191,7 @@ public:
      * @param v The vector with whom the dot product will be calculated.
      * @return The value of the dot product as a floating point number.
      */
-    inline float dotf(const Vec2<T> &v)
+    inline float dotf(const Vector2<T> &v)
     {
         return x * v.x + y * v.y;
     }
@@ -200,9 +200,9 @@ public:
      * Negates the vector values.
      * @return A new vector with negated values.
      */
-    inline Vec2<T> operator-()
+    inline Vector2<T> operator-()
     {
-        return Vec2<T>{-x, -y};
+        return Vector2<T>{-x, -y};
     }
 
     /**
@@ -212,9 +212,9 @@ public:
      * @param rhs The right hand side vector of the addition.
      * @return A new vector as the result of the addition.
      */
-    inline Vec2<T> operator+(const Vec2<T> &rhs)
+    inline Vector2<T> operator+(const Vector2<T> &rhs)
     {
-        return Vec2<T>{x + rhs.x, y + rhs.y};
+        return Vector2<T>{x + rhs.x, y + rhs.y};
     }
 
     /**
@@ -224,9 +224,9 @@ public:
      * @param rhs The right hand side vector of the subtraction.
      * @return A new vector as the result of the subtraction.
      */
-    inline Vec2<T> operator-(const Vec2<T> &rhs)
+    inline Vector2<T> operator-(const Vector2<T> &rhs)
     {
-        return Vec2<T>{x - rhs.x, y - rhs.y};
+        return Vector2<T>{x - rhs.x, y - rhs.y};
     }
 
     /**
@@ -236,9 +236,9 @@ public:
      * @param rhs The right hand side vector of the multiplication.
      * @return A new vector as the result of the multiplication.
      */
-    inline Vec2<T> operator*(const Vec2<T> &rhs)
+    inline Vector2<T> operator*(const Vector2<T> &rhs)
     {
-        return Vec2<T>{x * rhs.x, y * rhs.y};
+        return Vector2<T>{x * rhs.x, y * rhs.y};
     }
 
     /**
@@ -248,9 +248,9 @@ public:
      * @param rhs The right hand side vector of the division.
      * @return A new vector as the result of the division.
      */
-    inline Vec2<T> operator/(const Vec2<T> &rhs)
+    inline Vector2<T> operator/(const Vector2<T> &rhs)
     {
-        return Vec2<T>{x / rhs.x, y / rhs.y};
+        return Vector2<T>{x / rhs.x, y / rhs.y};
     }
 
     /**
@@ -258,7 +258,7 @@ public:
      * respective value of the vector.
      * @param rhs The right hand side vector of the addition.
      */
-    inline void operator+=(const Vec2<T> &rhs)
+    inline void operator+=(const Vector2<T> &rhs)
     {
         x /= rhs.x;
         y /= rhs.y;
@@ -269,7 +269,7 @@ public:
      * from the respective value of the vector.
      * @param rhs The right hand side vector of the subtraction.
      */
-    inline void operator-=(const Vec2<T> &rhs)
+    inline void operator-=(const Vector2<T> &rhs)
     {
         x -= rhs.x;
         y -= rhs.y;
@@ -280,7 +280,7 @@ public:
      * of the right hand side vector operand.
      * @param rhs The right hand side vector of the multiplication.
      */
-    inline void operator*=(const Vec2<T> &rhs)
+    inline void operator*=(const Vector2<T> &rhs)
     {
         x *= rhs.x;
         y *= rhs.x;
@@ -291,7 +291,7 @@ public:
      * of the right hand side vector operand.
      * @param rhs The right hand side vector of the division.
      */
-    inline void operator/=(const Vec2<T> &rhs)
+    inline void operator/=(const Vector2<T> &rhs)
     {
         x /= rhs.x;
         y /= rhs.y;
@@ -302,9 +302,9 @@ public:
      * @param rhs The scalar added to each value of the vector.
      * @return A new vector as the result of the addition.
      */
-    inline Vec2<T> operator+(T rhs)
+    inline Vector2<T> operator+(T rhs)
     {
-        return Vec2<T>{x + rhs, y + rhs};
+        return Vector2<T>{x + rhs, y + rhs};
     }
 
     /**
@@ -312,9 +312,9 @@ public:
      * @param rhs The scalar subtracted from each value of the vector.
      * @return A new vector as the result of the subtraction.
      */
-    inline Vec2<T> operator-(T rhs)
+    inline Vector2<T> operator-(T rhs)
     {
-        return Vec2<T>{x - rhs, y - rhs};
+        return Vector2<T>{x - rhs, y - rhs};
     }
 
     /**
@@ -322,9 +322,9 @@ public:
      * @param rhs The scalar to multiply the vector with.
      * @return A new vector as the result of the multiplication.
      */
-    inline Vec2<T> operator*(T rhs)
+    inline Vector2<T> operator*(T rhs)
     {
-        return Vec2<T>{x * rhs, y * rhs};
+        return Vector2<T>{x * rhs, y * rhs};
     }
 
     /**
@@ -332,9 +332,9 @@ public:
      * @param rhs The scalar to divide each value of the vector by.
      * @return A new vector as the result of the division.
      */
-    inline Vec2<T> operator/(T rhs)
+    inline Vector2<T> operator/(T rhs)
     {
-        return Vec2<T>{x / rhs, y / rhs};
+        return Vector2<T>{x / rhs, y / rhs};
     }
 
     /**
@@ -382,80 +382,80 @@ public:
  * @typedef Vec2f
  * Defines a two dimensional vector of floats.
  */
-using Vec2f = Vec2<float>;
+using Vec2f = Vector2<float>;
 
 /**
  * @typedef Vec2d
  * Defines a two dimensional vector of double floats.
  */
-using Vec2d = Vec2<double>;
+using Vec2d = Vector2<double>;
 
 /**
  * @typedef Vec2c
  * Defines a two dimensional vector of characters.
  */
-using Vec2c = Vec2<char>;
+using Vec2c = Vector2<char>;
 
 /**
  * @typedef Vec2uc
  * Defines a two dimensional vector of unsigned characters.
  */
-using Vec2uc = Vec2<unsigned char>;
+using Vec2uc = Vector2<unsigned char>;
 
 /**
  * @typedef Vec2s
  * Defines a two dimensional vector of short integers.
  */
-using Vec2s = Vec2<short>;
+using Vec2s = Vector2<short>;
 
 /**
  * @typedef Vec2us
  * Defines a two dimensional vector of unsigned short integers.
  */
-using Vec2us = Vec2<unsigned short>;
+using Vec2us = Vector2<unsigned short>;
 
 /**
  * @typedef Vec2i
  * Defines a two dimensional vector of integers.
  */
-using Vec2i = Vec2<int>;
+using Vec2i = Vector2<int>;
 
 /**
  * @typedef Vec2ui
  * Defines a two dimensional vector of unsigned integers.
  */
-using Vec2ui = Vec2<unsigned int>;
+using Vec2ui = Vector2<unsigned int>;
 
 /**
  * @typedef Vec2l
  * Defines a two dimensional vector of long integers.
  */
-using Vec2l = Vec2<long>;
+using Vec2l = Vector2<long>;
 
 /**
  * @typedef Vec2ul
  * Defines a two dimensional vector of unsigned long integers.
  */
-using Vec2ul = Vec2<unsigned long>;
+using Vec2ul = Vector2<unsigned long>;
 
 /**
  * @typedef Vec2ll
  * Defines a two dimensional vector of long long integers.
  */
-using Vec2ll = Vec2<long long>;
+using Vec2ll = Vector2<long long>;
 
 /**
  * @typedef Vec2ull
  * Defines a two dimensional vector of unsigned long long integers.
  */
-using Vec2ull = Vec2<unsigned long long>;
+using Vec2ull = Vector2<unsigned long long>;
 
 
 /**
- * @class Vec3
+ * @class Vector3
  * @tparam T Can be any numeric type.
  * @brief A class that represents a 3 dimensional vector.
- * @details Vec3 is a class that represents a 3 dimensional
+ * @details Vector3 is a class that represents a 3 dimensional
  * vector. It supports accessing the vector values with various
  * ways to accommodate various use cases:
  * @li position coordinates
@@ -470,7 +470,7 @@ using Vec2ull = Vec2<unsigned long long>;
  * @li @ref HM_VEC3_SWIZZLES
  */
 template<typename T>
-class Vec3 {
+class Vector3 {
 private:
     HM_SWIZZLE3_CLASSES(3)
 
@@ -500,31 +500,31 @@ public:
     };
 
     /**
-     * Default Vec3 constructor.
-     * @details Initializes Vec3's values to 0.
-     * @return A new Vec3.
+     * Default Vector3 constructor.
+     * @details Initializes Vector3's values to 0.
+     * @return A new Vector3.
      */
-    Vec3() : x(0), y(0), z(0)
+    Vector3() : x(0), y(0), z(0)
     { }
 
     /**
-     * Vec3's single argument constructor.
-     * @details Initializes Vec3's values with the argument passed.
-     * @param val The numeric value used to initialize Vec3's values.
-     * @return A new Vec3.
+     * Vector3's single argument constructor.
+     * @details Initializes Vector3's values with the argument passed.
+     * @param val The numeric value used to initialize Vector3's values.
+     * @return A new Vector3.
      */
-    explicit Vec3(T val) : x(val), y(val), z(val)
+    explicit Vector3(T val) : x(val), y(val), z(val)
     { }
 
     /**
-     * Vec3's three argument constructor.
-     * @details Initializes Vec3's values with the arguments passed.
+     * Vector3's three argument constructor.
+     * @details Initializes Vector3's values with the arguments passed.
      * @param x The x coordinate of the vector.
      * @param y The y coordinate of the vector.
      * @param z The z coordinate of the vector.
-     * @return A new Vec3.
+     * @return A new Vector3.
      */
-    Vec3(T x, T y, T z) : x(x), y(y), z(z)
+    Vector3(T x, T y, T z) : x(x), y(y), z(z)
     { }
 
     /**
@@ -587,15 +587,15 @@ public:
      * @details Divides each coordinate of the vector by the vector's length.
      * @return A new normalized vector.
      */
-    inline Vec3<T> normalized() const
+    inline Vector3<T> normalized() const
     {
         double len = length();
 
         if (!len) {
-            return Vec3<T>{};
+            return Vector3<T>{};
         }
 
-        return Vec3<T>{static_cast<T>(x / len),
+        return Vector3<T>{static_cast<T>(x / len),
                        static_cast<T>(y / len),
                        static_cast<T>(z / len)};
     }
@@ -606,7 +606,7 @@ public:
      * @return The value of the dot product as a
      * double precision floating point number.
      */
-    inline double dot(const Vec3<T> &v) const
+    inline double dot(const Vector3<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z;
     }
@@ -616,14 +616,14 @@ public:
      * @param v The vector with whom the dot product will be calculated.
      * @return The value of the dot product as a floating point number.
      */
-    inline float dotf(const Vec3<T> &v) const
+    inline float dotf(const Vector3<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z;
     }
 
-    inline Vec3<T> cross(const Vec3<T> &v) const
+    inline Vector3<T> cross(const Vector3<T> &v) const
     {
-        return Vec3<T>{y * v.z - z * v.y,
+        return Vector3<T>{y * v.z - z * v.y,
                        z * v.x - x * v.z,
                        x * v.y - y * v.x};
     }
@@ -632,7 +632,7 @@ public:
      * Calculates the reflected vector.
      * @param normal The normal vector used for the reflection calculation.
      */
-    inline void reflect(const Vec3<T> normal)
+    inline void reflect(const Vector3<T> normal)
     {
         *this -= normal * 2 * dot(normal);
     }
@@ -642,82 +642,82 @@ public:
      * @param normal The normal vector used for the reflection calculation.
      * @return A new reflected vector.
      */
-    inline Vec3<T> reflected(const Vec3<T> normal) const
+    inline Vector3<T> reflected(const Vector3<T> normal) const
     {
         return *this - normal * 2 * dot(normal);
     }
 
-    inline Vec3<T> operator-() const
+    inline Vector3<T> operator-() const
     {
-        return Vec3<T>{-x, -y, -z};
+        return Vector3<T>{-x, -y, -z};
     }
 
-    inline Vec3<T> operator+(const Vec3<T> &rhs) const
+    inline Vector3<T> operator+(const Vector3<T> &rhs) const
     {
-        return Vec3<T>{x + rhs.x, y + rhs.y, z + rhs.z};
+        return Vector3<T>{x + rhs.x, y + rhs.y, z + rhs.z};
     }
 
-    inline Vec3<T> operator-(const Vec3<T> &rhs) const
+    inline Vector3<T> operator-(const Vector3<T> &rhs) const
     {
-        return Vec3<T>{x - rhs.x, y - rhs.y, z - rhs.z};
+        return Vector3<T>{x - rhs.x, y - rhs.y, z - rhs.z};
     }
 
-    inline Vec3<T> operator*(const Vec3<T> &rhs) const
+    inline Vector3<T> operator*(const Vector3<T> &rhs) const
     {
-        return Vec3<T>{x * rhs.x, y * rhs.y, z * rhs.z};
+        return Vector3<T>{x * rhs.x, y * rhs.y, z * rhs.z};
     }
 
-    inline Vec3<T> operator/(const Vec3<T> &rhs)
+    inline Vector3<T> operator/(const Vector3<T> &rhs)
     {
-        return Vec3<T>{x / rhs.x, y / rhs.y, z / rhs.z};
+        return Vector3<T>{x / rhs.x, y / rhs.y, z / rhs.z};
     }
 
-    inline void operator+=(const Vec3<T> &rhs)
+    inline void operator+=(const Vector3<T> &rhs)
     {
         x += rhs.x;
         y += rhs.y;
         z += rhs.z;
     }
 
-    inline void operator-=(const Vec3<T> &rhs)
+    inline void operator-=(const Vector3<T> &rhs)
     {
         x -= rhs.x;
         y -= rhs.y;
         z -= rhs.z;
     }
 
-    inline void operator*=(const Vec3<T> &rhs)
+    inline void operator*=(const Vector3<T> &rhs)
     {
         x *= rhs.x;
         y *= rhs.y;
         z *= rhs.z;
     }
 
-    inline void operator/=(const Vec3<T> &rhs)
+    inline void operator/=(const Vector3<T> &rhs)
     {
         x /= rhs.x;
         y /= rhs.y;
         z /= rhs.z;
     }
 
-    inline Vec3<T> operator+(T rhs) const
+    inline Vector3<T> operator+(T rhs) const
     {
-        return Vec3<T>{x + rhs, y + rhs, z + rhs};
+        return Vector3<T>{x + rhs, y + rhs, z + rhs};
     }
 
-    inline Vec3<T> operator-(T rhs) const
+    inline Vector3<T> operator-(T rhs) const
     {
-        return Vec3<T>{x - rhs, y - rhs, z - rhs};
+        return Vector3<T>{x - rhs, y - rhs, z - rhs};
     }
 
-    inline Vec3<T> operator*(T rhs) const
+    inline Vector3<T> operator*(T rhs) const
     {
-        return Vec3<T>{x * rhs, y * rhs, z * rhs};
+        return Vector3<T>{x * rhs, y * rhs, z * rhs};
     }
 
-    inline Vec3<T> operator/(T rhs) const
+    inline Vector3<T> operator/(T rhs) const
     {
-        return Vec3<T>{x / rhs, y / rhs, z / rhs};
+        return Vector3<T>{x / rhs, y / rhs, z / rhs};
     }
 
     inline void operator+=(T rhs)
@@ -753,80 +753,80 @@ public:
  * @typedef Vec3f
  * Defines a three dimensional vector of floats.
  */
-using Vec3f = Vec3<float>;
+using Vec3f = Vector3<float>;
 
 /**
  * @typedef Vec3d
  * Defines a three dimensional vector of double floats.
  */
-using Vec3d = Vec3<double>;
+using Vec3d = Vector3<double>;
 
 /**
  * @typedef Vec3s
  * Defines a three dimensional vector of short integers.
  */
-using Vec3s = Vec3<short>;
+using Vec3s = Vector3<short>;
 
 /**
  * @typedef Vec3us
  * Defines a three dimensional vector of unsigned short integers.
  */
-using Vec3us = Vec3<unsigned short>;
+using Vec3us = Vector3<unsigned short>;
 
 /**
  * @typedef Vec3c
  * Defines a three dimensional vector of characters.
  */
-using Vec3c = Vec3<char>;
+using Vec3c = Vector3<char>;
 
 /**
  * @typedef Vec3uc
  * Defines a three dimensional vector of unsigned characters.
  */
-using Vec3uc = Vec3<unsigned char>;
+using Vec3uc = Vector3<unsigned char>;
 
 /**
  * @typedef Vec3i
  * Defines a three dimensional vector of integers.
  */
-using Vec3i = Vec3<int>;
+using Vec3i = Vector3<int>;
 
 /**
  * @typedef Vec3ui
  * Defines a three dimensional vector of unsigned integers.
  */
-using Vec3ui = Vec3<unsigned int>;
+using Vec3ui = Vector3<unsigned int>;
 
 /**
  * @typedef Vec3l
  * Defines a three dimensional vector of long integers.
  */
-using Vec3l = Vec3<long>;
+using Vec3l = Vector3<long>;
 
 /**
  * @typedef Vec3ul
  * Defines a three dimensional vector of unsigned long integers.
  */
-using Vec3ul = Vec3<unsigned long>;
+using Vec3ul = Vector3<unsigned long>;
 
 /**
  * @typedef Vec3ll
  * Defines a three dimensional vector of long long integers.
  */
-using Vec3ll = Vec3<long long>;
+using Vec3ll = Vector3<long long>;
 
 /**
  * @typedef Vec3ull
  * Defines a three dimensional vector of unsigned long long integers.
  */
-using Vec3ull = Vec3<unsigned long long>;
+using Vec3ull = Vector3<unsigned long long>;
 
 
 /**
- * @class Vec4
+ * @class Vector4
  * @tparam T Can be any numeric type.
  * @brief A class that represents a 4 dimensional vector.
- * @details Vec4 is a class that represents a 4 dimensional
+ * @details Vector4 is a class that represents a 4 dimensional
  * vector. It supports accessing the vector values with various
  * ways to accommodate various use cases:
  * @li position coordinates
@@ -841,7 +841,7 @@ using Vec3ull = Vec3<unsigned long long>;
  * @li @ref HM_VEC4_SWIZZLES
  */
 template<typename T>
-class Vec4 {
+class Vector4 {
 private:
     HM_SWIZZLE4_CLASSES(4)
 
@@ -874,32 +874,32 @@ public:
     };
 
     /**
-     * Default Vec4 constructor.
-     * @details Initializes Vec4's values to 0.
-     * @return A new Vec4.
+     * Default Vector4 constructor.
+     * @details Initializes Vector4's values to 0.
+     * @return A new Vector4.
      */
-    Vec4() : x(0), y(0), z(0), w(0)
+    Vector4() : x(0), y(0), z(0), w(0)
     { }
 
     /**
-     * Vec4's single argument constructor.
-     * @details Initializes Vec4's values with the argument passed.
-     * @param val The numeric value used to initialize Vec4's values.
-     * @return A new Vec4.
+     * Vector4's single argument constructor.
+     * @details Initializes Vector4's values with the argument passed.
+     * @param val The numeric value used to initialize Vector4's values.
+     * @return A new Vector4.
      */
-    explicit Vec4(T val) : x(val), y(val), z(val), w(val)
+    explicit Vector4(T val) : x(val), y(val), z(val), w(val)
     { }
 
     /**
-     * Vec4's two argument constructor.
-     * @details Initializes Vec4's values with the arguments passed.
+     * Vector4's two argument constructor.
+     * @details Initializes Vector4's values with the arguments passed.
      * @param x The x coordinate of the vector.
      * @param y The y coordinate of the vector.
      * @param z The z coordinate of the vector.
      * @param w Thw w coordinate of the vector.
-     * @return A new Vec4.
+     * @return A new Vector4.
      */
-    Vec4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w)
+    Vector4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w)
     { }
 
     /**
@@ -956,15 +956,15 @@ public:
         *this /= len;
     }
 
-    inline Vec4<T> normalized() const
+    inline Vector4<T> normalized() const
     {
         double len = length();
 
         if (!len) {
-            return Vec4<T>{};
+            return Vector4<T>{};
         }
 
-        return Vec4<T>{*this /= len};
+        return Vector4<T>{*this /= len};
     }
 
     /**
@@ -973,7 +973,7 @@ public:
      * @return The value of the dot product as a
      * double precision floating point number.
      */
-    inline double dot(const Vec4<T> &v) const
+    inline double dot(const Vector4<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z + w * v.w;
     }
@@ -983,42 +983,42 @@ public:
      * @param v The vector with whom the dot product will be calculated.
      * @return The value of the dot product as a floating point number.
      */
-    inline float dotf(const Vec4<T> &v) const
+    inline float dotf(const Vector4<T> &v) const
     {
         return x * v.x + y * v.y + z * v.z + w * v.w;
     }
 
-    inline Vec4<T> cross(const Vec4<T> &v) const
+    inline Vector4<T> cross(const Vector4<T> &v) const
     {
         //TODO
     }
 
-    inline Vec4<T> operator-() const
+    inline Vector4<T> operator-() const
     {
-        return Vec4<T>{-x, -y, -z, -w};
+        return Vector4<T>{-x, -y, -z, -w};
     }
 
-    inline Vec4<T> operator+(const Vec4<T> &rhs) const
+    inline Vector4<T> operator+(const Vector4<T> &rhs) const
     {
-        return Vec4<T>{x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w};
+        return Vector4<T>{x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w};
     }
 
-    inline Vec4<T> operator-(const Vec4<T> &rhs) const
+    inline Vector4<T> operator-(const Vector4<T> &rhs) const
     {
-        return Vec4<T>{x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w};
+        return Vector4<T>{x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w};
     }
 
-    inline Vec4<T> operator*(const Vec4<T> &rhs) const
+    inline Vector4<T> operator*(const Vector4<T> &rhs) const
     {
-        return Vec4<T>{x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
+        return Vector4<T>{x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
     }
 
-    inline Vec4<T> operator/(const Vec4<T> & rhs) const
+    inline Vector4<T> operator/(const Vector4<T> & rhs) const
     {
-        return Vec4<T>{x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
+        return Vector4<T>{x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
     }
 
-    inline void operator+=(const Vec4<T> &rhs)
+    inline void operator+=(const Vector4<T> &rhs)
     {
         x += rhs.x;
         y += rhs.y;
@@ -1026,7 +1026,7 @@ public:
         w += rhs.w;
     }
 
-    inline void operator-=(const Vec4<T> &rhs)
+    inline void operator-=(const Vector4<T> &rhs)
     {
         x -= rhs.x;
         y -= rhs.y;
@@ -1034,7 +1034,7 @@ public:
         w -= rhs.w;
     }
 
-    inline void operator*=(const Vec4<T> &rhs)
+    inline void operator*=(const Vector4<T> &rhs)
     {
         x *= rhs.x;
         y *= rhs.y;
@@ -1042,7 +1042,7 @@ public:
         w *= rhs.w;
     }
 
-    inline void operator/=(const Vec4<T> &rhs)
+    inline void operator/=(const Vector4<T> &rhs)
     {
         x /= rhs.x;
         y /= rhs.y;
@@ -1050,24 +1050,24 @@ public:
         w /= rhs.w;
     }
 
-    inline Vec4<T> operator+(T rhs) const
+    inline Vector4<T> operator+(T rhs) const
     {
-        return Vec4<T>{x + rhs, y + rhs, z + rhs, w + rhs};
+        return Vector4<T>{x + rhs, y + rhs, z + rhs, w + rhs};
     }
 
-    inline Vec4<T> operator-(T rhs) const
+    inline Vector4<T> operator-(T rhs) const
     {
-        return Vec4<T>{x - rhs, y - rhs, z - rhs, w - rhs};
+        return Vector4<T>{x - rhs, y - rhs, z - rhs, w - rhs};
     }
 
-    inline Vec4<T> operator*(T rhs) const
+    inline Vector4<T> operator*(T rhs) const
     {
-        return Vec4<T>{x * rhs, y * rhs, z * rhs, w * rhs};
+        return Vector4<T>{x * rhs, y * rhs, z * rhs, w * rhs};
     }
 
-    inline Vec4<T> operator/(T rhs) const
+    inline Vector4<T> operator/(T rhs) const
     {
-        return Vec4<T>{x / rhs, y / rhs, z / rhs, w / rhs};
+        return Vector4<T>{x / rhs, y / rhs, z / rhs, w / rhs};
     }
 
     inline void operator+=(T rhs)
@@ -1107,73 +1107,73 @@ public:
  * @typedef Vec4f
  * Defines a four dimensional vector of floats.
  */
-using Vec4f = Vec4<float>;
+using Vec4f = Vector4<float>;
 
 /**
  * @typedef Vec4d
  * Defines a four dimensional vector of doubles.
  */
-using Vec4d = Vec4<double>;
+using Vec4d = Vector4<double>;
 
 /**
  * @typedef Vec4s
  * Defines a four dimensional vector of short integers.
  */
-using Vec4s = Vec4<short>;
+using Vec4s = Vector4<short>;
 
 /**
  * @typedef Vec4us
  * Defines a four dimensional vector of unsigned short integers.
  */
-using Vec4us = Vec4<unsigned short>;
+using Vec4us = Vector4<unsigned short>;
 
 /**
  * @typedef Vec4c
  * Defines a four dimensional vector of characters.
  */
-using Vec4c = Vec4<char>;
+using Vec4c = Vector4<char>;
 
 /**
  * @typedef Vec4uc
  * Defines a four dimensional vector of unsigned characters.
  */
-using Vec4uc = Vec4<unsigned char>;
+using Vec4uc = Vector4<unsigned char>;
 
 /**
  * @typedef Vec4i
  * Defines a four dimensional vector of integers.
  */
-using Vec4i = Vec4<int>;
+using Vec4i = Vector4<int>;
 
 /**
  * @typedef Vec4ui
  * Defines a four dimensional vector of unsigned integers.
  */
-using Vec4ui = Vec4<unsigned int>;
+using Vec4ui = Vector4<unsigned int>;
 
 /**
  * @typedef Vec4l
  * Defines a four dimensional vector of long integers.
  */
-using Vec4l = Vec4<long>;
+using Vec4l = Vector4<long>;
 
 /**
  * @typedef Vec4ul
  * Defines a four dimensional vector of unsigned long integers.
  */
-using Vec4ul = Vec4<unsigned long>;
+using Vec4ul = Vector4<unsigned long>;
 
 /**
  * @typedef Vec4ll
  * Defines a four dimensional vector of long long integers.
  */
-using Vec4ll = Vec4<long long>;
+using Vec4ll = Vector4<long long>;
 
 /**
  * @typedef Vec4ull
  * Defines a four dimensional vector of unsigned long long integers.
  */
-using Vec4ull = Vec4<unsigned long long>;
+using Vec4ull = Vector4<unsigned long long>;
 
 /**
  * Calculates the dot product of two two dimensional vectors.
@@ -1183,7 +1183,7 @@ using Vec4ull = Vec4<unsigned long long>;
  * @return The result of the dot product as a double float.
  */
 template<typename T>
-inline double dot(const Vec2<T> &v1, const Vec2<T> &v2)
+inline double dot(const Vector2<T> &v1, const Vector2<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y;
 }
@@ -1196,7 +1196,7 @@ inline double dot(const Vec2<T> &v1, const Vec2<T> &v2)
  * @return The result of the dot product as a float.
  */
 template<typename T>
-inline float dotf(const Vec2<T> &v1, const Vec2<T> &v2)
+inline float dotf(const Vector2<T> &v1, const Vector2<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y;
 }
@@ -1209,7 +1209,7 @@ inline float dotf(const Vec2<T> &v1, const Vec2<T> &v2)
  * @return The result of the dot product as a double float.
  */
 template<typename T>
-inline double dot(const Vec3<T> &v1, const Vec3<T> &v2)
+inline double dot(const Vector3<T> &v1, const Vector3<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
@@ -1222,7 +1222,7 @@ inline double dot(const Vec3<T> &v1, const Vec3<T> &v2)
  * @return The result of the dot product as a float.
  */
 template<typename T>
-inline float dotf(const Vec3<T> &v1, const Vec3<T> &v2)
+inline float dotf(const Vector3<T> &v1, const Vector3<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
@@ -1235,7 +1235,7 @@ inline float dotf(const Vec3<T> &v1, const Vec3<T> &v2)
  * @return The result of the dot product as a double float.
  */
 template<typename T>
-inline double dot(const Vec4<T> &v1, const Vec4<T> &v2)
+inline double dot(const Vector4<T> &v1, const Vector4<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
@@ -1248,7 +1248,7 @@ inline double dot(const Vec4<T> &v1, const Vec4<T> &v2)
  * @return The result of the dot product as a float.
  */
 template<typename T>
-inline float dotf(const Vec4<T> &v1, const Vec4<T> &v2)
+inline float dotf(const Vector4<T> &v1, const Vector4<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
@@ -1261,9 +1261,9 @@ inline float dotf(const Vec4<T> &v1, const Vec4<T> &v2)
  * @return The resulting vector from the cross porduct.
  */
 template<typename T>
-inline Vec3<T> cross(const Vec3<T> &v1, const Vec3<T> &v2)
+inline Vector3<T> cross(const Vector3<T> &v1, const Vector3<T> &v2)
 {
-    return Vec3<T>{v1.y * v2.z - v1.z * v2.y,
+    return Vector3<T>{v1.y * v2.z - v1.z * v2.y,
                    v1.z * v2.x - v1.x * v2.z,
                    v1.x * v2.y - v1.y * v2.x};
 }
@@ -1277,7 +1277,7 @@ inline Vec3<T> cross(const Vec3<T> &v1, const Vec3<T> &v2)
  * @return The resulting vector from the cross product.
  */
 template<typename T>
-inline Vec4<T> cross(const Vec4<T> &v1, const Vec4<T> &v2, const Vec4<T> &v3)
+inline Vector4<T> cross(const Vector4<T> &v1, const Vector4<T> &v2, const Vector4<T> &v3)
 {
     //TODO
 }
@@ -1291,7 +1291,7 @@ inline Vec4<T> cross(const Vec4<T> &v1, const Vec4<T> &v2, const Vec4<T> &v3)
  * @return A new reflected vector.
  */
 template<typename T>
-inline Vec2<T> reflect(const Vec2<T> v, const Vec2<T> normal)
+inline Vector2<T> reflect(const Vector2<T> v, const Vector2<T> normal)
 {
     return v - normal * 2 * dot(v, normal);
 }
@@ -1305,7 +1305,7 @@ inline Vec2<T> reflect(const Vec2<T> v, const Vec2<T> normal)
  * @return A new reflected vector.
  */
 template<typename T>
-inline Vec3<T> reflect(const Vec3<T> v, const Vec3<T> normal)
+inline Vector3<T> reflect(const Vector3<T> v, const Vector3<T> normal)
 {
     return v - normal * 2 * dot(v, normal);
 }

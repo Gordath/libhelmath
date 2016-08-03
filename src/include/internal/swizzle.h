@@ -349,7 +349,7 @@ _Swizzle<2, 2, 2, 2> c##c##c##c; \
 _Swizzle<3, 3, 3, 3> d##d##d##d;
 
 /**
- * Upon expansion defines all of Vec2's swizzles.
+ * Upon expansion defines all of Vector2's swizzles.
  */
 #define HM_VEC2_SWIZZLES \
 HM_SWIZZLE2_NON_IDENTICAL(x, y) \
@@ -358,7 +358,7 @@ HM_SWIZZLE2_IDENTICAL2(x, y) \
 HM_SWIZZLE2_IDENTICAL2(s, t)
 
 /**
- * Upon expansion defines all of Vec3's swizzles.
+ * Upon expansion defines all of Vector3's swizzles.
  */
 #define HM_VEC3_SWIZZLES \
 HM_VEC2_SWIZZLES \
@@ -379,7 +379,7 @@ HM_SWIZZLE3_IDENTICAL(r, g, b) \
 HM_SWIZZLE3_IDENTICAL(s, t, p)
 
 /**
- * Upon expansion defines all of Vec4's swizzles.
+ * Upon expansion defines all of Vector4's swizzles.
  */
 #define HM_VEC4_SWIZZLES \
 HM_VEC3_SWIZZLES \
