@@ -1,0 +1,6 @@
+{
+  "name": "Libhelmath",
+  "tagline": "",
+  "body": "# libhelmath [![Build Status](https://travis-ci.org/Gordath/libhelmath.svg?branch=master)](https://travis-ci.org/Gordath/libhelmath)\r\nLibhelmath is a math library designed from the ground up for helios-ray, a physicaly based ray tracer.\r\nIt also aims to be usable for graphics or any other application that uses linear algebra.\r\n\r\n\r\n### Documentation\r\n* [online](http://gordath.mutantstargoat.com/libhelmath/docs \"Libhelmath's online documentation.\")\r\n* [download PDF](http://gordath.mutantstargoat.com/libhelmath/docs/libhelmath_refman.pdf \"Download libhelmath's reference manual\")\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
