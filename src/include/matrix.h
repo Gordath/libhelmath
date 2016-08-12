@@ -1,6 +1,8 @@
 #ifndef HELMATH_MATRIX_H
 #define HELMATH_MATRIX_H
 
+#include "vector.h"
+
 namespace hm {
 
 /**
@@ -18,11 +20,117 @@ public:
     /**
      * Matrix4's default constructor.
      * @details Sets the matrix to identity.
-     * @return
+     * @return A new Matrix4 set to identity.
      */
-    Matrix4()
+    Matrix4<T>()
     {
         set_identity();
+    }
+
+    /**
+     * Matrix4's multi-argument constructor.
+     * @details Creates a Matrix4 using each value passed as an argument.
+     * The notation used is [row][column].
+     * @param m00 Matrix element [0][0].
+     * @param m01 Matrix element [0][1].
+     * @param m02 Matrix element [0][2].
+     * @param m03 Matrix element [0][3].
+     * @param m10 Matrix element [1][0].
+     * @param m11 Matrix element [1][1].
+     * @param m12 Matrix element [1][2].
+     * @param m13 Matrix element [1][3].
+     * @param m20 Matrix element [2][0].
+     * @param m21 Matrix element [2][1].
+     * @param m22 Matrix element [2][2].
+     * @param m23 Matrix element [2][3].
+     * @param m30 Matrix element [3][0].
+     * @param m31 Matrix element [3][1].
+     * @param m32 Matrix element [3][2].
+     * @param m33 Matrix element [3][3].
+     * @return A new Matrix4 constructed with the arguments passed.
+     */
+    Matrix4<T>(T m00, T m01, T m02, T m03, T m10, T m11, T m12, T m13,
+               T m20, T m21, T m22, T m23, T m30, T m31, T m32, T m33)
+    {
+        data[0][0] = m00;
+        data[0][1] = m01;
+        data[0][2] = m02;
+        data[0][3] = m03;
+
+        data[1][0] = m10;
+        data[1][1] = m11;
+        data[1][2] = m12;
+        data[1][3] = m13;
+
+        data[2][0] = m20;
+        data[2][1] = m21;
+        data[2][2] = m22;
+        data[2][3] = m23;
+
+        data[3][0] = m30;
+        data[3][1] = m31;
+        data[3][2] = m32;
+        data[3][3] = m33;
+    }
+
+    /**
+     * Sets the matrix's row vector at the specified index.
+     * @param x The first value of the row.
+     * @param y The second value of the row.
+     * @param z The third value of the row.
+     * @param w The fourth value of the row.
+     * @param idx The index of the row in the matrix.
+     */
+    inline void set_row_vector(T x, T y, T z, T w, unsigned int idx)
+    {
+        data[idx][0] = x;
+        data[idx][1] = y;
+        data[idx][2] = z;
+        data[idx][3] = w;
+    }
+
+    /**
+     * Sets the matrix's column vector at the specified index.
+     * @param x The first value of the column.
+     * @param y The second value of the column.
+     * @param z The third value of the column.
+     * @param w The fourth value of the column.
+     * @param idx The index of the column in the matrix.
+     */
+    inline void set_column_vector(T x, T y, T z, T w, unsigned int idx)
+    {
+        data[0][idx] = x;
+        data[1][idx] = y;
+        data[2][idx] = z;
+        data[3][idx] = w;
+    }
+
+    /**
+     * Sets the matrix's row vector at the specified index.
+     * @param vec A four dimensional vector whos values are asigned to the matrix row.
+     * @param idx The index of the row in the matrix.
+     * @overload set_row_vector(const Vector4<T> &vec, unsigned int idx)
+     */
+    inline void set_row_vector(const Vector4<T> &vec, unsigned int idx)
+    {
+        data[idx][0] = vec.x;
+        data[idx][1] = vec.y;
+        data[idx][2] = vec.z;
+        data[idx][3] = vec.w;
+    }
+
+    /**
+     * Sets the matrix's column vector at the specified index.
+     * @param vec A four dimensional vector whose values are asigned to the matrix column.
+     * @param idx The index of the column in the matrix.
+     * @overload set_column_vector(const Vector4<T> &vec, unsigned int idx)
+     */
+    inline void set_column_vector(const Vector4<T> &vec, unsigned int idx)
+    {
+        data[0][idx] = vec.x;
+        data[1][idx] = vec.y;
+        data[2][idx] = vec.z;
+        data[3][idx] = vec.w;
     }
 
     /**
@@ -32,11 +140,21 @@ public:
      */
     inline void set_identity()
     {
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 data[i][j] = i == j ? 1 : 0;
             }
         }
+    }
+
+    inline void translate(float x, float y, float z)
+    {
+        Matrix4 translation_mat(1.0f, 0.0f, 0.0f, x,
+                                0.0f, 1.0f, 0.0f, y,
+                                0.0f, 0.0f, 1.0f, z,
+                                0.0f, 0.0f, 0.0f, 1.0f);
+
+        *this = *this * translation_mat;
     }
 
     /**
@@ -81,11 +199,76 @@ public:
      */
     inline void operator=(const Matrix4<T> &rhs)
     {
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 data[i][j] = rhs[i][j];
             }
         }
+    }
+
+    /**
+     * Performs matrix multiplication.
+     * @details Mutiplies the left hand side matrix operand with the right hand
+     * side matrix operand.
+     * @param rhs The right hand side matrix operand.
+     * @return A new Matrix4 as the result of the matrix multiplication.
+     */
+    inline Matrix4 operator*(const Matrix4 &rhs)
+    {
+        Matrix4 res;
+
+        res.data[0][0] = data[0][0] * rhs.data[0][0] + data[0][1] * rhs.data[1][0]
+                         + data[0][2] * rhs.data[2][0] + data[0][3] * rhs.data[3][0];
+
+        res.data[0][1] = data[0][0] * rhs.data[0][1] + data[0][1] * rhs.data[1][1]
+                         + data[0][2] * rhs.data[2][1] + data[0][3] * rhs.data[3][1];
+
+        res.data[0][2] = data[0][0] * rhs.data[0][2] + data[0][1] * rhs.data[1][2]
+                         + data[0][2] * rhs.data[2][2] + data[0][3] * rhs.data[3][2];
+
+        res.data[0][3] = data[0][0] * rhs.data[0][3] + data[0][1] * rhs.data[1][3]
+                         + data[0][2] * rhs.data[2][3] + data[0][3] * rhs.data[3][3];
+
+
+        res.data[1][0] = data[1][0] * rhs.data[0][0] + data[1][1] * rhs.data[1][0]
+                         + data[1][2] * rhs.data[2][0] + data[1][3] * rhs.data[3][0];
+
+        res.data[1][1] = data[1][0] * rhs.data[0][1] + data[1][1] * rhs.data[1][1]
+                         + data[1][2] * rhs.data[2][1] + data[1][3] * rhs.data[3][1];
+
+        res.data[1][2] = data[1][0] * rhs.data[0][2] + data[1][1] * rhs.data[1][2]
+                         + data[1][2] * rhs.data[2][2] + data[1][3] * rhs.data[3][2];
+
+        res.data[1][3] = data[1][0] * rhs.data[0][3] + data[1][1] * rhs.data[1][3]
+                         + data[1][2] * rhs.data[2][3] + data[1][3] * rhs.data[3][3];
+
+
+        res.data[2][0] = data[2][0] * rhs.data[0][0] + data[2][1] * rhs.data[1][0]
+                         + data[2][2] * rhs.data[2][0] + data[2][3] * rhs.data[3][0];
+
+        res.data[2][1] = data[2][0] * rhs.data[0][1] + data[2][1] * rhs.data[1][1]
+                         + data[2][2] * rhs.data[2][1] + data[2][3] * rhs.data[3][1];
+
+        res.data[2][2] = data[2][0] * rhs.data[0][2] + data[2][1] * rhs.data[1][2]
+                         + data[2][2] * rhs.data[2][2] + data[2][3] * rhs.data[3][2];
+
+        res.data[2][3] = data[2][0] * rhs.data[0][3] + data[2][1] * rhs.data[1][3]
+                         + data[2][2] * rhs.data[2][3] + data[2][3] * rhs.data[3][3];
+
+
+        res.data[3][0] = data[3][0] * rhs.data[0][0] + data[3][1] * rhs.data[1][0]
+                         + data[3][2] * rhs.data[2][0] + data[3][3] * rhs.data[3][0];
+
+        res.data[3][1] = data[3][0] * rhs.data[0][1] + data[3][1] * rhs.data[1][1]
+                         + data[3][2] * rhs.data[2][1] + data[3][3] * rhs.data[3][1];
+
+        res.data[3][2] = data[3][0] * rhs.data[0][2] + data[3][1] * rhs.data[1][2]
+                         + data[3][2] * rhs.data[2][2] + data[3][3] * rhs.data[3][2];
+
+        res.data[3][3] = data[3][0] * rhs.data[0][3] + data[3][1] * rhs.data[1][3]
+                         + data[3][2] * rhs.data[2][3] + data[3][3] * rhs.data[3][3];
+
+        return res;
     }
 };
 
