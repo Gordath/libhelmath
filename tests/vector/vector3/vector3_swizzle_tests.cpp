@@ -3,7 +3,7 @@
 
 using namespace hm;
 
-class Vec3SwizzleFixture : public ::testing::Test {
+class Vector3SwizzleFixture : public ::testing::Test {
 protected:
     Vec3f rhs;
     Vec3f lhs;
@@ -19,7 +19,7 @@ protected:
 // ----------------------------------
 // Vector creation from swizzle tests
 // ----------------------------------
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xxx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xxx)
 {
     Vec3f res{lhs.xxx};
 
@@ -28,7 +28,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xxx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xxy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xxy)
 {
     Vec3f res{lhs.xxy};
 
@@ -37,7 +37,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xxy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xxz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xxz)
 {
     Vec3f res{lhs.xxz};
 
@@ -46,7 +46,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xxz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xyx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xyx)
 {
     Vec3f res{lhs.xyx};
 
@@ -55,7 +55,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xyx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xyy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xyy)
 {
     Vec3f res{lhs.xyy};
 
@@ -64,7 +64,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xyy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xyz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xyz)
 {
     Vec3f res{lhs.xyz};
 
@@ -73,7 +73,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xyz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xzx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xzx)
 {
     Vec3f res{lhs.xzx};
 
@@ -82,7 +82,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xzx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xzy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xzy)
 {
     Vec3f res{lhs.xzy};
 
@@ -91,7 +91,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xzy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xzz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_xzz)
 {
     Vec3f res{lhs.xzz};
 
@@ -100,7 +100,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_xzz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yxx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yxx)
 {
     Vec3f res{lhs.yxx};
 
@@ -109,7 +109,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yxx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yxy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yxy)
 {
     Vec3f res{lhs.yxy};
 
@@ -118,7 +118,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yxy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yxz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yxz)
 {
     Vec3f res{lhs.yxz};
 
@@ -127,7 +127,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yxz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yyx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yyx)
 {
     Vec3f res{lhs.yyx};
 
@@ -136,7 +136,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yyx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yyy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yyy)
 {
     Vec3f res{lhs.yyy};
 
@@ -145,7 +145,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yyy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yyz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yyz)
 {
     Vec3f res{lhs.yyz};
 
@@ -154,7 +154,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yyz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yzx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yzx)
 {
     Vec3f res{lhs.yzx};
 
@@ -163,7 +163,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yzx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yzy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yzy)
 {
     Vec3f res{lhs.yzy};
 
@@ -172,7 +172,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yzy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yzz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_yzz)
 {
     Vec3f res{lhs.yzz};
 
@@ -181,7 +181,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_yzz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zxx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zxx)
 {
     Vec3f res{lhs.zxx};
 
@@ -190,7 +190,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zxx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zxy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zxy)
 {
     Vec3f res{lhs.zxy};
 
@@ -199,7 +199,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zxy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zxz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zxz)
 {
     Vec3f res{lhs.zxz};
 
@@ -208,7 +208,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zxz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zyx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zyx)
 {
     Vec3f res{lhs.zyx};
 
@@ -217,7 +217,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zyx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zyy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zyy)
 {
     Vec3f res{lhs.zyy};
 
@@ -226,7 +226,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zyy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zyz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zyz)
 {
     Vec3f res{lhs.zyz};
 
@@ -235,7 +235,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zyz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zzx)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zzx)
 {
     Vec3f res{lhs.zzx};
 
@@ -244,7 +244,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zzx)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zzy)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zzy)
 {
     Vec3f res{lhs.zzy};
 
@@ -253,7 +253,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zzy)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zzz)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_zzz)
 {
     Vec3f res{lhs.zzz};
 
@@ -262,7 +262,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_zzz)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rrr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rrr)
 {
     Vec3f res{lhs.rrr};
 
@@ -271,7 +271,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rrr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rrg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rrg)
 {
     Vec3f res{lhs.rrg};
 
@@ -280,7 +280,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rrg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rrb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rrb)
 {
     Vec3f res{lhs.rrb};
 
@@ -289,7 +289,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rrb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rgr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rgr)
 {
     Vec3f res{lhs.rgr};
 
@@ -298,7 +298,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rgr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rgg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rgg)
 {
     Vec3f res{lhs.rgg};
 
@@ -307,7 +307,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rgg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rgb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rgb)
 {
     Vec3f res{lhs.rgb};
 
@@ -316,7 +316,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rgb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rbr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rbr)
 {
     Vec3f res{lhs.rbr};
 
@@ -325,7 +325,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rbr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rbg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rbg)
 {
     Vec3f res{lhs.rbg};
 
@@ -334,7 +334,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rbg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rbb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_rbb)
 {
     Vec3f res{lhs.rbb};
 
@@ -343,7 +343,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_rbb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_grr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_grr)
 {
     Vec3f res{lhs.grr};
 
@@ -352,7 +352,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_grr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_grg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_grg)
 {
     Vec3f res{lhs.grg};
 
@@ -361,7 +361,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_grg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_grb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_grb)
 {
     Vec3f res{lhs.grb};
 
@@ -370,7 +370,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_grb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ggr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ggr)
 {
     Vec3f res{lhs.ggr};
 
@@ -379,7 +379,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ggr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ggg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ggg)
 {
     Vec3f res{lhs.ggg};
 
@@ -388,7 +388,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ggg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ggb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ggb)
 {
     Vec3f res{lhs.ggb};
 
@@ -397,7 +397,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ggb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_gbr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_gbr)
 {
     Vec3f res{lhs.gbr};
 
@@ -406,7 +406,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_gbr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_gbg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_gbg)
 {
     Vec3f res{lhs.gbg};
 
@@ -415,7 +415,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_gbg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_gbb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_gbb)
 {
     Vec3f res{lhs.gbb};
 
@@ -424,7 +424,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_gbb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_brr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_brr)
 {
     Vec3f res{lhs.brr};
 
@@ -433,7 +433,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_brr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_brg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_brg)
 {
     Vec3f res{lhs.brg};
 
@@ -442,7 +442,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_brg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_brb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_brb)
 {
     Vec3f res{lhs.brb};
 
@@ -451,7 +451,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_brb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bgr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_bgr)
 {
     Vec3f res{lhs.bgr};
 
@@ -460,7 +460,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bgr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bgg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_bgg)
 {
     Vec3f res{lhs.bgg};
 
@@ -469,7 +469,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bgg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bgb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_bgb)
 {
     Vec3f res{lhs.bgb};
 
@@ -478,7 +478,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bgb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bbr)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_bbr)
 {
     Vec3f res{lhs.bbr};
 
@@ -487,7 +487,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bbr)
     EXPECT_FLOAT_EQ(res.b, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bbg)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_bbg)
 {
     Vec3f res{lhs.bbg};
 
@@ -496,7 +496,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bbg)
     EXPECT_FLOAT_EQ(res.b, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bbb)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_bbb)
 {
     Vec3f res{lhs.bbb};
 
@@ -505,7 +505,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_bbb)
     EXPECT_FLOAT_EQ(res.b, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sss)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_sss)
 {
     Vec3f res{lhs.sss};
 
@@ -514,7 +514,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sss)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sst)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_sst)
 {
     Vec3f res{lhs.sst};
 
@@ -523,7 +523,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sst)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ssp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ssp)
 {
     Vec3f res{lhs.ssp};
 
@@ -532,7 +532,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ssp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sts)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_sts)
 {
     Vec3f res{lhs.sts};
 
@@ -541,7 +541,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sts)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_stt)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_stt)
 {
     Vec3f res{lhs.stt};
 
@@ -550,7 +550,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_stt)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_stp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_stp)
 {
     Vec3f res{lhs.stp};
 
@@ -559,7 +559,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_stp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sps)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_sps)
 {
     Vec3f res{lhs.sps};
 
@@ -568,7 +568,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_sps)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_spt)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_spt)
 {
     Vec3f res{lhs.spt};
 
@@ -577,7 +577,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_spt)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_spp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_spp)
 {
     Vec3f res{lhs.spp};
 
@@ -586,7 +586,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_spp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tss)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tss)
 {
     Vec3f res{lhs.tss};
 
@@ -595,7 +595,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tss)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tst)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tst)
 {
     Vec3f res{lhs.tst};
 
@@ -604,7 +604,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tst)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tsp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tsp)
 {
     Vec3f res{lhs.tsp};
 
@@ -613,7 +613,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tsp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tts)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tts)
 {
     Vec3f res{lhs.tts};
 
@@ -622,7 +622,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tts)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ttt)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ttt)
 {
     Vec3f res{lhs.ttt};
 
@@ -631,7 +631,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ttt)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ttp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ttp)
 {
     Vec3f res{lhs.ttp};
 
@@ -640,7 +640,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ttp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tps)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tps)
 {
     Vec3f res{lhs.tps};
 
@@ -649,7 +649,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tps)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tpt)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tpt)
 {
     Vec3f res{lhs.tpt};
 
@@ -658,7 +658,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tpt)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tpp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_tpp)
 {
     Vec3f res{lhs.tpp};
 
@@ -667,7 +667,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_tpp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pss)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_pss)
 {
     Vec3f res{lhs.pss};
 
@@ -676,7 +676,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pss)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pst)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_pst)
 {
     Vec3f res{lhs.pst};
 
@@ -685,7 +685,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pst)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_psp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_psp)
 {
     Vec3f res{lhs.psp};
 
@@ -694,7 +694,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_psp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pts)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_pts)
 {
     Vec3f res{lhs.pts};
 
@@ -703,7 +703,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pts)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ptt)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ptt)
 {
     Vec3f res{lhs.ptt};
 
@@ -712,7 +712,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ptt)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ptp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ptp)
 {
     Vec3f res{lhs.ptp};
 
@@ -721,7 +721,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ptp)
     EXPECT_FLOAT_EQ(res.p, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pps)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_pps)
 {
     Vec3f res{lhs.pps};
 
@@ -730,7 +730,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_pps)
     EXPECT_FLOAT_EQ(res.p, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ppt)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ppt)
 {
     Vec3f res{lhs.ppt};
 
@@ -739,7 +739,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ppt)
     EXPECT_FLOAT_EQ(res.p, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ppp)
+TEST_F(Vector3SwizzleFixture, test_vector_creation_from_ppp)
 {
     Vec3f res{lhs.ppp};
 
@@ -752,7 +752,7 @@ TEST_F(Vec3SwizzleFixture, test_vector_creation_from_ppp)
 // -------------------------
 // Swizzle assignment tests
 // -------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_assignment_operator_xyz)
+TEST_F(Vector3SwizzleFixture, test_swizzle_assignment_operator_xyz)
 {
     lhs.xyz = rhs.xzx;
 
@@ -764,7 +764,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_assignment_operator_xyz)
 // -------------------------
 // Swizzle operator + tests
 // -------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_plus_swizzle)
 {
     Vec3f res{lhs.xyz + rhs.zxy};
 
@@ -773,7 +773,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_swizzle)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_plus_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_plus_swizzle)
 {
     Vec3f res{lhs.xyz + rhs.xxx};
 
@@ -782,7 +782,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_plus_swizzle)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_plus_scalar)
 {
     Vec3f res{lhs.xyz + 2.0f};
 
@@ -791,7 +791,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_scalar)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_plus_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_plus_scalar)
 {
     Vec3f res{lhs.xxx + 2.0f};
 
@@ -804,7 +804,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_plus_scalar)
 // ------------------------
 // Swizzle operator - tests
 // ------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_minus_swizzle)
 {
     Vec3f res{lhs.xyz - rhs.yzx};
 
@@ -813,7 +813,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_swizzle)
     EXPECT_FLOAT_EQ(res.z, 1.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_minus_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_minus_swizzle)
 {
     Vec3f res{lhs.xxx - rhs.xyz};
 
@@ -822,7 +822,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_minus_swizzle)
     EXPECT_FLOAT_EQ(res.z, 1.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_minus_scalar)
 {
     Vec3f res{lhs.xyz - 2.0f};
 
@@ -831,7 +831,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_scalar)
     EXPECT_FLOAT_EQ(res.z, 0.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_minus_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_minus_scalar)
 {
     Vec3f res{lhs.xxx - 2.0f};
 
@@ -844,7 +844,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_minus_scalar)
 // ------------------------
 // Swizzle operator * tests
 // ------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_mult_swizzle)
 {
     Vec3f res{lhs.xyz * rhs.zzy};
 
@@ -853,7 +853,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_swizzle)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_mult_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_mult_swizzle)
 {
     Vec3f res{lhs.xxx * rhs.zzy};
 
@@ -862,7 +862,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_mult_swizzle)
     EXPECT_FLOAT_EQ(res.z, 8.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_mult_scalar)
 {
     Vec3f res{lhs.xyz * 2.0f};
 
@@ -871,7 +871,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_scalar)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_mult_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_mult_scalar)
 {
     Vec3f res{lhs.xxx * 2.0f};
 
@@ -884,7 +884,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_mult_scalar)
 // ------------------------
 // Swizzle operator / tests
 // ------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_div_swizzle)
 {
     Vec3f res{lhs.xyz / rhs.yyx};
 
@@ -893,7 +893,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_swizzle)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_div_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzleAAA_div_swizzle)
 {
     Vec3f res{lhs.xxx / rhs.yyx};
 
@@ -902,7 +902,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzleAAA_div_swizzle)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_div_scalar)
 {
     Vec3f res{lhs.xyz / 2.0f};
 
@@ -911,7 +911,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_scalar)
     EXPECT_FLOAT_EQ(res.z, 1.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizleAAA_div_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizleAAA_div_scalar)
 
 {
     Vec3f res{lhs.xxx / 2.0f};
@@ -925,7 +925,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizleAAA_div_scalar)
 // -------------------------
 // Swizzle operator += tests
 // -------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_swizzle)
 {
     lhs.xyz += rhs.yzx;
 
@@ -934,7 +934,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.z, 3.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_scalar)
 {
     lhs.xyz += 2.0f;
 
@@ -947,7 +947,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_scalar)
 // -------------------------
 // Swizzle operator -= tests
 // -------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_swizzle)
 {
     lhs.xyz -= lhs.xxy;
 
@@ -956,7 +956,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.z, -1.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_scalar)
 {
     lhs.xyz -= 2.0f;
 
@@ -969,7 +969,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_scalar)
 // -------------------------
 // Swizzle operator *= tests
 // -------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_swizzle)
 {
     lhs.xyz *= rhs.yyx;
 
@@ -978,7 +978,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.z, 2.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_scalar)
 {
     lhs.xyz *= 2.0f;
 
@@ -991,7 +991,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_scalar)
 // -------------------------
 // Swizzle operator /= tests
 // -------------------------
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_equals_swizzle)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_div_equals_swizzle)
 {
     lhs.xyz /= rhs.yyy;
 
@@ -1000,7 +1000,7 @@ TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.z, 1.0f);
 }
 
-TEST_F(Vec3SwizzleFixture, test_swizzle_operator_swizzle_div_equals_scalar)
+TEST_F(Vector3SwizzleFixture, test_swizzle_operator_swizzle_div_equals_scalar)
 {
     lhs.xyz /= 2.0f;
 

@@ -108,7 +108,7 @@ public:
      * Calculates the length (magnitude) of the vector.
      * @return The vector length as a double precision floating point number.
      */
-    inline double length()
+    inline double length() const
     {
         return std::sqrt(x * x + y * y);
     }
@@ -117,7 +117,7 @@ public:
      * Calculates the length (magnitude) of the vector.
      * @return The vector length as a floating point number.
      */
-    inline float lengthf()
+    inline float lengthf() const
     {
         return sqrtf(x * x + y * y);
     }
@@ -181,7 +181,7 @@ public:
      * @return The value of the dot product as a
      * double precision floating point number.
      */
-    inline double dot(const Vector2<T> &v)
+    inline double dot(const Vector2<T> &v) const
     {
         return x * v.x + y * v.y;
     }
@@ -191,16 +191,35 @@ public:
      * @param v The vector with whom the dot product will be calculated.
      * @return The value of the dot product as a floating point number.
      */
-    inline float dotf(const Vector2<T> &v)
+    inline float dotf(const Vector2<T> &v) const
     {
         return x * v.x + y * v.y;
     }
 
     /**
-     * Negates the vector values.
-     * @return A new vector with negated values.
+     * Calculates the reflected vector.
+     * @param normal The normal vector used for the reflection calculation.
      */
-    inline Vector2<T> operator-()
+    inline void reflect(const Vector2<T> normal)
+    {
+        *this -= normal * 2 * dot(normal);
+    }
+
+    /**
+     * Calculates the reflected vector as a new vector.
+     * @param normal The normal vector used for the reflection calculation.
+     * @return A new reflected vector.
+     */
+    inline Vector2<T> reflected(const Vector2<T> normal) const
+    {
+        return *this - normal * 2 * dot(normal);
+    }
+
+    /**
+     * Negates the vector's values.
+     * @return A new two dimensional vector with negated values.
+     */
+    inline Vector2<T> operator-() const
     {
         return Vector2<T>{-x, -y};
     }
@@ -210,9 +229,9 @@ public:
      * @details Adds each value of the right hand side vector operand
      * to the respective value of the left hand side vector operand.
      * @param rhs The right hand side vector of the addition.
-     * @return A new vector as the result of the addition.
+     * @return A new two dimensional vector as the result of the addition.
      */
-    inline Vector2<T> operator+(const Vector2<T> &rhs)
+    inline Vector2<T> operator+(const Vector2<T> &rhs) const
     {
         return Vector2<T>{x + rhs.x, y + rhs.y};
     }
@@ -222,9 +241,9 @@ public:
      * @details Subtracts each value of the right hand side vector operand
      * from the respective value of the left hand side vector operand.
      * @param rhs The right hand side vector of the subtraction.
-     * @return A new vector as the result of the subtraction.
+     * @return A new two dimensional vector as the result of the subtraction.
      */
-    inline Vector2<T> operator-(const Vector2<T> &rhs)
+    inline Vector2<T> operator-(const Vector2<T> &rhs) const
     {
         return Vector2<T>{x - rhs.x, y - rhs.y};
     }
@@ -234,21 +253,21 @@ public:
      * @details Multiplies each value of the left hand side vector operand
      * with the respective value of the right hand side vector operand.
      * @param rhs The right hand side vector of the multiplication.
-     * @return A new vector as the result of the multiplication.
+     * @return A new two dimensional vector as the result of the multiplication.
      */
-    inline Vector2<T> operator*(const Vector2<T> &rhs)
+    inline Vector2<T> operator*(const Vector2<T> &rhs) const
     {
         return Vector2<T>{x * rhs.x, y * rhs.y};
     }
 
     /**
-     * Calculates the division of 2 vectors.
+     * Calculates the division of 2 two dimensional vectors.
      * @details Divides each value of the left hand side vector operand
      * by the respective value of the right hand side vector operand.
      * @param rhs The right hand side vector of the division.
-     * @return A new vector as the result of the division.
+     * @return A new two dimensional vector as the result of the division.
      */
-    inline Vector2<T> operator/(const Vector2<T> &rhs)
+    inline Vector2<T> operator/(const Vector2<T> &rhs) const
     {
         return Vector2<T>{x / rhs.x, y / rhs.y};
     }
@@ -260,8 +279,8 @@ public:
      */
     inline void operator+=(const Vector2<T> &rhs)
     {
-        x /= rhs.x;
-        y /= rhs.y;
+        x += rhs.x;
+        y += rhs.y;
     }
 
     /**
@@ -283,7 +302,7 @@ public:
     inline void operator*=(const Vector2<T> &rhs)
     {
         x *= rhs.x;
-        y *= rhs.x;
+        y *= rhs.y;
     }
 
     /**
@@ -300,9 +319,9 @@ public:
     /**
      * Adds a scalar to each value of the vector.
      * @param rhs The scalar added to each value of the vector.
-     * @return A new vector as the result of the addition.
+     * @return A new two dimensional vector as the result of the addition.
      */
-    inline Vector2<T> operator+(T rhs)
+    inline Vector2<T> operator+(T rhs) const
     {
         return Vector2<T>{x + rhs, y + rhs};
     }
@@ -310,9 +329,9 @@ public:
     /**
      * Subtracts a scalar from each value of the vector.
      * @param rhs The scalar subtracted from each value of the vector.
-     * @return A new vector as the result of the subtraction.
+     * @return A new two dimensional vector as the result of the subtraction.
      */
-    inline Vector2<T> operator-(T rhs)
+    inline Vector2<T> operator-(T rhs) const
     {
         return Vector2<T>{x - rhs, y - rhs};
     }
@@ -320,9 +339,9 @@ public:
     /**
      * Multiplies each value of the vector with a scalar.
      * @param rhs The scalar to multiply the vector with.
-     * @return A new vector as the result of the multiplication.
+     * @return A new two dimensional vector as the result of the multiplication.
      */
-    inline Vector2<T> operator*(T rhs)
+    inline Vector2<T> operator*(T rhs) const
     {
         return Vector2<T>{x * rhs, y * rhs};
     }
@@ -330,9 +349,9 @@ public:
     /**
      * Divides each value of the vector by a scalar.
      * @param rhs The scalar to divide each value of the vector by.
-     * @return A new vector as the result of the division.
+     * @return A new two dimensional vector as the result of the division.
      */
-    inline Vector2<T> operator/(T rhs)
+    inline Vector2<T> operator/(T rhs) const
     {
         return Vector2<T>{x / rhs, y / rhs};
     }
@@ -621,6 +640,11 @@ public:
         return x * v.x + y * v.y + z * v.z;
     }
 
+    /**
+     * Calculates the cross product.
+     * @param v The vector with whom the cross product will be calculated.
+     * @return A three dimensional vector as the result of the cross product.
+     */
     inline Vector3<T> cross(const Vector3<T> &v) const
     {
         return Vector3<T>{y * v.z - z * v.y,
@@ -647,31 +671,68 @@ public:
         return *this - normal * 2 * dot(normal);
     }
 
+    /**
+     * Negates the vector's values.
+     * @return A new three dimensional vector with negated values.
+     */
     inline Vector3<T> operator-() const
     {
         return Vector3<T>{-x, -y, -z};
     }
 
+    /**
+     * Calculates the addition of 2 three dimensional vectors.
+     * @details Adds each value of the right hand side vector operand
+     * to the respective value of the left hand side vector operand.
+     * @param rhs The right hand side vector of the addition.
+     * @return A new three dimensional vector as the result of the addition.
+     */
     inline Vector3<T> operator+(const Vector3<T> &rhs) const
     {
         return Vector3<T>{x + rhs.x, y + rhs.y, z + rhs.z};
     }
 
+    /**
+     * Calculates the subtraction of 2 three dimensional vectors.
+     * @details Subtracts each value of the right hand side vector operand
+     * from the respective value of the left hand side vector operand.
+     * @param rhs The right hand side vector of the subtraction.
+     * @return A new vector three dimensional vector as the result of the subtraction.
+     */
     inline Vector3<T> operator-(const Vector3<T> &rhs) const
     {
         return Vector3<T>{x - rhs.x, y - rhs.y, z - rhs.z};
     }
 
+    /**
+     * Calculates the multiplication of 2 three dimensional vectors.
+     * @details Multiplies each value of the right hand side vector operand
+     * with the respective value of the left hand side vector operand.
+     * @param rhs The right hand side vector of the multiplication.
+     * @return A new three dimensional vector as the result of the multiplication.
+     */
     inline Vector3<T> operator*(const Vector3<T> &rhs) const
     {
         return Vector3<T>{x * rhs.x, y * rhs.y, z * rhs.z};
     }
 
+    /**
+     * Calculates the division of 2 three dimensional vectors.
+     * @details Divides each value of the right hand side vector operand
+     * by the respective value of the left hand side vector operand.
+     * @param rhs The right hand side vector of the division.
+     * @return A new vector as the result of the division.
+     */
     inline Vector3<T> operator/(const Vector3<T> &rhs)
     {
         return Vector3<T>{x / rhs.x, y / rhs.y, z / rhs.z};
     }
 
+    /**
+     * Adds each value of the right hand side vector operand to the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the addition.
+     */
     inline void operator+=(const Vector3<T> &rhs)
     {
         x += rhs.x;
@@ -679,6 +740,11 @@ public:
         z += rhs.z;
     }
 
+    /**
+     * Subtracts each value of the right hand side vector operand from the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the subtraction.
+     */
     inline void operator-=(const Vector3<T> &rhs)
     {
         x -= rhs.x;
@@ -686,6 +752,11 @@ public:
         z -= rhs.z;
     }
 
+    /**
+     * Multiplies each value of the right hand side vector operand with the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the multiplication.
+     */
     inline void operator*=(const Vector3<T> &rhs)
     {
         x *= rhs.x;
@@ -693,6 +764,11 @@ public:
         z *= rhs.z;
     }
 
+    /**
+     * Divides each value of the right hand side vector operand by the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the division.
+     */
     inline void operator/=(const Vector3<T> &rhs)
     {
         x /= rhs.x;
@@ -700,26 +776,50 @@ public:
         z /= rhs.z;
     }
 
+    /**
+     * Adds a scalar to each value of the vector.
+     * @param rhs The scalar added to each value of the vector.
+     * @return A new three dimensional vector as the result of the addition.
+     */
     inline Vector3<T> operator+(T rhs) const
     {
         return Vector3<T>{x + rhs, y + rhs, z + rhs};
     }
 
+    /**
+     * Subtracts a scalar from each value of the vector.
+     * @param rhs The scalar subtracted from each value of the vector.
+     * @return A new three dimensional vector as the result of the subtraction.
+     */
     inline Vector3<T> operator-(T rhs) const
     {
         return Vector3<T>{x - rhs, y - rhs, z - rhs};
     }
 
+    /**
+     * Multiplies a scalar with each value of the vector.
+     * @param rhs The scalar multiplied with each value of the vector.
+     * @return A new three dimensional vector as the result of the multiplication.
+     */
     inline Vector3<T> operator*(T rhs) const
     {
         return Vector3<T>{x * rhs, y * rhs, z * rhs};
     }
 
+    /**
+     * Divides each value of the vector by a scalar.
+     * @param rhs The scalar to divide each value of the vector by.
+     * @return A new three dimensional vector as the result of the division.
+     */
     inline Vector3<T> operator/(T rhs) const
     {
         return Vector3<T>{x / rhs, y / rhs, z / rhs};
     }
 
+    /**
+     * Adds a scalar to each value of the vector.
+     * @param rhs The scalar to add to the vector.
+     */
     inline void operator+=(T rhs)
     {
         x += rhs;
@@ -727,6 +827,10 @@ public:
         z += rhs;
     }
 
+    /**
+     * Subtracts a scalar from each value of the vector.
+     * @param rhs The scalar to subtract from each value of the vector.
+     */
     inline void operator-=(T rhs)
     {
         x -= rhs;
@@ -734,6 +838,10 @@ public:
         z -= rhs;
     }
 
+    /**
+     * Multiplies each value of the vector with a scalar.
+     * @param rhs The scalar to multiply each value of the vector with.
+     */
     inline void operator*=(T rhs)
     {
         x *= rhs;
@@ -741,6 +849,10 @@ public:
         z *= rhs;
     }
 
+    /**
+     * Divides each value of the vector by a scalar.
+     * @param rhs The scalar to divide each value of the vector by.
+     */
     inline void operator/=(T rhs)
     {
         x /= rhs;
@@ -956,6 +1068,11 @@ public:
         *this /= len;
     }
 
+    /**
+     * Constucts a normalized copy of the vector.
+     * @details Divides each coordinate of the vector by the vector's length.
+     * @return A new normalized vector.
+     */
     inline Vector4<T> normalized() const
     {
         double len = length();
@@ -964,7 +1081,10 @@ public:
             return Vector4<T>{};
         }
 
-        return Vector4<T>{*this /= len};
+        return Vector4<T>{static_cast<T>(x / len),
+                          static_cast<T>(y / len),
+                          static_cast<T>(z / len),
+                          static_cast<T>(w / len)};
     }
 
     /**
@@ -988,31 +1108,87 @@ public:
         return x * v.x + y * v.y + z * v.z + w * v.w;
     }
 
+    /**
+    * Calculates the reflected vector.
+    * @param normal The normal vector used for the reflection calculation.
+    */
+    inline void reflect(const Vector4<T> normal)
+    {
+        *this -= normal * 2 * dot(normal);
+    }
+
+    /**
+     * Calculates the reflected vector as a new vector.
+     * @param normal The normal vector used for the reflection calculation.
+     * @return A new reflected vector.
+     */
+    inline Vector4<T> reflected(const Vector4<T> normal) const
+    {
+        return *this - normal * 2 * dot(normal);
+    }
+
+    /**
+     * Negates the vector's values.
+     * @return A new four dimensional vector with negated values.
+     */
     inline Vector4<T> operator-() const
     {
         return Vector4<T>{-x, -y, -z, -w};
     }
 
+    /**
+    * Calculates the addition of 2 four dimensional vectors.
+    * @details Adds each value of the right hand side vector operand
+    * to the respective value of the left hand side vector operand.
+    * @param rhs The right hand side vector of the addition.
+    * @return A new four dimensional vector as the result of the addition.
+    */
     inline Vector4<T> operator+(const Vector4<T> &rhs) const
     {
         return Vector4<T>{x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w};
     }
 
+    /**
+    * Calculates the subtraction of 2 four dimensional vectors.
+    * @details Subtracts each value of the right hand side vector operand
+    * from the respective value of the left hand side vector operand.
+    * @param rhs The right hand side vector of the subtraction.
+    * @return A new four dimensional vector as the result of the subtraction.
+    */
     inline Vector4<T> operator-(const Vector4<T> &rhs) const
     {
         return Vector4<T>{x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w};
     }
 
+    /**
+    * Calculates the multiplication of 2 four dimensional vectors.
+    * @details Multiplies each value of the right hand side vector operand
+    * with the respective value of the left hand side vector operand.
+    * @param rhs The right hand side vector of the multiplication.
+    * @return A new four dimensional vector as the result of the multiplication.
+    */
     inline Vector4<T> operator*(const Vector4<T> &rhs) const
     {
         return Vector4<T>{x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
     }
 
+    /**
+    * Calculates the division of 2 four dimensional vectors.
+    * @details Divides each value of the right hand side vector operand
+    * by the respective value of the left hand side vector operand.
+    * @param rhs The right hand side vector of the division.
+    * @return A new four dimensional vector as the result of the division.
+    */
     inline Vector4<T> operator/(const Vector4<T> &rhs) const
     {
         return Vector4<T>{x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
     }
 
+    /**
+     * Adds each value of the right hand side vector operand to the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the addition.
+     */
     inline void operator+=(const Vector4<T> &rhs)
     {
         x += rhs.x;
@@ -1021,6 +1197,11 @@ public:
         w += rhs.w;
     }
 
+    /**
+     * Subtracts each value of the right hand side vector operand from the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the subtraction.
+     */
     inline void operator-=(const Vector4<T> &rhs)
     {
         x -= rhs.x;
@@ -1029,6 +1210,11 @@ public:
         w -= rhs.w;
     }
 
+    /**
+     * Multiplies each value of the right hand side vector operand with the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the multiplication.
+     */
     inline void operator*=(const Vector4<T> &rhs)
     {
         x *= rhs.x;
@@ -1037,6 +1223,11 @@ public:
         w *= rhs.w;
     }
 
+    /**
+     * Divides each value of the right hand side vector operand by the
+     * respective value of the vector.
+     * @param rhs The right hand side vector of the division.
+     */
     inline void operator/=(const Vector4<T> &rhs)
     {
         x /= rhs.x;
@@ -1045,26 +1236,50 @@ public:
         w /= rhs.w;
     }
 
+    /**
+     * Adds a scalar to each value of the vector.
+     * @param rhs The scalar added to each value of the vector.
+     * @return A new four dimensional vector as the result of the addition.
+     */
     inline Vector4<T> operator+(T rhs) const
     {
         return Vector4<T>{x + rhs, y + rhs, z + rhs, w + rhs};
     }
 
+    /**
+    * Subtracts a scalar from each value of the vector.
+    * @param rhs The scalar subtracted from each value of the vector.
+    * @return A new four dimensional vector as the result of the addition.
+    */
     inline Vector4<T> operator-(T rhs) const
     {
         return Vector4<T>{x - rhs, y - rhs, z - rhs, w - rhs};
     }
 
+    /**
+    * Multiplies a scalar with each value of the vector.
+    * @param rhs The scalar multiplied with each value of the vector.
+    * @return A new four dimensional vector as the result of the multiplication.
+    */
     inline Vector4<T> operator*(T rhs) const
     {
         return Vector4<T>{x * rhs, y * rhs, z * rhs, w * rhs};
     }
 
+    /**
+     * Divides each value of the vector by a scalar.
+     * @param rhs The scalar to divide each value of the vector by.
+     * @return A new four dimensional vector as the result of the division.
+     */
     inline Vector4<T> operator/(T rhs) const
     {
         return Vector4<T>{x / rhs, y / rhs, z / rhs, w / rhs};
     }
 
+    /**
+     * Adds a scalar to each value of the vector.
+     * @param rhs The scalar to add to the vector.
+     */
     inline void operator+=(T rhs)
     {
         x += rhs;
@@ -1073,6 +1288,10 @@ public:
         w += rhs;
     }
 
+    /**
+     * Subtracts a scalar from each value of the vector.
+     * @param rhs The scalar to subtract from each value of the vector.
+     */
     inline void operator-=(T rhs)
     {
         x -= rhs;
@@ -1081,6 +1300,10 @@ public:
         w -= rhs;
     }
 
+    /**
+     * Multiplies each value of the vector with a scalar.
+     * @param rhs The scalar to multiply each value of the vector with.
+     */
     inline void operator*=(T rhs)
     {
         x *= rhs;
@@ -1089,6 +1312,10 @@ public:
         w *= rhs;
     }
 
+    /**
+     * Divides each value of the vector by a scalar.
+     * @param rhs The scalar to divide each value of the vector by.
+     */
     inline void operator/=(T rhs)
     {
         x /= rhs;
@@ -1287,6 +1514,20 @@ inline Vector2<T> reflect(const Vector2<T> v, const Vector2<T> normal)
  */
 template<typename T>
 inline Vector3<T> reflect(const Vector3<T> v, const Vector3<T> normal)
+{
+    return v - normal * 2 * dot(v, normal);
+}
+
+/**
+ * Calculates a reflected four dimensional vector based
+ * on a four dimensional normal vector.
+ * @tparam T Can be any numeric type.
+ * @param v The vector to be reflected.
+ * @param normal The normal vector used in the reflection calculation.
+ * @return A new reflected vector.
+ */
+template<typename T>
+inline Vector4<T> reflect(const Vector4<T> v, const Vector4<T> normal)
 {
     return v - normal * 2 * dot(v, normal);
 }

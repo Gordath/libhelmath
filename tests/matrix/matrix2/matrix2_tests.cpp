@@ -3,7 +3,7 @@
 
 using namespace hm;
 
-class Mat2Fixture : public ::testing::Test {
+class Matrix2Fixture : public ::testing::Test {
 public:
 
     void SetUp() override

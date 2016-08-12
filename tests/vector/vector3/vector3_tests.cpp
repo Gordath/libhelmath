@@ -3,7 +3,7 @@
 
 using namespace hm;
 
-class Vec3Fixture : public ::testing::Test {
+class Vector3Fixture : public ::testing::Test {
 protected:
     Vec3f v1;
     Vec3f v2;
@@ -15,21 +15,21 @@ protected:
     }
 };
 
-TEST_F(Vec3Fixture, test_member_function_length)
+TEST_F(Vector3Fixture, test_member_function_length)
 {
     double len{v1.length()};
 
     EXPECT_DOUBLE_EQ(len, 3.7416574954986572);
 }
 
-TEST_F(Vec3Fixture, test_member_function_lengthf)
+TEST_F(Vector3Fixture, test_member_function_lengthf)
 {
     float len{v1.lengthf()};
 
     EXPECT_FLOAT_EQ(len, 3.7416575f);
 }
 
-TEST_F(Vec3Fixture, test_member_function_normalize)
+TEST_F(Vector3Fixture, test_member_function_normalize)
 {
     v1.normalize();
 
@@ -42,7 +42,7 @@ TEST_F(Vec3Fixture, test_member_function_normalize)
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
 
-TEST_F(Vec3Fixture, test_member_function_normalized)
+TEST_F(Vector3Fixture, test_member_function_normalized)
 {
     Vec3f res{v1.normalized()};
 
@@ -55,21 +55,30 @@ TEST_F(Vec3Fixture, test_member_function_normalized)
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
 
-TEST_F(Vec3Fixture, test_member_function_dot)
+TEST_F(Vector3Fixture, test_member_function_dot)
 {
     double d{v1.dot(v2)};
 
     EXPECT_DOUBLE_EQ(d, 10.0);
 }
 
-TEST_F(Vec3Fixture, test_member_function_dotf)
+TEST_F(Vector3Fixture, test_member_function_dotf)
 {
     float d{v1.dotf(v2)};
 
     EXPECT_FLOAT_EQ(d, 10.0f);
 }
 
-TEST_F(Vec3Fixture, test_member_function_reflect)
+TEST_F(Vector3Fixture, test_member_function_cross)
+{
+    Vec3f res{v1.cross(v2)};
+
+    ASSERT_FLOAT_EQ(res.x, -4.0f);
+    ASSERT_FLOAT_EQ(res.y, 8.0f);
+    ASSERT_FLOAT_EQ(res.z, -4.0f);
+}
+
+TEST_F(Vector3Fixture, test_member_function_reflect)
 {
     v1.reflect(Vec3f{1.0f, 0.0f, 0.0f});
 
@@ -78,7 +87,7 @@ TEST_F(Vec3Fixture, test_member_function_reflect)
     EXPECT_FLOAT_EQ(v1.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_member_function_reflected)
+TEST_F(Vector3Fixture, test_member_function_reflected)
 {
     Vec3f res{v1.reflected(Vec3f{1.0f, 0.0f, 0.0f})};
 
@@ -87,7 +96,7 @@ TEST_F(Vec3Fixture, test_member_function_reflected)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_vector_plus_vector)
+TEST_F(Vector3Fixture, test_vector_plus_vector)
 {
     Vec3f res{v1 + v2};
 
@@ -96,7 +105,7 @@ TEST_F(Vec3Fixture, test_vector_plus_vector)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_minus_vector)
+TEST_F(Vector3Fixture, test_operator_vector_minus_vector)
 {
     Vec3f res{v2 - v1};
 
@@ -105,7 +114,7 @@ TEST_F(Vec3Fixture, test_operator_vector_minus_vector)
     EXPECT_FLOAT_EQ(res.z, -2.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_mult_vector)
+TEST_F(Vector3Fixture, test_operator_vector_mult_vector)
 {
     Vec3f res{v1 * v2};
 
@@ -114,7 +123,7 @@ TEST_F(Vec3Fixture, test_operator_vector_mult_vector)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_div_vector)
+TEST_F(Vector3Fixture, test_operator_vector_div_vector)
 {
     Vec3f res{v1 / v2};
 
@@ -123,7 +132,7 @@ TEST_F(Vec3Fixture, test_operator_vector_div_vector)
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_plus_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_plus_scalar)
 {
     Vec3f res{v1 + 2.0f};
 
@@ -132,7 +141,7 @@ TEST_F(Vec3Fixture, test_operator_vector_plus_scalar)
     EXPECT_FLOAT_EQ(res.z, 5.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_minus_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_minus_scalar)
 {
     Vec3f res{v1 - 2.0f};
 
@@ -141,7 +150,7 @@ TEST_F(Vec3Fixture, test_operator_vector_minus_scalar)
     EXPECT_FLOAT_EQ(res.z, 1.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_mult_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_mult_scalar)
 {
     Vec3f res{v1 * 2.0f};
 
@@ -150,7 +159,7 @@ TEST_F(Vec3Fixture, test_operator_vector_mult_scalar)
     EXPECT_FLOAT_EQ(res.z, 6.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_div_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_div_scalar)
 {
     Vec3f res{v1 / 2.0f};
 
@@ -159,7 +168,7 @@ TEST_F(Vec3Fixture, test_operator_vector_div_scalar)
     EXPECT_FLOAT_EQ(res.z, 1.5f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_plus_equals_vector)
+TEST_F(Vector3Fixture, test_operator_vector_plus_equals_vector)
 {
     v1 += v2;
 
@@ -168,7 +177,7 @@ TEST_F(Vec3Fixture, test_operator_vector_plus_equals_vector)
     EXPECT_FLOAT_EQ(v1.z, 4.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_minus_equals_vector)
+TEST_F(Vector3Fixture, test_operator_vector_minus_equals_vector)
 {
     v1 -= v2;
 
@@ -177,7 +186,7 @@ TEST_F(Vec3Fixture, test_operator_vector_minus_equals_vector)
     EXPECT_FLOAT_EQ(v1.z, 2.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_mult_equals_vector)
+TEST_F(Vector3Fixture, test_operator_vector_mult_equals_vector)
 {
     v1 *= v2;
 
@@ -186,7 +195,7 @@ TEST_F(Vec3Fixture, test_operator_vector_mult_equals_vector)
     EXPECT_FLOAT_EQ(v1.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_div_equals_vector)
+TEST_F(Vector3Fixture, test_operator_vector_div_equals_vector)
 {
     v1 /= v2;
 
@@ -195,7 +204,7 @@ TEST_F(Vec3Fixture, test_operator_vector_div_equals_vector)
     EXPECT_FLOAT_EQ(v1.z, 3.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_plus_equals_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_plus_equals_scalar)
 {
     v1 += 2.0f;
 
@@ -204,7 +213,7 @@ TEST_F(Vec3Fixture, test_operator_vector_plus_equals_scalar)
     EXPECT_FLOAT_EQ(v1.z, 5.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_minus_equals_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_minus_equals_scalar)
 {
     v1 -= 2.0f;
 
@@ -213,7 +222,7 @@ TEST_F(Vec3Fixture, test_operator_vector_minus_equals_scalar)
     EXPECT_FLOAT_EQ(v1.z, 1.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_mult_equals_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_mult_equals_scalar)
 {
     v1 *= 2.0f;
 
@@ -222,7 +231,7 @@ TEST_F(Vec3Fixture, test_operator_vector_mult_equals_scalar)
     EXPECT_FLOAT_EQ(v1.z, 6.0f);
 }
 
-TEST_F(Vec3Fixture, test_operator_vector_div_equals_scalar)
+TEST_F(Vector3Fixture, test_operator_vector_div_equals_scalar)
 {
     v1 /= 2.0f;
 
@@ -231,33 +240,34 @@ TEST_F(Vec3Fixture, test_operator_vector_div_equals_scalar)
     EXPECT_FLOAT_EQ(v1.z, 1.5f);
 }
 
-TEST_F(Vec3Fixture, test_non_member_function_dot)
+TEST_F(Vector3Fixture, test_non_member_function_dot)
 {
     double d{dot(v1, v2)};
 
     EXPECT_DOUBLE_EQ(d, 10.0);
 }
 
-TEST_F(Vec3Fixture, test_non_member_function_dotf)
+TEST_F(Vector3Fixture, test_non_member_function_dotf)
 {
     float d{dotf(v1, v2)};
 
     EXPECT_FLOAT_EQ(d, 10.0f);
 }
 
-TEST_F(Vec3Fixture, test_non_member_function_reflect)
+TEST_F(Vector3Fixture, test_non_member_function_cross)
+{
+    Vec3f res{cross(v1, v2)};
+
+    ASSERT_FLOAT_EQ(res.x, -4.0f);
+    ASSERT_FLOAT_EQ(res.y, 8.0f);
+    ASSERT_FLOAT_EQ(res.z, -4.0f);
+}
+
+TEST_F(Vector3Fixture, test_non_member_function_reflect)
 {
     Vec3f res{reflect(v1, Vec3f{1.0f, 0.0f, 0.0f})};
 
     EXPECT_FLOAT_EQ(res.x, -1.0f);
     EXPECT_FLOAT_EQ(res.y, 2.0f);
     EXPECT_FLOAT_EQ(res.z, 3.0f);
-}
-
-TEST_F(Vec3Fixture, test_foo)
-{
-    Vec2f res = v1.xy;
-
-    EXPECT_FLOAT_EQ(res.x, 1.0f);
-    EXPECT_FLOAT_EQ(res.y, 2.0f);
 }

@@ -13,7 +13,7 @@ namespace hm {
 /**
  * @class Matrix2
  * @tparam T Can be any numeric type.
- * @brief Represents an orthogonal matrix of numeric values.
+ * @brief Represents a 2x2 matrix of numeric values.
  * @details The matrix is treated as row major.
  */
 template<typename T>
@@ -197,9 +197,9 @@ using Mat2ull = Matrix2<unsigned long long>;
 
 /**
  * @class Matrix3
- * Represents an orthogonal matrix of numeric values.
- * @details The matrix is treated as row major.
  * @tparam T Can be any numeric type.
+ * @brief Represents a 3x3 matrix of numeric values.
+ * @details The matrix is treated as row major.
  */
 template<typename T>
 class Matrix3 {
@@ -398,9 +398,9 @@ using Mat3ull = Matrix3<unsigned long long>;
 
 /**
  * @class Matrix4
- * Represents an orthogonal matrix of numeric values.
- * @details The matrix is treated as row major.
  * @tparam T Can be any numeric type.
+ * @brief Represents a 4x4 matrix of numeric values.
+ * @details The matrix is treated as row major.
  */
 template<typename T>
 class Matrix4 {

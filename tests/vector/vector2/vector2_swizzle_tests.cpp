@@ -3,7 +3,7 @@
 
 using namespace hm;
 
-class Vec2SwizzleFixture : public ::testing::Test {
+class Vector2SwizzleFixture : public ::testing::Test {
 public:
     Vec2f rhs;
     Vec2f lhs;
@@ -18,7 +18,7 @@ public:
 // ----------------------------------
 // Vector creation from swizzle tests
 // ----------------------------------
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_xx)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_xx)
 {
     Vec2f res{rhs.xx};
 
@@ -26,7 +26,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_xx)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_xy)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_xy)
 {
     Vec2f res{rhs.xy};
 
@@ -34,7 +34,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_xy)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_yx)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_yx)
 {
     Vec2f res{rhs.yx};
 
@@ -42,7 +42,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_yx)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_yy)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_yy)
 {
     Vec2f res{rhs.yy};
 
@@ -50,7 +50,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_yy)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_ss)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_ss)
 {
     Vec2f res{rhs.ss};
 
@@ -58,7 +58,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_ss)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_st)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_st)
 {
     Vec2f res{rhs.st};
 
@@ -66,7 +66,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_st)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_ts)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_ts)
 {
     Vec2f res{rhs.ts};
 
@@ -74,7 +74,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_ts)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_vector_creation_from_tt)
+TEST_F(Vector2SwizzleFixture, test_vector_creation_from_tt)
 {
     Vec2f res{rhs.tt};
 
@@ -86,7 +86,7 @@ TEST_F(Vec2SwizzleFixture, test_vector_creation_from_tt)
 // ---------------------------------
 // Swizzle assignment operator tests
 // ---------------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_assignment_operator)
+TEST_F(Vector2SwizzleFixture, test_swizzle_assignment_operator)
 {
     lhs.xy = rhs.yx;
 
@@ -98,7 +98,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_assignment_operator)
 // ------------------------
 // Swizzle operator + tests
 // ------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_plus_swizzle)
 {
     Vec2f res{lhs.xy + rhs.xy};
 
@@ -106,7 +106,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_swizzle)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_plus_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzleAA_plus_swizzle)
 {
     Vec2f res{lhs.xx + rhs.xy};
 
@@ -114,7 +114,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_plus_swizzle)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_plus_scalar)
 {
     Vec2f res{lhs.xy + 2.0f};
 
@@ -122,7 +122,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_scalar)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_plus_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzleAA_plus_scalar)
 {
     Vec2f res{lhs.xx + 2.0f};
 
@@ -133,7 +133,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_plus_scalar)
 // ------------------------
 // Swizzle operator - tests
 // ------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_minus_swizzle)
 {
     Vec2f res{lhs.xy - rhs.yx};
 
@@ -141,7 +141,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_swizzle)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_minus_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzleAA_minus_swizzle)
 {
     Vec2f res{lhs.xx - rhs.xy};
 
@@ -149,7 +149,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_minus_swizzle)
     EXPECT_FLOAT_EQ(res.y, 0.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_minus_scalar)
 {
     Vec2f res{lhs.xy - 2.0f};
 
@@ -157,7 +157,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_scalar)
     EXPECT_FLOAT_EQ(res.y, 0.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_minus_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzleAA_minus_scalar)
 {
     Vec2f res{lhs.xx - 2.0f};
 
@@ -169,7 +169,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_minus_scalar)
 // ------------------------
 // Swizzle operator * tests
 // ------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_mult_swizzle)
 {
     Vec2f res{lhs.xy * rhs.yx};
 
@@ -177,7 +177,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_swizzle)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_mult_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzleAA_mult_swizzle)
 {
     Vec2f res{lhs.xx * rhs.xy};
 
@@ -185,7 +185,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_mult_swizzle)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_mult_scalar)
 {
     Vec2f res{lhs.xy * 2.0f};
 
@@ -193,7 +193,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_scalar)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_sizzleAA_mult_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_sizzleAA_mult_scalar)
 {
     Vec2f res{lhs.xx * 2.0f};
 
@@ -205,7 +205,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_sizzleAA_mult_scalar)
 // ------------------------
 // Swizzle operator / tests
 // ------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_div_swizzle)
 {
     Vec2f res{lhs.xy / rhs.yx};
 
@@ -213,7 +213,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_swizzle)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_opeartor_swizzleAA_div_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_opeartor_swizzleAA_div_swizzle)
 {
     Vec2f res{lhs.xx / rhs.xy};
 
@@ -221,7 +221,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_opeartor_swizzleAA_div_swizzle)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_div_scalar)
 {
     Vec2f res{lhs.xy / 2.0f};
 
@@ -229,7 +229,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_scalar)
     EXPECT_FLOAT_EQ(res.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_div_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzleAA_div_scalar)
 {
     Vec2f res{lhs.xx / 2.0f};
 
@@ -241,7 +241,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzleAA_div_scalar)
 // -------------------------
 // Swizzle operator += tests
 // -------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_swizzle)
 {
     lhs.xy += rhs.yx;
 
@@ -249,7 +249,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.y, 3.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_scalar)
 {
     lhs.xy += 2.0f;
 
@@ -261,7 +261,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_plus_equals_scalar)
 // -------------------------
 // Swizzle operator -= tests
 // -------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_swizzle)
 {
     lhs.xy -= rhs.yx;
 
@@ -269,7 +269,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.y, 1.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_scalar)
 {
     lhs.xy -= 2.0f;
 
@@ -281,7 +281,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_minus_equals_scalar)
 // -------------------------
 // Swizzle operator *= tests
 // -------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_swizzle)
 {
     lhs.xy *= rhs.yx;
 
@@ -289,7 +289,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_scalar)
 {
     lhs.xy *= 2.0f;
 
@@ -301,7 +301,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_mult_equals_scalar)
 // -------------------------
 // Swizzle operator /= tests
 // -------------------------
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_equals_swizzle)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_div_equals_swizzle)
 {
     lhs.xy /= rhs.yx;
 
@@ -309,7 +309,7 @@ TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_equals_swizzle)
     EXPECT_FLOAT_EQ(lhs.y, 2.0f);
 }
 
-TEST_F(Vec2SwizzleFixture, test_swizzle_operator_swizzle_div_equals_scalar)
+TEST_F(Vector2SwizzleFixture, test_swizzle_operator_swizzle_div_equals_scalar)
 {
     lhs.xy /= 2.0f;
 
