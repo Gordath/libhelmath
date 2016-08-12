@@ -1,1 +1,1 @@
-add_subdirectory(mat2)
+add_subdirectory(matrix2)

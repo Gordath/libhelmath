@@ -83,7 +83,7 @@ public:
      * @return A new Vector2.
      */
     Vector2() : x(0), y(0)
-    { }
+    {}
 
     /**
      * Vector2's single argument constructor.
@@ -92,7 +92,7 @@ public:
      * @return A new Vector2.
      */
     explicit Vector2(T val) : x(val), y(val)
-    { }
+    {}
 
     /**
      * Vector2's two argument constructor.
@@ -102,7 +102,7 @@ public:
      * @return A new Vector2.
      */
     Vector2(T x, T y) : x(x), y(y)
-    { }
+    {}
 
     /**
      * Calculates the length (magnitude) of the vector.
@@ -151,7 +151,7 @@ public:
     {
         double len = length();
 
-        if(!len) {
+        if (!len) {
             return;
         }
 
@@ -167,7 +167,7 @@ public:
     {
         double len = length();
 
-        if(!len) {
+        if (!len) {
             return Vector2<T>{};
         }
 
@@ -505,7 +505,7 @@ public:
      * @return A new Vector3.
      */
     Vector3() : x(0), y(0), z(0)
-    { }
+    {}
 
     /**
      * Vector3's single argument constructor.
@@ -514,7 +514,7 @@ public:
      * @return A new Vector3.
      */
     explicit Vector3(T val) : x(val), y(val), z(val)
-    { }
+    {}
 
     /**
      * Vector3's three argument constructor.
@@ -525,7 +525,7 @@ public:
      * @return A new Vector3.
      */
     Vector3(T x, T y, T z) : x(x), y(y), z(z)
-    { }
+    {}
 
     /**
      * Calculates the length (magnitude) of the vector.
@@ -596,8 +596,8 @@ public:
         }
 
         return Vector3<T>{static_cast<T>(x / len),
-                       static_cast<T>(y / len),
-                       static_cast<T>(z / len)};
+                          static_cast<T>(y / len),
+                          static_cast<T>(z / len)};
     }
 
     /**
@@ -624,8 +624,8 @@ public:
     inline Vector3<T> cross(const Vector3<T> &v) const
     {
         return Vector3<T>{y * v.z - z * v.y,
-                       z * v.x - x * v.z,
-                       x * v.y - y * v.x};
+                          z * v.x - x * v.z,
+                          x * v.y - y * v.x};
     }
 
     /**
@@ -870,7 +870,7 @@ public:
 
         T v[4];
 
-       HM_VEC4_SWIZZLES
+        HM_VEC4_SWIZZLES
     };
 
     /**
@@ -879,7 +879,7 @@ public:
      * @return A new Vector4.
      */
     Vector4() : x(0), y(0), z(0), w(0)
-    { }
+    {}
 
     /**
      * Vector4's single argument constructor.
@@ -888,7 +888,7 @@ public:
      * @return A new Vector4.
      */
     explicit Vector4(T val) : x(val), y(val), z(val), w(val)
-    { }
+    {}
 
     /**
      * Vector4's two argument constructor.
@@ -900,7 +900,7 @@ public:
      * @return A new Vector4.
      */
     Vector4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w)
-    { }
+    {}
 
     /**
      * Calculates the length (magnitude) of the vector.
@@ -988,11 +988,6 @@ public:
         return x * v.x + y * v.y + z * v.z + w * v.w;
     }
 
-    inline Vector4<T> cross(const Vector4<T> &v) const
-    {
-        //TODO
-    }
-
     inline Vector4<T> operator-() const
     {
         return Vector4<T>{-x, -y, -z, -w};
@@ -1013,7 +1008,7 @@ public:
         return Vector4<T>{x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
     }
 
-    inline Vector4<T> operator/(const Vector4<T> & rhs) const
+    inline Vector4<T> operator/(const Vector4<T> &rhs) const
     {
         return Vector4<T>{x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
     }
@@ -1264,22 +1259,8 @@ template<typename T>
 inline Vector3<T> cross(const Vector3<T> &v1, const Vector3<T> &v2)
 {
     return Vector3<T>{v1.y * v2.z - v1.z * v2.y,
-                   v1.z * v2.x - v1.x * v2.z,
-                   v1.x * v2.y - v1.y * v2.x};
-}
-
-/**
- * Calculates the cross product of three four dimensional vectors.
- * @tparam T Can be any numeric type.
- * @param v1 First vector argument.
- * @param v2 Second vector argument.
- * @param v3 Third vector argument.
- * @return The resulting vector from the cross product.
- */
-template<typename T>
-inline Vector4<T> cross(const Vector4<T> &v1, const Vector4<T> &v2, const Vector4<T> &v3)
-{
-    //TODO
+                      v1.z * v2.x - v1.x * v2.z,
+                      v1.x * v2.y - v1.y * v2.x};
 }
 
 /**
@@ -1310,6 +1291,6 @@ inline Vector3<T> reflect(const Vector3<T> v, const Vector3<T> normal)
     return v - normal * 2 * dot(v, normal);
 }
 
-}
+} //namespace hm
 
 #endif //HELMATH_VECTOR_H
