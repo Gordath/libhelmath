@@ -59,6 +59,16 @@ public:
         data[1][3] = m13;
     }
 
+    inline T *operator[](int idx)
+    {
+        return data[idx];
+    }
+
+    inline const T *operator[](int idx) const
+    {
+        return data[idx];
+    }
+
     /**
      * Sets the matrix's row vector at the specified index.
      * @param x The first value of the row.
@@ -69,6 +79,32 @@ public:
     {
         data[idx][0] = x;
         data[idx][1] = y;
+    }
+
+    /**
+    * Sets the matrix's row vector at the specified index.
+    * @param vec A two dimensional vector whose values are asigned to the matrix's row.
+    * @param idx The index of the row in the matrix.
+    * @overload set_row_vector(const Vector2<T> &vec, unsigned int idx)
+    */
+    inline void set_row_vector(const Vector2<T> &vec, unsigned int idx)
+    {
+        for (int i = 0; i < 2; i++) {
+            data[idx][i] = vec[i];
+        }
+    }
+
+    /**
+     * Sets the matrix's row vector at the specified index.
+     * @param values An array of size 2 with whose values are asigned to the matrix's row.
+     * @param idx The index of the row in the matrix.
+     * @overload set_row_vector(T values[2], unsigned int idx)
+     */
+    inline void set_row_vector(T values[2], unsigned int idx)
+    {
+        for (int i = 0; i < 2; i++) {
+            data[idx][i] = values[i];
+        }
     }
 
     /**
@@ -84,18 +120,6 @@ public:
     }
 
     /**
-     * Sets the matrix's row vector at the specified index.
-     * @param vec A two dimensional vector whos values are asigned to the matrix row.
-     * @param idx The index of the row in the matrix.
-     * @overload set_row_vector(const Vector2<T> &vec, unsigned int idx)
-     */
-    inline void set_row_vector(const Vector2<T> &vec, unsigned int idx)
-    {
-        data[idx][0] = vec.x;
-        data[idx][1] = vec.y;
-    }
-
-    /**
      * Sets the matrix's column vector at the specified index.
      * @param vec A two dimensional vector whose values are asigned to the matrix column.
      * @param idx The index of the column in the matrix.
@@ -103,8 +127,22 @@ public:
      */
     inline void set_column_vector(const Vector2<T> &vec, unsigned int idx)
     {
-        data[0][idx] = vec.x;
-        data[1][idx] = vec.y;
+        for (int i = 0; i < 2; i++) {
+            data[i][idx] = vec[i];
+        }
+    }
+
+    /**
+     * Sets the matrix's column vector at the specified index.
+     * @param values An array of size 2 with whose values are asigned to the matrix's column.
+     * @param idx The index of the row in the matrix.
+     * @overload set_column_vector(T values[2], unsigned int idx)
+     */
+    inline void set_column_vector(T values[2], unsigned int idx)
+    {
+        for (int i = 0; i < 2; i++) {
+            data[i][idx] = values[i];
+        }
     }
 
     /**
@@ -119,6 +157,24 @@ public:
                 data[i][j] = i == j ? 1 : 0;
             }
         }
+    }
+
+    inline bool operator==(const Matrix2<T> &rhs) const
+    {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (data[i][j] != rhs[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    inline bool operator!=(const Matrix2<T> &rhs) const
+    {
+        return !(*this == rhs);
     }
 };
 
@@ -269,6 +325,32 @@ public:
     }
 
     /**
+    * Sets the matrix's row vector at the specified index.
+    * @param vec A three dimensional vector whos values are asigned to the matrix row.
+    * @param idx The index of the row in the matrix.
+    * @overload set_row_vector(const Vector3<T> &vec, unsigned int idx)
+    */
+    inline void set_row_vector(const Vector3<T> &vec, unsigned int idx)
+    {
+        for (int i = 0; i < 3; i++) {
+            data[idx][i] = vec[i];
+        }
+    }
+
+    /**
+     * Sets the matrix's row vector at the specified index.
+     * @param values An array of size 3 whose values are asigned to the matrix row.
+     * @param idx The index of the the row in the matrix.
+     * @overload set_row_vector(T values[3], unsigned int idx)
+     */
+    inline void set_row_vector(T values[3], unsigned int idx)
+    {
+        for (int i = 0; i < 3; i++) {
+            data[idx][i] = values[i];
+        }
+    }
+
+    /**
      * Sets the matrix's column vector at the specified index.
      * @param x The first value of the column.
      * @param y The second value of the column.
@@ -283,29 +365,29 @@ public:
     }
 
     /**
-     * Sets the matrix's row vector at the specified index.
-     * @param vec A three dimensional vector whos values are asigned to the matrix row.
-     * @param idx The index of the row in the matrix.
-     * @overload set_row_vector(const Vector3<T> &vec, unsigned int idx)
-     */
-    inline void set_row_vector(const Vector3<T> &vec, unsigned int idx)
-    {
-        data[idx][0] = vec.x;
-        data[idx][1] = vec.y;
-        data[idx][2] = vec.z;
-    }
-
-    /**
      * Sets the matrix's column vector at the specified index.
-     * @param vec A three dimensional vector whose values are asigned to the matrix column.
+     * @param vec A three dimensional vector whose values are asigned to the matrix's column.
      * @param idx The index of the column in the matrix.
      * @overload set_column_vector(const Vector3<T> &vec, unsigned int idx)
      */
     inline void set_column_vector(const Vector3<T> &vec, unsigned int idx)
     {
-        data[0][idx] = vec.x;
-        data[1][idx] = vec.y;
-        data[2][idx] = vec.z;
+        for (int i = 0; i < 3; i++) {
+            data[i][idx] = vec[i];
+        }
+    }
+
+    /**
+     * Sets the matrix's column vector at the specified index.
+     * @param values An array of size 3 whose values are assigned to the matrix's column.
+     * @param idx The index of the column in the matrix.
+     * @overload set_column_vector(T values[3], unsigned int idx)
+     */
+    inline void set_column_vector(T values[3], unsigned int idx)
+    {
+        for (int i = 0; i < 3; i++) {
+            data[i][idx] = values[i];
+        }
     }
 
     /**
@@ -315,11 +397,39 @@ public:
      */
     inline void set_identity()
     {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 data[i][j] = i == j ? 1 : 0;
             }
         }
+    }
+
+    inline T *operator[](int idx)
+    {
+        return data[idx];
+    }
+
+    inline const T *operator[](int idx) const
+    {
+        return data[idx];
+    }
+
+    inline bool operator==(const Matrix3<T> &rhs) const
+    {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (data[i][j] != rhs[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    inline bool operator!=(const Matrix3<T> &rhs) const
+    {
+        return !(*this == rhs);
     }
 };
 
@@ -660,6 +770,24 @@ public:
                          + data[3][2] * rhs.data[2][3] + data[3][3] * rhs.data[3][3];
 
         return res;
+    }
+
+    inline bool operator==(const Matrix2<T> &rhs) const
+    {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (data[i][j] != rhs[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    inline bool operator!=(const Matrix2<T> &rhs) const
+    {
+        return !(*this == rhs);
     }
 };
 

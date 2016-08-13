@@ -395,6 +395,52 @@ public:
         x /= rhs;
         y /= rhs;
     }
+
+    /**
+     * Subscript operator overload.
+     * @details Implemented for convenience in order to avoid verbosity when using
+     * the public array representation of the vector.
+     * @param idx
+     * @return The vector value at the specified array index.
+     */
+    inline T operator[](int idx)
+    {
+        return v[idx];
+    }
+
+    /**
+     * Subscript operator overload.
+     * @details Implemented for convenience in order to avoid verbosity when using
+     * the public array representation of the vector.
+     * @param idx
+     * @return The vector value at the specified array index.
+     */
+    inline const T operator[](int idx) const
+    {
+        return v[idx];
+    }
+
+    /**
+     * Equality operator overload.
+     * @warning May not work as intended for floating point vectors.
+     * @param rhs The right hand side vector operand with whom equality is tested.
+     * @return True only when all values of both vectors are equal.
+     */
+    inline bool operator==(const Vector2<T> &rhs) const
+    {
+        return x == rhs.x && y == rhs.y;
+    }
+
+    /**
+     * Non equality operator overload.
+     * @warning May not work as intended for floating point vectors.
+     * @param rhs The right hand side vector operand with whom non equality is tested.
+     * @return True when one of the vector's values is not equal the the other's.
+     */
+    inline bool operator!=(const Vector2<T> &rhs) const
+    {
+        return !(*this == rhs);
+    }
 };
 
 /**
@@ -859,6 +905,46 @@ public:
         y /= rhs;
         z /= rhs;
     }
+
+    /**
+     * Subscript operator overload.
+     * @details Implemented for convenience in order to avoid verbosity when using
+     * the public array representation of the vector.
+     * @param idx
+     * @return The vector value at the specified array index.
+     */
+    inline T operator[](int idx)
+    {
+        return v[idx];
+    }
+
+    /**
+     * Subscript operator overload.
+     * @details Implemented for convenience in order to avoid verbosity when using
+     * the public array representation of the vector.
+     * @param idx
+     * @return The vector value at the specified array index.
+     */
+    inline const T operator[](int idx) const
+    {
+        return v[idx];
+    }
+
+    /**
+     * Equality operator overload.
+     * @warning May not work as intended for floating point vectors.
+     * @param rhs The right hand side vector operand with whom equality is tested.
+     * @return True only when all values of both vectors are equal.
+     */
+    inline bool operator==(const Vector3<T> &rhs) const
+    {
+        return x == rhs.x && y == rhs.y && z == rhs.z;
+    }
+
+    inline bool operator!=(const Vector3<T> &rhs) const
+    {
+        return !(*this == rhs);
+    }
 };
 
 /**
@@ -1322,6 +1408,26 @@ public:
         y /= rhs;
         z /= rhs;
         w /= rhs;
+    }
+
+    inline T operator[](int idx)
+    {
+        return v[idx];
+    }
+
+    inline const T operator[](int idx) const
+    {
+        return v[idx];
+    }
+
+    inline bool operator==(const Vector4<T> &rhs)
+    {
+        return x == rhs.x && y == rhs.y && z == rhs.z & w == rhs.w;
+    }
+
+    inline bool operator!=(const Vector4<T> &rhs)
+    {
+        return !(*this == rhs);
     }
 };
 

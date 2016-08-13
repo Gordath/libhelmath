@@ -211,6 +211,31 @@ TEST_F(Vector2Fixture, test_operator_vector_div_equals_scalar)
     EXPECT_FLOAT_EQ(v1.y, 1.0f);
 }
 
+TEST_F(Vector2Fixture, test_subscript_operator)
+{
+    float val{v1[0]};
+    float val2{v1[1]};
+
+    EXPECT_FLOAT_EQ(val, 1.0f);
+    EXPECT_FLOAT_EQ(val2, 2.0f);
+}
+
+TEST_F(Vector2Fixture, test_operator_vector_equals_vector)
+{
+    EXPECT_FALSE(v1 == v2);
+
+    Vec2f v{1.0f, 2.0f};
+    EXPECT_TRUE(v1 == v);
+}
+
+TEST_F(Vector2Fixture, test_operator_vector_not_equals_vector)
+{
+    EXPECT_TRUE(v1 != v2);
+
+    Vec2f v{1.0f, 2.0f};
+    EXPECT_FALSE(v1 != v);
+}
+
 TEST_F(Vector2Fixture, test_non_member_function_dot)
 {
     double d{dot(v1, v2)};
@@ -232,4 +257,3 @@ TEST_F(Vector2Fixture, test_non_member_function_reflect)
     EXPECT_FLOAT_EQ(res.x, -1.0f);
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
-
