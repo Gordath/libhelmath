@@ -91,7 +91,7 @@ public:
      * @param val The numeric value used to initialize Vector2's values.
      * @return A new Vector2.
      */
-    explicit Vector2(T val) : x(val), y(val)
+    explicit Vector2(const T val) : x(val), y(val)
     {}
 
     /**
@@ -101,7 +101,7 @@ public:
      * @param y The y coordinate of the vector.
      * @return A new Vector2.
      */
-    Vector2(T x, T y) : x(x), y(y)
+    Vector2(const T x, const T y) : x(x), y(y)
     {}
 
     /**
@@ -578,7 +578,7 @@ public:
      * @param val The numeric value used to initialize Vector3's values.
      * @return A new Vector3.
      */
-    explicit Vector3(T val) : x(val), y(val), z(val)
+    explicit Vector3(const T val) : x(val), y(val), z(val)
     {}
 
     /**
@@ -589,7 +589,7 @@ public:
      * @param z The z coordinate of the vector.
      * @return A new Vector3.
      */
-    Vector3(T x, T y, T z) : x(x), y(y), z(z)
+    Vector3(const T x, const T y, const T z) : x(x), y(y), z(z)
     {}
 
     /**
@@ -769,7 +769,7 @@ public:
      * @param rhs The right hand side vector of the division.
      * @return A new vector as the result of the division.
      */
-    inline Vector3<T> operator/(const Vector3<T> &rhs)
+    inline Vector3<T> operator/(const Vector3<T> &rhs) const
     {
         return Vector3<T>{x / rhs.x, y / rhs.y, z / rhs.z};
     }
@@ -1085,7 +1085,7 @@ public:
      * @param val The numeric value used to initialize Vector4's values.
      * @return A new Vector4.
      */
-    explicit Vector4(T val) : x(val), y(val), z(val), w(val)
+    explicit Vector4(const T val) : x(val), y(val), z(val), w(val)
     {}
 
     /**
@@ -1097,7 +1097,7 @@ public:
      * @param w Thw w coordinate of the vector.
      * @return A new Vector4.
      */
-    Vector4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w)
+    Vector4(const T x, const T y, const T z, const T w) : x(x), y(y), z(z), w(w)
     {}
 
     /**
