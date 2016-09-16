@@ -12,8 +12,10 @@ add_executable(all_tests
         vector/vector3/vector3_tests.cpp
         vector/vector4/vector4_tests.cpp
         matrix/matrix2/matrix2_tests.cpp
-        matrix/matrix3/matrix3_tests.cpp matrix/matrix4/matrix4_tests.cpp)
+        matrix/matrix3/matrix3_tests.cpp
+        matrix/matrix4/matrix4_tests.cpp)
 
 target_link_libraries(all_tests
         gtest
-        gtest_main)
+        gtest_main
+        helmath)

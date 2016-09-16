@@ -72,20 +72,20 @@ public:
     */
     inline void set_row_vector(const Vector2<T> &vec, const unsigned int idx)
     {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; ++i) {
             data[idx][i] = vec[i];
         }
     }
 
     /**
      * Sets the matrix's row vector at the specified index.
-     * @param values An array of size 2 with whose values are asigned to the matrix's row.
+     * @param v An array of size 2 with whose values are asigned to the matrix's row.
      * @param idx The index of the row in the matrix.
-     * @overload set_row_vector(const T values[2], const unsigned int idx)
+     * @overload set_row_vector(const T (&v)[2], const unsigned int idx)
      */
-    inline void set_row_vector(const T v[2], const unsigned int idx)
+    inline void set_row_vector(const T (&v)[2], const unsigned int idx)
     {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; ++i) {
             data[idx][i] = v[i];
         }
     }
@@ -110,20 +110,20 @@ public:
      */
     inline void set_column_vector(const Vector2<T> &vec, const unsigned int idx)
     {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; ++i) {
             data[i][idx] = vec[i];
         }
     }
 
     /**
      * Sets the matrix's column vector at the specified index.
-     * @param values An array of size 2 with whose values are asigned to the matrix's column.
+     * @param v An array of size 2 with whose values are asigned to the matrix's column.
      * @param idx The index of the row in the matrix.
-     * @overload set_column_vector(const T v[2], const unsigned int idx)
+     * @overload set_column_vector(const T (&v)[2], const unsigned int idx)
      */
-    inline void set_column_vector(const T v[2], const unsigned int idx)
+    inline void set_column_vector(const T (&v)[2], const unsigned int idx)
     {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; ++i) {
             data[i][idx] = v[i];
         }
     }
@@ -135,18 +135,46 @@ public:
      */
     inline void set_identity()
     {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
                 data[i][j] = i == j ? 1 : 0;
             }
         }
     }
 
+    /**
+     * Implicit conversion to pointer.
+     * @return A pointer to the internal array of the matrix.
+     */
+    inline operator T *()
+    {
+        return data[0];
+    }
+
+    /**
+     * Implicit conversion to a constant pointer.
+     * @return A constant pointer to the internal array of the matrix.
+     */
+    inline operator const T *() const
+    {
+        return data[0];
+    }
+
+    /**
+     * Subscript operator overload.
+     * @param idx The index to be accessed from the internal array of the matrix.
+     * @return A pointer to the internal array.
+     */
     inline T *operator[](const unsigned int idx)
     {
         return data[idx];
     }
 
+    /**
+     * Subscript operator overload.
+     * @param idx The index to be accessed from the internal array of the matrix.
+     * @return A pointer to the internal array.
+     */
     inline const T *operator[](const unsigned int idx) const
     {
         return data[idx];
@@ -159,8 +187,8 @@ public:
      */
     inline void operator=(const Matrix2<T> &rhs)
     {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
                 data[i][j] = rhs[i][j];
             }
         }
@@ -177,8 +205,8 @@ public:
     {
         Matrix2<T> res;
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
                 res[i][j] = data[i][0] * rhs[0][j] + data[i][1] * rhs[1][j];
             }
         }
@@ -186,10 +214,16 @@ public:
         return res;
     }
 
+    /**
+     * Equality operator overload.
+     * @warning May not work as intended for floating point matrices.
+     * @param rhs The right hand side matrix operand with whom equality is tested.
+     * @return True only when all values of both matrices are equal.
+     */
     inline bool operator==(const Matrix2<T> &rhs) const
     {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
                 if (data[i][j] != rhs[i][j]) {
                     return false;
                 }
@@ -199,6 +233,12 @@ public:
         return true;
     }
 
+    /**
+     * Non equality operator overload.
+     * @warning May not work as intended for floating point matrices.
+     * @param rhs The right hand side matrix operand with whom non equality is tested.
+     * @return True when one of the matrix's values is not equal the the other's.
+     */
     inline bool operator!=(const Matrix2<T> &rhs) const
     {
         return !(*this == rhs);
@@ -368,20 +408,20 @@ public:
     */
     inline void set_row_vector(const Vector3<T> &vec, const unsigned int idx)
     {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             data[idx][i] = vec[i];
         }
     }
 
     /**
      * Sets the matrix's row vector at the specified index.
-     * @param values An array of size 3 whose values are asigned to the matrix row.
+     * @param v An array of size 3 whose values are asigned to the matrix row.
      * @param idx The index of the the row in the matrix.
-     * @overload set_row_vector(const T values[3], const unsigned int idx)
+     * @overload set_row_vector(const T (&v)[3], const unsigned int idx)
      */
-    inline void set_row_vector(const T v[3], const unsigned int idx)
+    inline void set_row_vector(const T (&v)[3], const unsigned int idx)
     {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             data[idx][i] = v[i];
         }
     }
@@ -408,20 +448,20 @@ public:
      */
     inline void set_column_vector(const Vector3<T> &vec, const unsigned int idx)
     {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             data[i][idx] = vec[i];
         }
     }
 
     /**
      * Sets the matrix's column vector at the specified index.
-     * @param values An array of size 3 whose values are assigned to the matrix's column.
+     * @param v An array of size 3 whose values are assigned to the matrix's column.
      * @param idx The index of the column in the matrix.
-     * @overload set_column_vector(const T values[3], const unsigned int idx)
+     * @overload set_column_vector(const T (&v)[3], const unsigned int idx)
      */
-    inline void set_column_vector(const T v[3], const unsigned int idx)
+    inline void set_column_vector(const T (&v)[3], const unsigned int idx)
     {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             data[i][idx] = v[i];
         }
     }
@@ -433,8 +473,8 @@ public:
      */
     inline void set_identity()
     {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 data[i][j] = i == j ? 1 : 0;
             }
         }
@@ -479,9 +519,9 @@ public:
      * using matrix multiplicaiton.
      * @param v An array of size 2 whose values are used
      * to apply the translation to the matrix.
-     * @overload translate(const T v[2])
+     * @overload translate(const T (&v)[2])
      */
-    inline void translate(const T v[2])
+    inline void translate(const T (&v)[2])
     {
         Matrix3<T> trans_mat{1, 0, v[0],
                              0, 1, v[1],
@@ -526,9 +566,9 @@ public:
      * @param v An array of size 2 whose values are used as
      * a translation for the matrix.
      * @return A new Matrix3 instance as the result of the translation.
-     * @overload translated(const T v[2]) const
+     * @overload translated(const T (&v)[2]) const
      */
-    inline Matrix3<T> translated(const T v[2]) const
+    inline Matrix3<T> translated(const T (&v)[2]) const
     {
         Matrix3<T> trans_mat{1, 0, v[0],
                              0, 1, v[1],
@@ -564,9 +604,9 @@ public:
      * Sets a translation to the matrix.
      * @note Replaces any previous translations applied to the matrix.
      * @param v An array of size 2 whose values are set as the translation.
-     * @overload set_translation(const T v[2])
+     * @overload set_translation(const T (&v)[2])
      */
-    inline void set_translation(const T v[2])
+    inline void set_translation(const T (&v)[2])
     {
         set_column_vector(v[0], v[1], 1, 2);
     }
@@ -583,7 +623,7 @@ public:
                              0, y, 0,
                              0, 0, z};
 
-        *this *= scale_mat;
+        *this = *this * scale_mat;
     }
 
     /**
@@ -598,7 +638,7 @@ public:
                              0, vec.y, 0,
                              0, 0, vec.z};
 
-        *this *= scale_mat;
+        *this = *this * scale_mat;
     }
 
     /**
@@ -609,17 +649,24 @@ public:
      * @li 0 --> x
      * @li 1 --> y
      * @li 2 --> z
-     * @overload scale(const T v[3])
+     * @overload scale(const T (&v)[3])
      */
-    inline void scale(const T v[3])
+    inline void scale(const T (&v)[3])
     {
         Matrix3<T> scale_mat{v[0], 0, 0,
                              0, v[1], 0,
                              0, 0, v[2]};
 
-        *this *= scale_mat;
+        *this = *this * scale_mat;
     }
 
+    /**
+     * Applies scaling to the matrix.
+     * @param x The scale on the x axis.
+     * @param y The scale on the y axis.
+     * @param z The scale on the z axis.
+     * @return A new scaled Matrix3 instance.
+     */
     inline Matrix3<T> scaled(const T x, const T y, const T z) const
     {
         Matrix3<T> scale_mat{x, 0, 0,
@@ -629,6 +676,13 @@ public:
         return *this * scale_mat;
     }
 
+    /**
+     * Applies scaling to the matrix.
+     * @param vec A three dimensional vector whose values are used for scaling
+     * each corresponding axis.
+     * @return A new scaled Matrix3 instance.
+     * @overload scaled(const Vector3<T> &vec) const
+     */
     inline Matrix3<T> scaled(const Vector3<T> &vec) const
     {
         Matrix3<T> scale_mat{vec.x, 0, 0,
@@ -638,7 +692,14 @@ public:
         return *this * scale_mat;
     }
 
-    inline Matrix3<T> scaled(const T v[3]) const
+    /**
+     * Applies scaling to the matrix.
+     * @param v An array of size 3 whose values are used for scaling
+     * each corresponding axis.
+     * @return A new scaled Matrix3 instance.
+     * @overload scaled(const T (&v)[3]) const
+     */
+    inline Matrix3<T> scaled(const T (&v)[3]) const
     {
         Matrix3<T> scale_mat{v[0], 0, 0,
                              0, v[1], 0,
@@ -647,6 +708,13 @@ public:
         return *this * scale_mat;
     }
 
+    /**
+     * Sets scaling to the matrix.
+     * @note Replaces any previous scaling applied to the matrix.
+     * @param x The scale on the x axis.
+     * @param y The scale on the y axis.
+     * @param z The scale on the z axis.
+     */
     inline void set_scaling(const T x, const T y, const T z)
     {
         data[0][0] = x;
@@ -654,6 +722,12 @@ public:
         data[2][2] = z;
     }
 
+    /**
+     * Sets scaling to the matrix.
+     * @note Replaces any previous scaling applied to the matrix.
+     * @param vec A three dimensional vector whose values are set as scaling.
+     * @overload set_scaling(const Vector3<T> &vec)
+     */
     inline void set_scaling(const Vector3<T> &vec)
     {
         data[0][0] = vec.x;
@@ -661,7 +735,13 @@ public:
         data[2][2] = vec.z;
     }
 
-    inline void set_scaling(const T v[3])
+    /**
+     * Sets scaling to the matrix.
+     * @note Replaces any previous scaling applied to the matrix.
+     * @param v An array of size 3 whose values are set as scaling.
+     * @overload set_scaling(const T (&v)[3])
+     */
+    inline void set_scaling(const T (&v)[3])
     {
         data[0][0] = v[0];
         data[1][1] = v[1];
@@ -675,8 +755,8 @@ public:
     {
         Matrix3<T> mat = *this;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 data[i][j] = mat[j][i];
             }
         }
@@ -690,30 +770,48 @@ public:
     {
         Matrix3<T> res;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                res[i][j] = *this[j][i];
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = (*this)[j][i];
             }
         }
 
         return res;
     }
 
-    inline operator T *() const
+    /**
+     * Implicit conversion to pointer.
+     * @return A pointer to the internal array of the matrix.
+     */
+    inline operator T *()
     {
         return data[0];
     }
 
+    /**
+     * Implicit conversion to a constant pointer.
+     * @return A constant pointer to the internal array of the matrix.
+     */
     inline operator const T *() const
     {
         return data[0];
     }
 
+    /**
+     * Subscript operator overload.
+     * @param idx The index to be accessed from the internal array of the matrix.
+     * @return A pointer to the internal array.
+     */
     inline T *operator[](const unsigned int idx)
     {
         return data[idx];
     }
 
+    /**
+     * Subscript operator overload.
+     * @param idx The index to be accessed from the internal array of the matrix.
+     * @return A pointer to the internal array.
+     */
     inline const T *operator[](const unsigned int idx) const
     {
         return data[idx];
@@ -726,12 +824,66 @@ public:
      */
     inline void operator=(const Matrix3<T> &rhs)
     {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 data[i][j] = rhs[i][j];
             }
         }
     }
+
+    /**
+     * Assigns each value of the Matrix2 to the upper 2x2 section
+     * of the Matrix3.
+     * @param rhs The 2x2 Matrix assigned to the upper 2x2 section of
+     * the 3x3 matrix.
+     */
+    inline void operator=(const Matrix2<T> &rhs)
+    {
+        for (int i = 0; i < 2; ++i) {
+            for (int j = 0; j < 2; ++j) {
+                data[i][j] = rhs[i][j];
+            }
+        }
+    }
+
+    /**
+     * Performs index based addition of two three dimensional matrices.
+     * @param rhs The matrix whose values will be added
+     * to the left hand side operand.
+     * @return A new Matrix3 instance resulting from the addition.
+     */
+    inline Matrix3<T> operator+(const Matrix3<T> &rhs) const
+    {
+        Matrix3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = data[i][j] + rhs[i][j];
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based subtraction of two three dimensional matrices.
+     * @param rhs The matrix whose values will be subtracted
+     * from the left hand side operand.
+     * @return A new Matrix3 instance resulting from the subtraction.
+     */
+    inline Matrix3<T> operator-(const Matrix3<T> &rhs) const
+    {
+        Matrix3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = data[i][j] - rhs[i][j];
+            }
+        }
+
+        return res;
+    }
+
 
     /**
      * Performs matrix multiplication.
@@ -744,14 +896,177 @@ public:
     {
         Matrix3<T> res;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 res[i][j] = data[i][0] * rhs[0][j] + data[i][1] * rhs[1][j]
                             + data[i][2] * rhs[2][j];
             }
         }
 
         return res;
+    }
+
+    /**
+     * Performs index based addition between two four dimensional matrices.
+     * @param rhs The matrix whose values will be added
+     * to the left hand side operand.
+     */
+    inline void operator+=(const Matrix3<T> &rhs)
+    {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                data[i][j] += rhs[i][j];
+            }
+        }
+    }
+
+    /**
+     * Performs index based subtraction between two four dimensional matrices.
+     * @param rhs The matrix whose values will be subtracted
+     * from the left hand side operand.
+     */
+    inline void operator-=(const Matrix3<T> &rhs)
+    {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                data[i][j] -= rhs[i][j];
+            }
+        }
+    }
+
+    /**
+     * Performs matrix multiplication.
+     * @details Mutiplies the left hand side matrix operand with the right hand
+     * side matrix operand.
+     * @param rhs The right hand side matrix operand.
+     */
+    inline void operator*=(const Matrix3<T> &rhs)
+    {
+        *this = *this * rhs;
+    }
+
+    /**
+     * Performs index based addition between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to be added to each value of the matrix.
+     * @return A new Matrix3 instance resulting from the addition.
+     */
+    inline Matrix3<T> operator+(const T rhs) const
+    {
+        Matrix3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = data[i][j] + rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based subtraction between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to be subtracted from each value of the matrix.
+     * @return A new Matrix3 instance resulting from the subtraction.
+     */
+    inline Matrix3<T> operator-(const T rhs) const
+    {
+        Matrix3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = data[i][j] - rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Perform index based multiplication between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to be multiplied with each value of the matrix.
+     * @return A new Matrix3 instance resulting from the multiplication.
+     */
+    inline Matrix3<T> operator*(const T rhs) const
+    {
+        Matrix3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = data[i][j] * rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based division between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to divide each value of the matrix by.
+     * @return A new Matrix3 instance resulting from the multiplicaiton.
+     */
+    inline Matrix3<T> operator/(const T rhs) const
+    {
+        Matrix3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                res[i][j] = data[i][j] / rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based addition between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to be added to each value of the matrix.
+     */
+    inline void operator+=(const T rhs)
+    {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                data[i][j] += rhs;
+            }
+        }
+    }
+
+    /**
+     * Performs index based subtraction between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to be subtracted from each value of the matrix.
+     */
+    inline void operator-=(const T rhs)
+    {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                data[i][j] -= rhs;
+            }
+        }
+    }
+
+    /**
+     * Performs index based multiplication between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to be multiplied with each value of the matrix.
+     */
+    inline void operator*=(const T rhs)
+    {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                data[i][j] *= rhs;
+            }
+        }
+    }
+
+    /**
+     * Performs index based division between a three dimensional matrix and a scalar.
+     * @param rhs The scalar to divide each value of the matrix by.
+     */
+    inline void operator/=(const T rhs)
+    {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                data[i][j] /= rhs;
+            }
+        }
     }
 
     /**
@@ -762,8 +1077,8 @@ public:
      */
     inline bool operator==(const Matrix3<T> &rhs) const
     {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 if (data[i][j] != rhs[i][j]) {
                     return false;
                 }
@@ -782,6 +1097,23 @@ public:
     inline bool operator!=(const Matrix3<T> &rhs) const
     {
         return !(*this == rhs);
+    }
+
+    /**
+     * Performs multiplication between the matrix and the vector.
+     * @param vec The three dimensional vector to be multiplied with the matrix.
+     * @return A new Vector3 instance as the result of the multiplication.
+     */
+    inline Vector3<T> operator*(const Vector3<T> &vec)
+    {
+        Vector3<T> res;
+
+        for (int i = 0; i < 3; ++i) {
+            res[i] = data[i][0] * vec.x + data[i][1] * vec.y
+                     + data[i][2] * vec.z;
+        }
+
+        return res;
     }
 };
 
@@ -952,8 +1284,8 @@ public:
      */
     Matrix4<T>(const Matrix3<T> &mat)
     {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 data[i][j] = mat[i][j];
             }
         }
@@ -983,7 +1315,7 @@ public:
      */
     inline void set_row_vector(const Vector4<T> &vec, const unsigned int idx)
     {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             data[idx][i] = vec[i];
         }
     }
@@ -992,11 +1324,11 @@ public:
      * Sets the matrix's row vector at the specified index.
      * @param v An array of size 4 whose values are assigned to the matrix row.
      * @param idx The index of the row in the matrix.
-     * @overload set_row_vector(const T v[4], const unsigned int idx)
+     * @overload set_row_vector(const T (&v)[4], const unsigned int idx)
      */
-    inline void set_row_vector(const T v[4], const unsigned int idx)
+    inline void set_row_vector(const T (&v)[4], const unsigned int idx)
     {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             data[idx][i] = v[i];
         }
     }
@@ -1025,7 +1357,7 @@ public:
      */
     inline void set_column_vector(const Vector4<T> &vec, const unsigned int idx)
     {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             data[i][idx] = vec[i];
         }
     }
@@ -1034,11 +1366,11 @@ public:
      * Sets the matrix's column vector at the specified index.
      * @param v An array of size 4 whose values are assigned to the matrix column.
      * @param idx The index of the column in the matrix.
-     * @overload set_column_vector(const T v[4], const unsigned int idx)
+     * @overload set_column_vector(const T (&v)[4], const unsigned int idx)
      */
-    inline void set_column_vector(const T v[4], const unsigned int idx)
+    inline void set_column_vector(const T (&v)[4], const unsigned int idx)
     {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             data[i][idx] = v[i];
         }
     }
@@ -1050,8 +1382,8 @@ public:
      */
     inline void set_identity()
     {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 data[i][j] = i == j ? 1 : 0;
             }
         }
@@ -1099,9 +1431,9 @@ public:
      * using matrix multiplicaiton.
      * @param v An array of size 3 whose values are used
      * to apply the translation to the matrix.
-     * @overload translate(const T v[3])
+     * @overload translate(const T (&v)[3])
      */
-    inline void translate(const T v[3])
+    inline void translate(const T (&v)[3])
     {
         Matrix4<T> trans_mat{1, 0, 0, v[0],
                              0, 1, 0, v[1],
@@ -1150,9 +1482,9 @@ public:
      * @param v An array of size 3 whose values are used as
      * a translation for the matrix.
      * @return A new Matrix4 instance as the result of the translation.
-     * @overload translated(const T v[3]) const
+     * @overload translated(const T (&v)[3]) const
      */
-    inline Matrix4<T> translated(const T v[3]) const
+    inline Matrix4<T> translated(const T (&v)[3]) const
     {
         Matrix4<T> trans_mat{1, 0, 0, v[0],
                              0, 1, 0, v[1],
@@ -1190,9 +1522,9 @@ public:
      * Sets a translation to the matrix.
      * @note Replaces any previous translations applied to the matrix.
      * @param v An array of size 3 whose values are set as the translation.
-     * @overload set_translation(const T v[3])
+     * @overload set_translation(const T (&v)[3])
      */
-    inline void set_translation(const T v[3])
+    inline void set_translation(const T (&v)[3])
     {
         set_column_vector(v[0], v[1], v[2], 1, 3);
     }
@@ -1239,16 +1571,16 @@ public:
      * @li 1 --> y
      * @li 2 --> z
      * @li 3 --> w
-     * @overload scale(const T v[4])
+     * @overload scale(const T (&v)[4])
      */
-    inline void scale(const T v[4])
+    inline void scale(const T (&v)[4])
     {
         Matrix4<T> scale_mat{v[0], 0, 0, 0,
                              0, v[1], 0, 0,
                              0, 0, v[2], 0,
                              0, 0, 0, v[3]};
 
-        *this = *this * scale_mat;
+        *this *= scale_mat;
     }
 
     /**
@@ -1291,9 +1623,9 @@ public:
      * @param v An array of size 4 whose values are used for scaling each
      * corresponding axis.
      * @return A new scaled Matrix4 instance.
-     * @overload scaled(const T v[4]) const
+     * @overload scaled(const T (&v)[4]) const
      */
-    inline Matrix4<T> scaled(const T v[4]) const
+    inline Matrix4<T> scaled(const T (&v)[4]) const
     {
         Matrix4<T> scale_mat{v[0], 0, 0, 0,
                              0, v[1], 0, 0,
@@ -1305,6 +1637,7 @@ public:
 
     /**
      * Sets scaling to the matrix.
+     * @note Replaces any previous scaling applied to the matrix.
      * @param x The scale on the x axis.
      * @param y The scale on the y axis.
      * @param z The scale on the z axis.
@@ -1326,24 +1659,22 @@ public:
      */
     inline void set_scaling(const Vector4<T> &vec)
     {
-        data[0][0] = vec.x;
-        data[1][1] = vec.y;
-        data[2][2] = vec.z;
-        data[3][3] = vec.w;
+        for (int i = 0; i < 4; ++i) {
+            data[i][i] = vec[i];
+        }
     }
 
     /**
      * Sets scaling to the matrix.
      * @note Replaces any previous scaling applied to the matrix.
      * @param v An array of size 4 whose values are set as scaling.
-     * @overload set_scaling(const T v[4])
+     * @overload set_scaling(const T (&v)[4])
      */
-    inline void set_scaling(const T v[4])
+    inline void set_scaling(const T (&v)[4])
     {
-        data[0][0] = v[0];
-        data[1][1] = v[1];
-        data[2][2] = v[2];
-        data[3][3] = v[3];
+        for (int i = 0; i < 4; ++i) {
+            data[i][i] = v[i];
+        }
     }
 
     /**
@@ -1402,10 +1733,10 @@ public:
      */
     inline void transpose()
     {
-        Matrix4<T> mat = *this;
+        Matrix4<T> mat{*this};
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 data[i][j] = mat[j][i];
             }
         }
@@ -1419,9 +1750,8 @@ public:
     {
         Matrix4<T> res;
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 res[i][j] = (*this)[j][i];
             }
         }
@@ -1433,7 +1763,7 @@ public:
      * Implicit conversion to pointer.
      * @return A pointer to the internal array of the matrix.
      */
-    inline operator T *() const
+    inline operator T *()
     {
         return data[0];
     }
@@ -1474,8 +1804,8 @@ public:
      */
     inline void operator=(const Matrix4<T> &rhs)
     {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 data[i][j] = rhs[i][j];
             }
         }
@@ -1489,11 +1819,49 @@ public:
      */
     inline void operator=(const Matrix3<T> &rhs)
     {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
                 data[i][j] = rhs[i][j];
             }
         }
+    }
+
+    /**
+     * Performs index based addition of two four dimensional matrices.
+     * @param rhs The matrix whose values will be added
+     * to the left hand side operand.
+     * @return A new Matrix4 instance resulting from the addition.
+     */
+    inline Matrix4<T> operator+(const Matrix4<T> &rhs) const
+    {
+        Matrix4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                res[i][j] = data[i][j] + rhs[i][j];
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based subtraction of two four dimensional matrices.
+     * @param rhs The matrix whose values will be subtracted
+     * from the left hand side operand.
+     * @return A new Matrix4 instance resulting from the subtraction.
+     */
+    inline Matrix4<T> operator-(const Matrix4<T> &rhs) const
+    {
+        Matrix4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                res[i][j] = data[i][j] - rhs[i][j];
+            }
+        }
+
+        return res;
     }
 
     /**
@@ -1507,14 +1875,177 @@ public:
     {
         Matrix4<T> res;
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 res[i][j] = data[i][0] * rhs[0][j] + data[i][1] * rhs[1][j]
                             + data[i][2] * rhs[2][j] + data[i][3] * rhs[3][j];
             }
         }
 
         return res;
+    }
+
+    /**
+     * Performs index based addition between two four dimensional matrices.
+     * @param rhs The matrix whose values will be added
+     * to the left hand side operand.
+     */
+    inline void operator+=(const Matrix4<T> &rhs)
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                data[i][j] += rhs[i][j];
+            }
+        }
+    }
+
+    /**
+     * Performs index based subtraction between two four dimensional matrices.
+     * @param rhs The matrix whose values will be subtracted
+     * from the left hand side operand.
+     */
+    inline void operator-=(const Matrix4<T> &rhs)
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                data[i][j] -= rhs[i][j];
+            }
+        }
+    }
+
+    /**
+     * Performs matrix multiplication.
+     * @details Mutiplies the left hand side matrix operand with the right hand
+     * side matrix operand.
+     * @param rhs The right hand side matrix operand.
+     */
+    inline void operator*=(const Matrix4<T> &rhs)
+    {
+        *this = *this * rhs;
+    }
+
+    /**
+     * Performs index based addition between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to be added to each value of the matrix.
+     * @return A new Matrix4 instance resulting from the addition.
+     */
+    inline Matrix4<T> operator+(const T rhs) const
+    {
+        Matrix4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                res[i][j] = data[i][j] + rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based subtraction between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to be subtracted from each value of the matrix.
+     * @return A new Matrix4 instance resulting from the subtraction.
+     */
+    inline Matrix4<T> operator-(const T rhs) const
+    {
+        Matrix4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                res[i][j] = data[i][j] - rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Perform index based multiplication between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to be multiplied with each value of the matrix.
+     * @return A new Matrix4 instance resulting from the multiplication.
+     */
+    inline Matrix4<T> operator*(const T rhs) const
+    {
+        Matrix4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                res[i][j] = data[i][j] * rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based division between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to divide each value of the matrix by.
+     * @return A new Matrix4 instance resulting from the multiplicaiton.
+     */
+    inline Matrix4<T> operator/(const T rhs) const
+    {
+        Matrix4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                res[i][j] = data[i][j] / rhs;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Performs index based addition between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to be added to each value of the matrix.
+     */
+    inline void operator+=(const T rhs)
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                data[i][j] += rhs;
+            }
+        }
+    }
+
+    /**
+     * Performs index based subtraction between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to be subtracted from each value of the matrix.
+     */
+    inline void operator-=(const T rhs)
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                data[i][j] -= rhs;
+            }
+        }
+    }
+
+    /**
+     * Performs index based multiplication between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to be multiplied with each value of the matrix.
+     */
+    inline void operator*=(const T rhs)
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                data[i][j] *= rhs;
+            }
+        }
+    }
+
+    /**
+     * Performs index based division between a four dimensional matrix and a scalar.
+     * @param rhs The scalar to divide each value of the matrix by.
+     */
+    inline void operator/=(const T rhs)
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                data[i][j] /= rhs;
+            }
+        }
     }
 
     /**
@@ -1525,8 +2056,8 @@ public:
      */
     inline bool operator==(const Matrix4<T> &rhs) const
     {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 if (data[i][j] != rhs[i][j]) {
                     return false;
                 }
@@ -1545,6 +2076,23 @@ public:
     inline bool operator!=(const Matrix4<T> &rhs) const
     {
         return !(*this == rhs);
+    }
+
+    /**
+     * Performs multiplication between the matrix and the vector.
+     * @param vec The four dimensional vector to be multiplied with the matrix.
+     * @return A new Vector4 instance as the result of the multiplication.
+     */
+    inline Vector4<T> operator*(const Vector4<T> &vec)
+    {
+        Vector4<T> res;
+
+        for (int i = 0; i < 4; ++i) {
+            res[i] = data[i][0] * vec.x + data[i][1] * vec.y
+                     + data[i][2] * vec.z + data[i][3] * vec.w;
+        }
+
+        return res;
     }
 };
 

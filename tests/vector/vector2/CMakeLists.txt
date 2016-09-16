@@ -5,8 +5,10 @@ add_executable(vector2_swizzle_tests vector2_swizzle_tests.cpp)
 
 target_link_libraries(vector2_tests
         gtest
-        gtest_main)
+        gtest_main
+        helmath)
 
 target_link_libraries(vector2_swizzle_tests
         gtest
-        gtest_main)
+        gtest_main
+        helmath)

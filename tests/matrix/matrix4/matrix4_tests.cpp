@@ -278,6 +278,20 @@ TEST_F(Matrix4Fixture, test_transposed)
     expect_matrixf_eq(res, exp);
 }
 
+TEST_F(Matrix4Fixture, test_implicit_conversion_to_pointer)
+{
+    float *f = m1;
+
+    EXPECT_FLOAT_EQ(*(f + 5), 6.0f);
+}
+
+TEST_F(Matrix4Fixture, test_subscript_operator)
+{
+    float f = m1[1][1];
+
+    EXPECT_FLOAT_EQ(f, 6.0f);
+}
+
 TEST_F(Matrix4Fixture, test_operator_matrix_assignment_matrix4)
 {
     Mat4f res;
@@ -300,6 +314,36 @@ TEST_F(Matrix4Fixture, test_operator_matrix_assignment_matrix3)
     expect_matrixf_eq(m1, exp);
 }
 
+TEST_F(Matrix4Fixture, test_operator_matrix_plus_matrix)
+{
+    Mat4f res{m1 + Mat4f{1, 1, 1, 1,
+                         1, 1, 1, 1,
+                         1, 1, 1, 1,
+                         1, 1, 1, 1}};
+
+    Mat4f exp{2, 3, 4, 5,
+              6, 7, 8, 9,
+              10, 11, 12, 13,
+              14, 15, 16, 17};
+
+    expect_matrixf_eq(res, exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_minus_matrix)
+{
+    Mat4f res{m1 - Mat4f{1, 1, 1, 1,
+                         1, 1, 1, 1,
+                         1, 1, 1, 1,
+                         1, 1, 1, 1}};
+
+    Mat4f exp{0, 1, 2, 3,
+              4, 5, 6, 7,
+              8, 9, 10, 11,
+              12, 13, 14, 15};
+
+    expect_matrixf_eq(res, exp);
+}
+
 TEST_F(Matrix4Fixture, test_operator_matrix_mult_matrix)
 {
     Mat4f res{m1 * m2};
@@ -308,6 +352,72 @@ TEST_F(Matrix4Fixture, test_operator_matrix_mult_matrix)
               240.0f, 214.0f, 188.0f, 162.0f,
               400.0f, 358.0f, 316.0f, 274.0f,
               560.0f, 502.0f, 444.0f, 386.0f};
+
+    expect_matrixf_eq(res, exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_plus_equals_matrix)
+{
+    m1 += Mat4f{1, 1, 1, 1,
+                1, 1, 1, 1,
+                1, 1, 1, 1,
+                1, 1, 1, 1};
+
+    Mat4f exp{2, 3, 4, 5,
+              6, 7, 8, 9,
+              10, 11, 12, 13,
+              14, 15, 16, 17};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_minus_equals_matrix)
+{
+    m1 -= Mat4f{1, 1, 1, 1,
+                1, 1, 1, 1,
+                1, 1, 1, 1,
+                1, 1, 1, 1};
+
+    Mat4f exp{0, 1, 2, 3,
+              4, 5, 6, 7,
+              8, 9, 10, 11,
+              12, 13, 14, 15};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_plus_scalar)
+{
+    Mat4f res{m1 + 1.0f};
+
+    Mat4f exp{2, 3, 4, 5,
+              6, 7, 8, 9,
+              10, 11, 12, 13,
+              14, 15, 16, 17};
+
+    expect_matrixf_eq(res, exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_minus_scalar)
+{
+    Mat4f res{m1 - 1.0f};
+
+    Mat4f exp{0, 1, 2, 3,
+              4, 5, 6, 7,
+              8, 9, 10, 11,
+              12, 13, 14, 15};
+
+    expect_matrixf_eq(res, exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_mult_scalar)
+{
+    Mat4f res{m1 * 2.0f};
+
+    Mat4f exp{2, 4, 6, 8,
+              10, 12, 14, 16,
+              18, 20, 22, 24,
+              26, 28, 30, 32};
 
     expect_matrixf_eq(res, exp);
 }
@@ -324,7 +434,20 @@ TEST_F(Matrix4Fixture, test_operator_matrix_not_equals_matrix)
 {
     Mat4f mat;
     Mat4f exp;
-    exp.set_row_vector({1, 2, 3, 4}, 0);
+    exp.set_row_vector(Vec4f{1, 2, 3, 4}, 0);
 
     EXPECT_TRUE(mat != exp);
+}
+
+TEST_F(Matrix4Fixture, test_operator_matrix_mult_vector4)
+{
+    Mat4f mat;
+    mat.translate(Vec3f{1, 1, 1});
+
+    Vec4f res{mat * Vec4f{1, 1, 1, 1}};
+
+    EXPECT_FLOAT_EQ(res.x, 2.0f);
+    EXPECT_FLOAT_EQ(res.y, 2.0f);
+    EXPECT_FLOAT_EQ(res.z, 2.0f);
+    EXPECT_FLOAT_EQ(res.w, 1.0f);
 }

@@ -87,6 +87,36 @@ TEST_F(Vector4Fixture, test_member_function_reflected)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
+TEST_F(Vector4Fixture, test_member_function_transform)
+{
+    Mat4f trans{1, 0, 0, 1,
+                0, 1, 0, 1,
+                0, 0, 1, 1,
+                0, 0, 0, 1};
+
+    v1.transform(trans);
+
+    EXPECT_FLOAT_EQ(v1.x, 5.0f);
+    EXPECT_FLOAT_EQ(v1.y, 6.0f);
+    EXPECT_FLOAT_EQ(v1.z, 7.0f);
+    EXPECT_FLOAT_EQ(v1.w, 4.0f);
+}
+
+TEST_F(Vector4Fixture, test_member_function_transformed)
+{
+    Mat4f trans{1, 0, 0, 1,
+                0, 1, 0, 1,
+                0, 0, 1, 1,
+                0, 0, 0, 1};
+
+    Vec4f res{v1.transformed(trans)};
+
+    EXPECT_FLOAT_EQ(res.x, 5.0f);
+    EXPECT_FLOAT_EQ(res.y, 6.0f);
+    EXPECT_FLOAT_EQ(res.z, 7.0f);
+    EXPECT_FLOAT_EQ(res.w, 4.0f);
+}
+
 TEST_F(Vector4Fixture, test_vector_plus_vector)
 {
     Vec4f res{v1 + v2};

@@ -24,6 +24,6 @@
  * all of libhelmath's features.
  */
 
-#include "vector.h"
+#include "matrix.h"
 
 #endif //HELMATH_HELMATH_H

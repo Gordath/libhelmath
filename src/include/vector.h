@@ -7,7 +7,7 @@
  */
 
 #include <cmath>
-#include "swizzle.h"
+#include "internal/swizzle.h"
 
 /**
  * @namespace hm
@@ -15,6 +15,15 @@
  * @details All of helmaths code will be inside hm to avoid name collisions.
  */
 namespace hm {
+
+template<typename T>
+class Matrix2;
+
+template<typename T>
+class Matrix3;
+
+template<typename T>
+class Matrix4;
 
 /**
  * @class Vector2
@@ -221,7 +230,8 @@ public:
      */
     inline Vector2<T> operator-() const
     {
-        return Vector2<T>{-x, -y};
+        return Vector2<T>{static_cast<T>(-x),
+                          static_cast<T>(-y)};
     }
 
     /**
@@ -233,7 +243,7 @@ public:
      */
     inline Vector2<T> operator+(const Vector2<T> &rhs) const
     {
-        return Vector2<T>{x + rhs.x, y + rhs.y};
+        return Vector2<T>(x + rhs.x, y + rhs.y);
     }
 
     /**
@@ -245,7 +255,7 @@ public:
      */
     inline Vector2<T> operator-(const Vector2<T> &rhs) const
     {
-        return Vector2<T>{x - rhs.x, y - rhs.y};
+        return Vector2<T>(x - rhs.x, y - rhs.y);
     }
 
     /**
@@ -257,7 +267,7 @@ public:
      */
     inline Vector2<T> operator*(const Vector2<T> &rhs) const
     {
-        return Vector2<T>{x * rhs.x, y * rhs.y};
+        return Vector2<T>(x * rhs.x, y * rhs.y);
     }
 
     /**
@@ -269,7 +279,7 @@ public:
      */
     inline Vector2<T> operator/(const Vector2<T> &rhs) const
     {
-        return Vector2<T>{x / rhs.x, y / rhs.y};
+        return Vector2<T>(x / rhs.x, y / rhs.y);
     }
 
     /**
@@ -323,7 +333,7 @@ public:
      */
     inline Vector2<T> operator+(T rhs) const
     {
-        return Vector2<T>{x + rhs, y + rhs};
+        return Vector2<T>(x + rhs, y + rhs);
     }
 
     /**
@@ -333,7 +343,7 @@ public:
      */
     inline Vector2<T> operator-(T rhs) const
     {
-        return Vector2<T>{x - rhs, y - rhs};
+        return Vector2<T>(x - rhs, y - rhs);
     }
 
     /**
@@ -343,7 +353,7 @@ public:
      */
     inline Vector2<T> operator*(T rhs) const
     {
-        return Vector2<T>{x * rhs, y * rhs};
+        return Vector2<T>(x * rhs, y * rhs);
     }
 
     /**
@@ -353,7 +363,7 @@ public:
      */
     inline Vector2<T> operator/(T rhs) const
     {
-        return Vector2<T>{x / rhs, y / rhs};
+        return Vector2<T>(x / rhs, y / rhs);
     }
 
     /**
@@ -660,9 +670,7 @@ public:
             return Vector3<T>{};
         }
 
-        return Vector3<T>{static_cast<T>(x / len),
-                          static_cast<T>(y / len),
-                          static_cast<T>(z / len)};
+        return Vector3<T>(x / len, y / len, z / len);
     }
 
     /**
@@ -693,9 +701,9 @@ public:
      */
     inline Vector3<T> cross(const Vector3<T> &v) const
     {
-        return Vector3<T>{y * v.z - z * v.y,
+        return Vector3<T>(y * v.z - z * v.y,
                           z * v.x - x * v.z,
-                          x * v.y - y * v.x};
+                          x * v.y - y * v.x);
     }
 
     /**
@@ -718,12 +726,44 @@ public:
     }
 
     /**
+     * Transforms the vector by a four dimensional matrix.
+     * @param mat The four dimensional matrix the vector is going to be
+     * transformed by.
+     */
+    inline void transform(const Matrix4<T> &mat)
+    {
+        float x = v[0];
+        float y = v[1];
+
+        for (int i = 0; i < 3; ++i) {
+            v[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] * z + mat[i][3];
+        }
+    }
+
+    /**
+     * Transforms the vector by a four dimensional matrix.
+     * @param mat The four dimensional matrix the vector is going to be
+     * transformed with.
+     * @return A new instance of the vector transformed by the matrix.
+     */
+    inline Vector3<T> transformed(const Matrix4<T> &mat)
+    {
+        Vector3<T> res{*this};
+
+        for (int i = 0; i < 3; ++i) {
+            res[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] * z + mat[i][3];
+        }
+
+        return res;
+    }
+
+    /**
      * Negates the vector's values.
      * @return A new three dimensional vector with negated values.
      */
     inline Vector3<T> operator-() const
     {
-        return Vector3<T>{-x, -y, -z};
+        return Vector3<T>(-x, -y, -z);
     }
 
     /**
@@ -735,7 +775,7 @@ public:
      */
     inline Vector3<T> operator+(const Vector3<T> &rhs) const
     {
-        return Vector3<T>{x + rhs.x, y + rhs.y, z + rhs.z};
+        return Vector3<T>(x + rhs.x, y + rhs.y, z + rhs.z);
     }
 
     /**
@@ -747,7 +787,7 @@ public:
      */
     inline Vector3<T> operator-(const Vector3<T> &rhs) const
     {
-        return Vector3<T>{x - rhs.x, y - rhs.y, z - rhs.z};
+        return Vector3<T>(x - rhs.x, y - rhs.y, z - rhs.z);
     }
 
     /**
@@ -759,7 +799,7 @@ public:
      */
     inline Vector3<T> operator*(const Vector3<T> &rhs) const
     {
-        return Vector3<T>{x * rhs.x, y * rhs.y, z * rhs.z};
+        return Vector3<T>(x * rhs.x, y * rhs.y, z * rhs.z);
     }
 
     /**
@@ -771,7 +811,7 @@ public:
      */
     inline Vector3<T> operator/(const Vector3<T> &rhs) const
     {
-        return Vector3<T>{x / rhs.x, y / rhs.y, z / rhs.z};
+        return Vector3<T>(x / rhs.x, y / rhs.y, z / rhs.z);
     }
 
     /**
@@ -829,7 +869,7 @@ public:
      */
     inline Vector3<T> operator+(T rhs) const
     {
-        return Vector3<T>{x + rhs, y + rhs, z + rhs};
+        return Vector3<T>(x + rhs, y + rhs, z + rhs);
     }
 
     /**
@@ -839,7 +879,7 @@ public:
      */
     inline Vector3<T> operator-(T rhs) const
     {
-        return Vector3<T>{x - rhs, y - rhs, z - rhs};
+        return Vector3<T>(x - rhs, y - rhs, z - rhs);
     }
 
     /**
@@ -849,7 +889,7 @@ public:
      */
     inline Vector3<T> operator*(T rhs) const
     {
-        return Vector3<T>{x * rhs, y * rhs, z * rhs};
+        return Vector3<T>(x * rhs, y * rhs, z * rhs);
     }
 
     /**
@@ -859,7 +899,7 @@ public:
      */
     inline Vector3<T> operator/(T rhs) const
     {
-        return Vector3<T>{x / rhs, y / rhs, z / rhs};
+        return Vector3<T>(x / rhs, y / rhs, z / rhs);
     }
 
     /**
@@ -913,7 +953,7 @@ public:
      * @param idx
      * @return The vector value at the specified array index.
      */
-    inline T operator[](int idx)
+    inline T &operator[](int idx)
     {
         return v[idx];
     }
@@ -925,7 +965,7 @@ public:
      * @param idx
      * @return The vector value at the specified array index.
      */
-    inline const T operator[](int idx) const
+    inline const T &operator[](int idx) const
     {
         return v[idx];
     }
@@ -1167,10 +1207,7 @@ public:
             return Vector4<T>{};
         }
 
-        return Vector4<T>{static_cast<T>(x / len),
-                          static_cast<T>(y / len),
-                          static_cast<T>(z / len),
-                          static_cast<T>(w / len)};
+        return Vector4<T>(x / len, y / len, z / len, w / len);
     }
 
     /**
@@ -1214,12 +1251,45 @@ public:
     }
 
     /**
+     * Transforms the vector by a four dimensional matrix.
+     * @param mat The four dimensional matrix the vector is going to be
+     * transformed by.
+     */
+    inline void transform(const Matrix4<T> &mat)
+    {
+        float x = v[0];
+        float y = v[1];
+        float z = v[2];
+
+        for (int i = 0; i < 4; ++i) {
+            v[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] * z + mat[i][3] * w;
+        }
+    }
+
+    /**
+     * Transforms the vector by a four dimensional matrix.
+     * @param mat The four dimensional matrix the vector is going to be
+     * transformed with.
+     * @return A new instance of the vector transformed by the matrix.
+     */
+    inline Vector4<T> transformed(const Matrix4<T> &mat)
+    {
+        Vector4<T> res{*this};
+
+        for (int i = 0; i < 4; ++i) {
+            res[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] * z + mat[i][3] * w;
+        }
+
+        return res;
+    }
+
+    /**
      * Negates the vector's values.
      * @return A new four dimensional vector with negated values.
      */
     inline Vector4<T> operator-() const
     {
-        return Vector4<T>{-x, -y, -z, -w};
+        return Vector4<T>(-x, -y, -z, -w);
     }
 
     /**
@@ -1231,7 +1301,7 @@ public:
     */
     inline Vector4<T> operator+(const Vector4<T> &rhs) const
     {
-        return Vector4<T>{x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w};
+        return Vector4<T>(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
     }
 
     /**
@@ -1243,7 +1313,7 @@ public:
     */
     inline Vector4<T> operator-(const Vector4<T> &rhs) const
     {
-        return Vector4<T>{x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w};
+        return Vector4<T>(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
     }
 
     /**
@@ -1255,7 +1325,7 @@ public:
     */
     inline Vector4<T> operator*(const Vector4<T> &rhs) const
     {
-        return Vector4<T>{x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
+        return Vector4<T>(x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w);
     }
 
     /**
@@ -1267,7 +1337,7 @@ public:
     */
     inline Vector4<T> operator/(const Vector4<T> &rhs) const
     {
-        return Vector4<T>{x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
+        return Vector4<T>(x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w);
     }
 
     /**
@@ -1329,7 +1399,7 @@ public:
      */
     inline Vector4<T> operator+(T rhs) const
     {
-        return Vector4<T>{x + rhs, y + rhs, z + rhs, w + rhs};
+        return Vector4<T>(x + rhs, y + rhs, z + rhs, w + rhs);
     }
 
     /**
@@ -1339,7 +1409,7 @@ public:
     */
     inline Vector4<T> operator-(T rhs) const
     {
-        return Vector4<T>{x - rhs, y - rhs, z - rhs, w - rhs};
+        return Vector4<T>(x - rhs, y - rhs, z - rhs, w - rhs);
     }
 
     /**
@@ -1349,7 +1419,7 @@ public:
     */
     inline Vector4<T> operator*(T rhs) const
     {
-        return Vector4<T>{x * rhs, y * rhs, z * rhs, w * rhs};
+        return Vector4<T>(x * rhs, y * rhs, z * rhs, w * rhs);
     }
 
     /**
@@ -1359,7 +1429,7 @@ public:
      */
     inline Vector4<T> operator/(T rhs) const
     {
-        return Vector4<T>{x / rhs, y / rhs, z / rhs, w / rhs};
+        return Vector4<T>(x / rhs, y / rhs, z / rhs, w / rhs);
     }
 
     /**
@@ -1410,12 +1480,12 @@ public:
         w /= rhs;
     }
 
-    inline T operator[](int idx)
+    inline T &operator[](int idx)
     {
         return v[idx];
     }
 
-    inline const T operator[](int idx) const
+    inline const T &operator[](int idx) const
     {
         return v[idx];
     }
