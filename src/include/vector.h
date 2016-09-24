@@ -225,6 +225,24 @@ public:
     }
 
     /**
+     * Implicit conversion to pointer.
+     * @return A pointer to the internal array of the vector.
+     */
+    inline operator T *()
+    {
+        return v;
+    }
+
+    /**
+     * Implicit conversion to a constant pointer.
+     * @return A constant pointer to the internal array of the vector.
+     */
+    inline operator const T *() const
+    {
+        return v;
+    }
+
+    /**
      * Negates the vector's values.
      * @return A new two dimensional vector with negated values.
      */
@@ -758,6 +776,24 @@ public:
     }
 
     /**
+     * Implicit conversion pointer.
+     * @return A pointer to the internal array of the vector.
+     */
+    inline operator T *()
+    {
+        return v;
+    }
+
+    /**
+     * Implicit conversion to a constant pointer.
+     * @return A constant pointer to the internal array of the vector.
+     */
+    inline operator const T *() const
+    {
+        return v;
+    }
+
+    /**
      * Negates the vector's values.
      * @return A new three dimensional vector with negated values.
      */
@@ -1281,6 +1317,24 @@ public:
         }
 
         return res;
+    }
+
+    /**
+     * Implicit conversion to pointer.
+     * @return A pointer to the internal array of the vector.
+     */
+    inline operator T *()
+    {
+        return v;
+    }
+
+    /**
+     * Implicit conversion to a constant pointer.
+     * @return A constant pointer to the internal array of the vector.
+     */
+    inline operator const T *() const
+    {
+        return v;
     }
 
     /**

@@ -124,6 +124,16 @@ TEST_F(Vector3Fixture, test_member_function_transformed)
     EXPECT_FLOAT_EQ(res.z, 4.0f);
 }
 
+TEST_F(Vector3Fixture, test_implicit_conversion_to_pointer)
+{
+    float *vec = v1;
+
+    const float *vec2 = v2;
+
+    EXPECT_FLOAT_EQ(*(++vec), 2.0f);
+    EXPECT_FLOAT_EQ(*(vec2 + 2), 1.0f);
+}
+
 TEST_F(Vector3Fixture, test_vector_plus_vector)
 {
     Vec3f res{v1 + v2};

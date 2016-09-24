@@ -10,15 +10,15 @@ protected:
 
     void SetUp() override
     {
-        m1 = Mat4f{1, 2, 3, 4,
-                   5, 6, 7, 8,
-                   9, 10, 11, 12,
-                   13, 14, 15, 16};
+        m1 = Mat4f{1.0f, 2.0f, 3.0f, 4.0f,
+                   5.0f, 6.0f, 7.0f, 8.0f,
+                   9.0f, 10.0f, 11.0f, 12.0f,
+                   13.0f, 14.0f, 15.0f, 16.0f};
 
-        m2 = Mat4f{16, 15, 14, 13,
-                   12, 11, 10, 9,
-                   8, 7, 6, 5,
-                   4, 3, 2, 1};
+        m2 = Mat4f{16.0f, 15.0f, 14.0f, 13.0f,
+                   12.0f, 11.0f, 10.0f, 9.0f,
+                   8.0f, 7.0f, 6.0f, 5.0f,
+                   4.0f, 3.0f, 2.0f, 1.0f};
     }
 
     void expect_matrixf_eq(const Mat4f &act, const Mat4f &exp)
@@ -32,14 +32,130 @@ protected:
     }
 };
 
+TEST_F(Matrix4Fixture, test_set_row_vector_with_coordinate_param)
+{
+    m1.set_row_vector(0.0f, 0.0f, 0.0f, 0.0f, 1);
+
+    Mat4f exp{1.0f, 2.0f, 3.0f, 4.0f,
+              0.0f, 0.0f, 0.0f, 0.0f,
+              9.0f, 10.0f, 11.0f, 12.0f,
+              13.0f, 14.0f, 15.0f, 16.0f};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_set_row_vector_with_vector_param)
+{
+    m1.set_row_vector(Vec4f{}, 0);
+
+    Mat4f exp{0.0f, 0.0f, 0.0f, 0.0f,
+              5.0f, 6.0f, 7.0f, 8.0f,
+              9.0f, 10.0f, 11.0f, 12.0f,
+              13.0f, 14.0f, 15.0f, 16.0f};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_set_row_vector_with_array_param)
+{
+    float arr[]{0.0f, 0.0f, 0.0f, 0.0f};
+
+    m1.set_row_vector(arr, 3);
+
+    Mat4f exp{1.0f, 2.0f, 3.0f, 4.0f,
+              5.0f, 6.0f, 7.0f, 8.0f,
+              9.0f, 10.0f, 11.0f, 12.0f,
+              0.0f, 0.0f, 0.0f, 0.0f};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_set_row_vector_with_pointer_param)
+{
+    float *v = new float[4];
+
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 0.0f;
+
+    m1.set_row_vector(v, 0);
+
+    Mat4f exp{0.0f, 0.0f, 0.0f, 0.0f,
+              5.0f, 6.0f, 7.0f, 8.0f,
+              9.0f, 10.0f, 11.0f, 12.0f,
+              13.0f, 14.0f, 15.0f, 16.0f};
+
+    expect_matrixf_eq(m1, exp);
+
+    delete[] v;
+}
+
+TEST_F(Matrix4Fixture, test_set_column_vector_with_coordinate_param)
+{
+    m1.set_column_vector(0.0f, 0.0f, 0.0f, 0.0f, 2);
+
+    Mat4f exp{1.0f, 2.0f, 0.0f, 4.0f,
+              5.0f, 6.0f, 0.0f, 8.0f,
+              9.0f, 10.0f, 0.0f, 12.0f,
+              13.0f, 14.0f, 0.0f, 16.0f};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_set_column_vector_with_vector_param)
+{
+    m1.set_column_vector(Vec4f{0.0f, 0.0f, 0.0f, 0.0f}, 1);
+
+    Mat4f exp{1.0f, 0.0f, 3.0f, 4.0f,
+              5.0f, 0.0f, 7.0f, 8.0f,
+              9.0f, 0.0f, 11.0f, 12.0f,
+              13.0f, 0.0f, 15.0f, 16.0f};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_set_column_vector_with_array_param)
+{
+    float arr[]{0.0f, 0.0f, 0.0f, 0.0f};
+
+    m1.set_column_vector(arr, 0);
+
+    Mat4f exp{0.0f, 2.0f, 3.0f, 4.0f,
+              0.0f, 6.0f, 7.0f, 8.0f,
+              0.0f, 10.0f, 11.0f, 12.0f,
+              0.0f, 14.0f, 15.0f, 16.0f};
+}
+
+TEST_F(Matrix4Fixture, test_set_column_vector_with_pointer_param)
+{
+    float *v = new float[4];
+
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 0.0f;
+
+    m1.set_column_vector(v, 3);
+
+    Mat4f exp{1.0f, 2.0f, 3.0f, 0.0f,
+              5.0f, 6.0f, 7.0f, 0.0f,
+              9.0f, 10.0f, 11.0f, 0.0f,
+              13.0f, 14.0f, 15.0f, 0.0f};
+
+    expect_matrixf_eq(m1, exp);
+
+    delete[] v;
+}
+
 TEST_F(Matrix4Fixture, test_translate_with_coordinate_param)
 {
     m1.translate(1.0f, 1.0f, 1.0f);
 
-    Mat4f exp = Mat4f{1.0f, 2.0f, 3.0f, 10.0f,
-                      5.0f, 6.0f, 7.0f, 26.0f,
-                      9.0f, 10.0f, 11.0f, 42.0f,
-                      13.0f, 14.0f, 15.0f, 58.0f};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -48,10 +164,10 @@ TEST_F(Matrix4Fixture, test_translate_with_vector_param)
 {
     m1.translate(Vec3f{1.0f, 1.0f, 1.0f});
 
-    Mat4f exp = Mat4f{1.0f, 2.0f, 3.0f, 10.0f,
-                      5.0f, 6.0f, 7.0f, 26.0f,
-                      9.0f, 10.0f, 11.0f, 42.0f,
-                      13.0f, 14.0f, 15.0f, 58.0f};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -61,22 +177,42 @@ TEST_F(Matrix4Fixture, test_translate_with_array_param)
     float arr[]{1.0f, 1.0f, 1.0};
     m1.translate(arr);
 
-    Mat4f exp = Mat4f{1.0f, 2.0f, 3.0f, 10.0f,
-                      5.0f, 6.0f, 7.0f, 26.0f,
-                      9.0f, 10.0f, 11.0f, 42.0f,
-                      13.0f, 14.0f, 15.0f, 58.0f};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
 
     expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_translate_with_pointer_param)
+{
+    float *v = new float[3];
+
+    v[0] = 1.0f;
+    v[1] = 1.0f;
+    v[2] = 1.0f;
+
+    m1.translate(v);
+
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
+
+    expect_matrixf_eq(m1, exp);
+
+    delete[] v;
 }
 
 TEST_F(Matrix4Fixture, test_translated_with_coordinate_param)
 {
     Mat4f res = m1.translated(1.0f, 1.0f, 1.0f);
 
-    Mat4f exp = Mat4f{1.0f, 2.0f, 3.0f, 10.0f,
-                      5.0f, 6.0f, 7.0f, 26.0f,
-                      9.0f, 10.0f, 11.0f, 42.0f,
-                      13.0f, 14.0f, 15.0f, 58.0f};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -85,10 +221,10 @@ TEST_F(Matrix4Fixture, test_tranlated_with_vector_param)
 {
     Mat4f res = m1.translated(Vec3f{1.0f, 1.0f, 1.0f});
 
-    Mat4f exp = Mat4f{1.0f, 2.0f, 3.0f, 10.0f,
-                      5.0f, 6.0f, 7.0f, 26.0f,
-                      9.0f, 10.0f, 11.0f, 42.0f,
-                      13.0f, 14.0f, 15.0f, 58.0f};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -98,22 +234,42 @@ TEST_F(Matrix4Fixture, test_translated_with_array_param)
     float arr[]{1.0f, 1.0f, 1.0f};
     Mat4f res = m1.translated(arr);
 
-    Mat4f exp = Mat4f{1.0f, 2.0f, 3.0f, 10.0f,
-                      5.0f, 6.0f, 7.0f, 26.0f,
-                      9.0f, 10.0f, 11.0f, 42.0f,
-                      13.0f, 14.0f, 15.0f, 58.0f};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
 
     expect_matrixf_eq(res, exp);
+}
+
+TEST_F(Matrix4Fixture, test_translated_with_pointer_param)
+{
+    float *v = new float[3];
+
+    v[0] = 1.0f;
+    v[1] = 1.0f;
+    v[2] = 1.0f;
+
+    Mat4f res = m1.translated(v);
+
+    Mat4f exp{1.0f, 2.0f, 3.0f, 10.0f,
+              5.0f, 6.0f, 7.0f, 26.0f,
+              9.0f, 10.0f, 11.0f, 42.0f,
+              13.0f, 14.0f, 15.0f, 58.0f};
+
+    expect_matrixf_eq(res, exp);
+
+    delete[] v;
 }
 
 TEST_F(Matrix4Fixture, test_set_translation_with_coordinate_param)
 {
     m1.set_translation(1.0f, 1.0f, 1.0f);
 
-    Mat4f exp = Mat4f{1, 2, 3, 1,
-                      5, 6, 7, 1,
-                      9, 10, 11, 1,
-                      13, 14, 15, 1};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 1.0f,
+              5.0f, 6.0f, 7.0f, 1.0f,
+              9.0f, 10.0f, 11.0f, 1.0f,
+              13.0f, 14.0f, 15.0f, 1.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -122,10 +278,10 @@ TEST_F(Matrix4Fixture, test_set_translation_with_vector_param)
 {
     m1.set_translation(Vec3f{1.0f, 1.0f, 1.0f});
 
-    Mat4f exp = Mat4f{1, 2, 3, 1,
-                      5, 6, 7, 1,
-                      9, 10, 11, 1,
-                      13, 14, 15, 1};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 1.0f,
+              5.0f, 6.0f, 7.0f, 1.0f,
+              9.0f, 10.0f, 11.0f, 1.0f,
+              13.0f, 14.0f, 15.0f, 1.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -135,22 +291,42 @@ TEST_F(Matrix4Fixture, test_set_translation_with_array_param)
     float arr[]{1.0f, 1.0f, 1.0f};
     m1.set_translation(arr);
 
-    Mat4f exp = Mat4f{1, 2, 3, 1,
-                      5, 6, 7, 1,
-                      9, 10, 11, 1,
-                      13, 14, 15, 1};
+    Mat4f exp{1.0f, 2.0f, 3.0f, 1.0f,
+              5.0f, 6.0f, 7.0f, 1.0f,
+              9.0f, 10.0f, 11.0f, 1.0f,
+              13.0f, 14.0f, 15.0f, 1.0f};
 
     expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_set_translation_with_pointer_param)
+{
+    float *v = new float[3];
+
+    v[0] = 1.0f;
+    v[1] = 1.0f;
+    v[2] = 1.0f;
+
+    m1.set_translation(v);
+
+    Mat4f exp{1.0f, 2.0f, 3.0f, 1.0f,
+              5.0f, 6.0f, 7.0f, 1.0f,
+              9.0f, 10.0f, 11.0f, 1.0f,
+              13.0f, 14.0f, 15.0f, 1.0f};
+
+    expect_matrixf_eq(m1, exp);
+
+    delete[] v;
 }
 
 TEST_F(Matrix4Fixture, test_scale_with_coordinate_param)
 {
     m1.scale(2.0f, 2.0f, 2.0f, 2.0f);
 
-    Mat4f exp = Mat4f{2.0f, 4.0f, 6.0f, 8.0f,
-                      10.0f, 12.0f, 14.0f, 16.0f,
-                      18.0f, 20.0f, 22.0f, 24.0f,
-                      26.0f, 28.0f, 30.0f, 32.0f};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -159,10 +335,10 @@ TEST_F(Matrix4Fixture, test_scale_with_vector_param)
 {
     m1.scale(Vec4f{2.0f, 2.0f, 2.0f, 2.0f});
 
-    Mat4f exp = Mat4f{2.0f, 4.0f, 6.0f, 8.0f,
-                      10.0f, 12.0f, 14.0f, 16.0f,
-                      18.0f, 20.0f, 22.0f, 24.0f,
-                      26.0f, 28.0f, 30.0f, 32.0f};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -172,22 +348,43 @@ TEST_F(Matrix4Fixture, test_scale_with_array_param)
     float arr[]{2.0f, 2.0f, 2.0f, 2.0f};
     m1.scale(arr);
 
-    Mat4f exp = Mat4f{2.0f, 4.0f, 6.0f, 8.0f,
-                      10.0f, 12.0f, 14.0f, 16.0f,
-                      18.0f, 20.0f, 22.0f, 24.0f,
-                      26.0f, 28.0f, 30.0f, 32.0f};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix4Fixture, test_scale_with_pointer_param)
+{
+    float *v = new float[4];
+
+    v[0] = 2.0f;
+    v[1] = 2.0f;
+    v[2] = 2.0f;
+    v[3] = 2.0f;
+
+    m1.scale(v);
+
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
+
+    expect_matrixf_eq(m1, exp);
+
+    delete[] v;
 }
 
 TEST_F(Matrix4Fixture, test_scaled_with_coordinate_param)
 {
     Mat4f res = m1.scaled(2.0f, 2.0f, 2.0f, 2.0f);
 
-    Mat4f exp = Mat4f{2.0f, 4.0f, 6.0f, 8.0f,
-                      10.0f, 12.0f, 14.0f, 16.0f,
-                      18.0f, 20.0f, 22.0f, 24.0f,
-                      26.0f, 28.0f, 30.0f, 32.0f};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -196,10 +393,10 @@ TEST_F(Matrix4Fixture, test_scaled_with_vector_param)
 {
     Mat4f res = m1.scaled(Vec4f{2.0f, 2.0f, 2.0f, 2.0f});
 
-    Mat4f exp = Mat4f{2.0f, 4.0f, 6.0f, 8.0f,
-                      10.0f, 12.0f, 14.0f, 16.0f,
-                      18.0f, 20.0f, 22.0f, 24.0f,
-                      26.0f, 28.0f, 30.0f, 32.0f};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -209,22 +406,43 @@ TEST_F(Matrix4Fixture, test_scaled_with_array_param)
     float arr[]{2.0f, 2.0f, 2.0f, 2.0f};
     Mat4f res = m1.scaled(arr);
 
-    Mat4f exp = Mat4f{2.0f, 4.0f, 6.0f, 8.0f,
-                      10.0f, 12.0f, 14.0f, 16.0f,
-                      18.0f, 20.0f, 22.0f, 24.0f,
-                      26.0f, 28.0f, 30.0f, 32.0f};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(res, exp);
 }
 
-TEST_F(Matrix4Fixture, test_set_scaling_with_coordinate_params)
+TEST_F(Matrix4Fixture, test_scaled_with_pointer_param)
+{
+    float *v = new float[4];
+
+    v[0] = 2.0f;
+    v[1] = 2.0f;
+    v[2] = 2.0f;
+    v[3] = 2.0f;
+
+    Mat4f res = m1.scaled(v);
+
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
+
+    expect_matrixf_eq(res, exp);
+
+    delete[] v;
+}
+
+TEST_F(Matrix4Fixture, test_set_scaling_with_coordinate_param)
 {
     m1.set_scaling(2.0f, 2.0f, 2.0f, 2.0f);
 
-    Mat4f exp = Mat4f{2.0f, 2.0f, 3.0f, 4.0f,
-                      5.0f, 2.0f, 7.0f, 8.0f,
-                      9.0f, 10.0f, 2.0f, 12.0f,
-                      13.0f, 14.0f, 15.0f, 2.0f};
+    Mat4f exp{2.0f, 2.0f, 3.0f, 4.0f,
+              5.0f, 2.0f, 7.0f, 8.0f,
+              9.0f, 10.0f, 2.0f, 12.0f,
+              13.0f, 14.0f, 15.0f, 2.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -233,10 +451,10 @@ TEST_F(Matrix4Fixture, test_set_scaling_with_vector_param)
 {
     m1.set_scaling(Vec4f{2.0f, 2.0f, 2.0f, 2.0f});
 
-    Mat4f exp = Mat4f{2.0f, 2.0f, 3.0f, 4.0f,
-                      5.0f, 2.0f, 7.0f, 8.0f,
-                      9.0f, 10.0f, 2.0f, 12.0f,
-                      13.0f, 14.0f, 15.0f, 2.0f};
+    Mat4f exp{2.0f, 2.0f, 3.0f, 4.0f,
+              5.0f, 2.0f, 7.0f, 8.0f,
+              9.0f, 10.0f, 2.0f, 12.0f,
+              13.0f, 14.0f, 15.0f, 2.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -254,14 +472,35 @@ TEST_F(Matrix4Fixture, test_set_scaling_with_array_param)
     expect_matrixf_eq(m1, exp);
 }
 
+TEST_F(Matrix4Fixture, test_set_scaling_with_pointer_param)
+{
+    float *v = new float[4];
+
+    v[0] = 2.0f;
+    v[1] = 2.0f;
+    v[2] = 2.0f;
+    v[3] = 2.0f;
+
+    m1.set_scaling(v);
+
+    Mat4f exp = Mat4f{2.0f, 2.0f, 3.0f, 4.0f,
+                      5.0f, 2.0f, 7.0f, 8.0f,
+                      9.0f, 10.0f, 2.0f, 12.0f,
+                      13.0f, 14.0f, 15.0f, 2.0f};
+
+    expect_matrixf_eq(m1, exp);
+
+    delete[] v;
+}
+
 TEST_F(Matrix4Fixture, test_transpose)
 {
     m1.transpose();
 
-    Mat4f exp{1, 5, 9, 13,
-              2, 6, 10, 14,
-              3, 7, 11, 15,
-              4, 8, 12, 16};
+    Mat4f exp{1.0f, 5.0f, 9.0f, 13.0f,
+              2.0f, 6.0f, 10.0f, 14.0f,
+              3.0f, 7.0f, 11.0f, 15.0f,
+              4.0f, 8.0f, 12.0f, 16.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -270,10 +509,10 @@ TEST_F(Matrix4Fixture, test_transposed)
 {
     Mat4f res{m1.transposed()};
 
-    Mat4f exp{1, 5, 9, 13,
-              2, 6, 10, 14,
-              3, 7, 11, 15,
-              4, 8, 12, 16};
+    Mat4f exp{1.0f, 5.0f, 9.0f, 13.0f,
+              2.0f, 6.0f, 10.0f, 14.0f,
+              3.0f, 7.0f, 11.0f, 15.0f,
+              4.0f, 8.0f, 12.0f, 16.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -306,40 +545,40 @@ TEST_F(Matrix4Fixture, test_operator_matrix_assignment_matrix3)
 
     m1 = m;
 
-    Mat4f exp{1, 0, 0, 4,
-              0, 1, 0, 8,
-              0, 0, 1, 12,
-              13, 14, 15, 16};
+    Mat4f exp{1.0f, 0.0f, 0.0f, 4.0f,
+              0.0f, 1.0f, 0.0f, 8.0f,
+              0.0f, 0.0f, 1.0f, 12.0f,
+              13.0f, 14.0f, 15.0f, 16.0f};
 
     expect_matrixf_eq(m1, exp);
 }
 
 TEST_F(Matrix4Fixture, test_operator_matrix_plus_matrix)
 {
-    Mat4f res{m1 + Mat4f{1, 1, 1, 1,
-                         1, 1, 1, 1,
-                         1, 1, 1, 1,
-                         1, 1, 1, 1}};
+    Mat4f res{m1 + Mat4f{1.0f, 1.0f, 1.0f, 1.0f,
+                         1.0f, 1.0f, 1.0f, 1.0f,
+                         1.0f, 1.0f, 1.0f, 1.0f,
+                         1.0f, 1.0f, 1.0f, 1.0f}};
 
-    Mat4f exp{2, 3, 4, 5,
-              6, 7, 8, 9,
-              10, 11, 12, 13,
-              14, 15, 16, 17};
+    Mat4f exp{2.0f, 3.0f, 4.0f, 5.0f,
+              6.0f, 7.0f, 8.0f, 9.0f,
+              10.0f, 11.0f, 12.0f, 13.0f,
+              14.0f, 15.0f, 16.0f, 17.0f};
 
     expect_matrixf_eq(res, exp);
 }
 
 TEST_F(Matrix4Fixture, test_operator_matrix_minus_matrix)
 {
-    Mat4f res{m1 - Mat4f{1, 1, 1, 1,
-                         1, 1, 1, 1,
-                         1, 1, 1, 1,
-                         1, 1, 1, 1}};
+    Mat4f res{m1 - Mat4f{1.0f, 1.0f, 1.0f, 1.0f,
+                         1.0f, 1.0f, 1.0f, 1.0f,
+                         1.0f, 1.0f, 1.0f, 1.0f,
+                         1.0f, 1.0f, 1.0f, 1.0f}};
 
-    Mat4f exp{0, 1, 2, 3,
-              4, 5, 6, 7,
-              8, 9, 10, 11,
-              12, 13, 14, 15};
+    Mat4f exp{0.0f, 1.0f, 2.0f, 3.0f,
+              4.0f, 5.0f, 6.0f, 7.0f,
+              8.0f, 9.0f, 10.0f, 11.0f,
+              12.0f, 13.0f, 14.0f, 15.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -358,30 +597,30 @@ TEST_F(Matrix4Fixture, test_operator_matrix_mult_matrix)
 
 TEST_F(Matrix4Fixture, test_operator_matrix_plus_equals_matrix)
 {
-    m1 += Mat4f{1, 1, 1, 1,
-                1, 1, 1, 1,
-                1, 1, 1, 1,
-                1, 1, 1, 1};
+    m1 += Mat4f{1.0f, 1.0f, 1.0f, 1.0f,
+                1.0f, 1.0f, 1.0f, 1.0f,
+                1.0f, 1.0f, 1.0f, 1.0f,
+                1.0f, 1.0f, 1.0f, 1.0f};
 
-    Mat4f exp{2, 3, 4, 5,
-              6, 7, 8, 9,
-              10, 11, 12, 13,
-              14, 15, 16, 17};
+    Mat4f exp{2.0f, 3.0f, 4.0f, 5.0f,
+              6.0f, 7.0f, 8.0f, 9.0f,
+              10.0f, 11.0f, 12.0f, 13.0f,
+              14.0f, 15.0f, 16.0f, 17.0f};
 
     expect_matrixf_eq(m1, exp);
 }
 
 TEST_F(Matrix4Fixture, test_operator_matrix_minus_equals_matrix)
 {
-    m1 -= Mat4f{1, 1, 1, 1,
-                1, 1, 1, 1,
-                1, 1, 1, 1,
-                1, 1, 1, 1};
+    m1 -= Mat4f{1.0f, 1.0f, 1.0f, 1.0f,
+                1.0f, 1.0f, 1.0f, 1.0f,
+                1.0f, 1.0f, 1.0f, 1.0f,
+                1.0f, 1.0f, 1.0f, 1.0f};
 
-    Mat4f exp{0, 1, 2, 3,
-              4, 5, 6, 7,
-              8, 9, 10, 11,
-              12, 13, 14, 15};
+    Mat4f exp{0.0f, 1.0f, 2.0f, 3.0f,
+              4.0f, 5.0f, 6.0f, 7.0f,
+              8.0f, 9.0f, 10.0f, 11.0f,
+              12.0f, 13.0f, 14.0f, 15.0f};
 
     expect_matrixf_eq(m1, exp);
 }
@@ -390,10 +629,10 @@ TEST_F(Matrix4Fixture, test_operator_matrix_plus_scalar)
 {
     Mat4f res{m1 + 1.0f};
 
-    Mat4f exp{2, 3, 4, 5,
-              6, 7, 8, 9,
-              10, 11, 12, 13,
-              14, 15, 16, 17};
+    Mat4f exp{2.0f, 3.0f, 4.0f, 5.0f,
+              6.0f, 7.0f, 8.0f, 9.0f,
+              10.0f, 11.0f, 12.0f, 13.0f,
+              14.0f, 15.0f, 16.0f, 17.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -402,10 +641,10 @@ TEST_F(Matrix4Fixture, test_operator_matrix_minus_scalar)
 {
     Mat4f res{m1 - 1.0f};
 
-    Mat4f exp{0, 1, 2, 3,
-              4, 5, 6, 7,
-              8, 9, 10, 11,
-              12, 13, 14, 15};
+    Mat4f exp{0.0f, 1.0f, 2.0f, 3.0f,
+              4.0f, 5.0f, 6.0f, 7.0f,
+              8.0f, 9.0f, 10.0f, 11.0f,
+              12.0f, 13.0f, 14.0f, 15.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -414,10 +653,10 @@ TEST_F(Matrix4Fixture, test_operator_matrix_mult_scalar)
 {
     Mat4f res{m1 * 2.0f};
 
-    Mat4f exp{2, 4, 6, 8,
-              10, 12, 14, 16,
-              18, 20, 22, 24,
-              26, 28, 30, 32};
+    Mat4f exp{2.0f, 4.0f, 6.0f, 8.0f,
+              10.0f, 12.0f, 14.0f, 16.0f,
+              18.0f, 20.0f, 22.0f, 24.0f,
+              26.0f, 28.0f, 30.0f, 32.0f};
 
     expect_matrixf_eq(res, exp);
 }
@@ -434,7 +673,7 @@ TEST_F(Matrix4Fixture, test_operator_matrix_not_equals_matrix)
 {
     Mat4f mat;
     Mat4f exp;
-    exp.set_row_vector(Vec4f{1, 2, 3, 4}, 0);
+    exp.set_row_vector(Vec4f{1.0f, 2.0f, 3.0f, 4.0f}, 0);
 
     EXPECT_TRUE(mat != exp);
 }
@@ -442,9 +681,9 @@ TEST_F(Matrix4Fixture, test_operator_matrix_not_equals_matrix)
 TEST_F(Matrix4Fixture, test_operator_matrix_mult_vector4)
 {
     Mat4f mat;
-    mat.translate(Vec3f{1, 1, 1});
+    mat.translate(Vec3f{1.0f, 1.0f, 1.0f});
 
-    Vec4f res{mat * Vec4f{1, 1, 1, 1}};
+    Vec4f res{mat * Vec4f{1.0f, 1.0f, 1.0f, 1.0f}};
 
     EXPECT_FLOAT_EQ(res.x, 2.0f);
     EXPECT_FLOAT_EQ(res.y, 2.0f);

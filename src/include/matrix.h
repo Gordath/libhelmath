@@ -427,6 +427,23 @@ public:
     }
 
     /**
+     * Set's the matrix's row vector at the specified index.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are asigned to the
+     * matrix row.
+     * @param idx The index of the row in the matrix.
+     * @overload set_row_vector(const T *v, const unsigned int idx)
+     */
+    inline void set_row_vector(const T *v, const unsigned int idx)
+    {
+        for (int i = 0; i < 3; ++i) {
+            data[idx][i] = v[i];
+        }
+    }
+
+    /**
      * Sets the matrix's column vector at the specified index.
      * @param x The first value of the column.
      * @param y The second value of the column.
@@ -460,6 +477,23 @@ public:
      * @overload set_column_vector(const T (&v)[3], const unsigned int idx)
      */
     inline void set_column_vector(const T (&v)[3], const unsigned int idx)
+    {
+        for (int i = 0; i < 3; ++i) {
+            data[i][idx] = v[i];
+        }
+    }
+
+    /**
+     * Sets the matrix's column vector at the specified index.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are assigned
+     * to the matrix's column.
+     * @param idx The index of the column in the matrix.
+     * @overload set_column_vector(const T *v, const unsigned int idx)
+     */
+    inline void set_column_vector(const T *v, const unsigned int idx)
     {
         for (int i = 0; i < 3; ++i) {
             data[i][idx] = v[i];
@@ -531,6 +565,24 @@ public:
     }
 
     /**
+     * Applies a translation to the matrix.
+     * @warning This function requires enough memory allocated for at least 2 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are used
+     * to apply the translation to the matrix.
+     * @overload translate(const T *v)
+     */
+    inline void translate(const T *v)
+    {
+        Matrix3<T> trans_mat{1, 0, v[0],
+                             0, 1, v[1],
+                             0, 0, 1};
+
+        *this = *this * trans_mat;
+    }
+
+    /**
      * Applies a translation to the matrix and returns a new matrix instance.
      * @param x The x coordinate.
      * @param y The y coordinate.
@@ -578,6 +630,25 @@ public:
     }
 
     /**
+     * Applies a translation to the matrix and returns a new matrix instance.
+     * @warning This function requires enough memory allocated for at least 2 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are used as
+     * a tranlsation for the matrix.
+     * @return A new Matrix3 instance as the result of the translation.
+     * @overload translated(const T *v) const
+     */
+    inline Matrix3<T> translated(const T *v) const
+    {
+        Matrix3<T> trans_mat{1, 0, v[0],
+                             0, 1, v[1],
+                             0, 0, 1};
+
+        return *this * trans_mat;
+    }
+
+    /**
      * Sets a translation to the matrix.
      * @note Replaces any previous translations applied to the matrix.
      * @param x The x coordinate.
@@ -607,6 +678,20 @@ public:
      * @overload set_translation(const T (&v)[2])
      */
     inline void set_translation(const T (&v)[2])
+    {
+        set_column_vector(v[0], v[1], 1, 2);
+    }
+
+    /**
+     * Sets a translation to the matrix.
+     * @note Replaces an previous translations applied to the matrix.
+     * @warning This function requires enough memory allocated for at least 2 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v An array of size 2 whose values are set as the translation.
+     * @overload set_translation(const T *v)
+     */
+    inline void set_translation(const T *v)
     {
         set_column_vector(v[0], v[1], 1, 2);
     }
@@ -645,13 +730,35 @@ public:
      * Applies scaling to the matrix.
      * @param v An array of size 3 whose values are applied as scaling
      * to the respective axis.
-     * @note The idex order maps to the coordinates in the following way:
+     * @note The index order maps to the coordinates in the following way:
      * @li 0 --> x
      * @li 1 --> y
      * @li 2 --> z
      * @overload scale(const T (&v)[3])
      */
     inline void scale(const T (&v)[3])
+    {
+        Matrix3<T> scale_mat{v[0], 0, 0,
+                             0, v[1], 0,
+                             0, 0, v[2]};
+
+        *this = *this * scale_mat;
+    }
+
+    /**
+     * Applies scaling to the matrix.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are applied as scaling
+     * to the respective axis.
+     * @note The index order maps to the coordinates in the following way:
+     * @li 0 --> x
+     * @li 1 --> y
+     * @li 2 --> z
+     * @overload scale(const T *v)
+     */
+    inline void scale(const T *v)
     {
         Matrix3<T> scale_mat{v[0], 0, 0,
                              0, v[1], 0,
@@ -709,6 +816,25 @@ public:
     }
 
     /**
+     * Applies scaling to the matrix
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are used
+     * for scaling each corresponding axis.
+     * @return A new scaled Matrix3 instance.
+     * @overload scaled(const T *v) const
+     */
+    inline Matrix3<T> scaled(const T *v) const
+    {
+        Matrix3<T> scale_mat{v[0], 0, 0,
+                             0, v[1], 0,
+                             0, 0, v[2]};
+
+        return *this * scale_mat;
+    }
+
+    /**
      * Sets scaling to the matrix.
      * @note Replaces any previous scaling applied to the matrix.
      * @param x The scale on the x axis.
@@ -742,6 +868,22 @@ public:
      * @overload set_scaling(const T (&v)[3])
      */
     inline void set_scaling(const T (&v)[3])
+    {
+        data[0][0] = v[0];
+        data[1][1] = v[1];
+        data[2][2] = v[2];
+    }
+
+    /**
+     * Sets scaling to the matrix
+     * @note Replaces any previous scaling applied to the matrix.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array.
+     * @overload set_scaling(const T *v)
+     */
+    inline void set_scaling(const T *v)
     {
         data[0][0] = v[0];
         data[1][1] = v[1];
@@ -1334,6 +1476,23 @@ public:
     }
 
     /**
+     * Sets the matrix's row vector at the specified index.
+     * @warning This function requires enough memory allocated for at least 4 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are assigned to
+     * the matrix row.
+     * @param idx The index of the row in the matrix.
+     * @overload set_row_vector(const T *v, const unsigned int idx)
+     */
+    inline void set_row_vector(const T *v, const unsigned int idx)
+    {
+        for (int i = 0; i < 4; ++i) {
+            data[idx][i] = v[i];
+        }
+    }
+
+    /**
      * Sets the matrix's column vector at the specified index.
      * @param x The first value of the column.
      * @param y The second value of the column.
@@ -1369,6 +1528,23 @@ public:
      * @overload set_column_vector(const T (&v)[4], const unsigned int idx)
      */
     inline void set_column_vector(const T (&v)[4], const unsigned int idx)
+    {
+        for (int i = 0; i < 4; ++i) {
+            data[i][idx] = v[i];
+        }
+    }
+
+    /**
+     * Sets the matrix's column vector at the specified index.
+     * @warning This function requires enough memory allocated for at least 4 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are assigned
+     * to the matrix column.
+     * @param idx The index of the column in the matrix.
+     * @overload set_column_vector(const T *v, const unsigned int idx)
+     */
+    inline void set_column_vector(const T *v, const unsigned int idx)
     {
         for (int i = 0; i < 4; ++i) {
             data[i][idx] = v[i];
@@ -1444,6 +1620,27 @@ public:
     }
 
     /**
+     * Applies a translation to the matrix.
+     * @details Applies a translation to the matrix
+     * using matrix multiplication.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are used
+     * to apply the translation to the matrix.
+     * @overload translate(const T *v)
+     */
+    inline void translate(const T *v)
+    {
+        Matrix4<T> trans_mat{1, 0, 0, v[0],
+                             0, 1, 0, v[1],
+                             0, 0, 1, v[2],
+                             0, 0, 0, 1};
+
+        *this = *this * trans_mat;
+    }
+
+    /**
      * Applies a translation to the matrix and returns a new matrix instance.
      * @param x The x coordinate.
      * @param y The y coordinate.
@@ -1495,6 +1692,26 @@ public:
     }
 
     /**
+     * Applies a translation to the matrix and returns a new matrix instance.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are used as
+     * a translation for the matrix.
+     * @return A new Matrix4 instance as the result of the translation.
+     * @overload translated(const T *v) const
+     */
+    inline Matrix4<T> translated(const T *v) const
+    {
+        Matrix4<T> trans_mat{1, 0, 0, v[0],
+                             0, 1, 0, v[1],
+                             0, 0, 1, v[2],
+                             0, 0, 0, 1};
+
+        return *this * trans_mat;
+    }
+
+    /**
      * Sets a translation to the matrix.
      * @note Replaces any previous translations applied to the matrix.
      * @param x The x coordinate.
@@ -1525,6 +1742,21 @@ public:
      * @overload set_translation(const T (&v)[3])
      */
     inline void set_translation(const T (&v)[3])
+    {
+        set_column_vector(v[0], v[1], v[2], 1, 3);
+    }
+
+    /**
+     * Sets a translation to the matrix.
+     * @note Replaces any previous translations applied to the matrix.
+     * @warning This function requires enough memory allocated for at least 3 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are set as
+     * the translation.
+     * @overload set_translation(const T *v)
+     */
+    inline void set_translation(const T *v)
     {
         set_column_vector(v[0], v[1], v[2], 1, 3);
     }
@@ -1564,7 +1796,7 @@ public:
 
     /**
      * Applies scaling to the matrix.
-     * @param v An array of size 3 whose values are applied as scaling
+     * @param v An array of size 4 whose values are applied as scaling
      * to the respective axis.
      * @note The idex order maps to the coordinates in the following way:
      * @li 0 --> x
@@ -1574,6 +1806,30 @@ public:
      * @overload scale(const T (&v)[4])
      */
     inline void scale(const T (&v)[4])
+    {
+        Matrix4<T> scale_mat{v[0], 0, 0, 0,
+                             0, v[1], 0, 0,
+                             0, 0, v[2], 0,
+                             0, 0, 0, v[3]};
+
+        *this *= scale_mat;
+    }
+
+    /**
+     * Applies scaling to the matrix.
+     * @warning This function requires enough memory allocated for at least 4 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are
+     * applied as scaling to the respective axis.
+     * @note The idex order maps to the coordinates in the following way:
+     * @li 0 --> x
+     * @li 1 --> y
+     * @li 2 --> z
+     * @li 3 --> w
+     * @overload scale(const T *v)
+     */
+    inline void scale(const T *v)
     {
         Matrix4<T> scale_mat{v[0], 0, 0, 0,
                              0, v[1], 0, 0,
@@ -1636,6 +1892,26 @@ public:
     }
 
     /**
+     * Applies scaling to the matrix.
+     * @warning This function requires enough memory allocated for at least 4 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are used
+     * for scaling each corresponding axis.
+     * @return A new scaled Matrix4 instance.
+     * @overload scaled(const T *v) const
+     */
+    inline Matrix4<T> scaled(const T *v) const
+    {
+        Matrix4<T> scale_mat{v[0], 0, 0, 0,
+                             0, v[1], 0, 0,
+                             0, 0, v[2], 0,
+                             0, 0, 0, v[3]};
+
+        return *this * scale_mat;
+    }
+
+    /**
      * Sets scaling to the matrix.
      * @note Replaces any previous scaling applied to the matrix.
      * @param x The scale on the x axis.
@@ -1671,6 +1947,23 @@ public:
      * @overload set_scaling(const T (&v)[4])
      */
     inline void set_scaling(const T (&v)[4])
+    {
+        for (int i = 0; i < 4; ++i) {
+            data[i][i] = v[i];
+        }
+    }
+
+    /**
+     * Sets scaling to the matrix.
+     * @note Replaces any previous scaling applied to the matrix.
+     * @warning This function requires enough memory allocated for at least 4 numeric values.
+     * If less memory is allocated, this function will cause the program to
+     * crash with a segmentation fault.
+     * @param v A pointer to the start of an array whose values are
+     * set as scaling.
+     * @overload set_scaling(const T *v)
+     */
+    inline void set_scaling(const T *v)
     {
         for (int i = 0; i < 4; ++i) {
             data[i][i] = v[i];
