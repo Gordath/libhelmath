@@ -119,7 +119,7 @@ public:
      */
     inline double length() const
     {
-        return std::sqrt(x * x + y * y);
+        return sqrt(x * x + y * y);
     }
 
     /**
@@ -222,6 +222,39 @@ public:
     inline Vector2<T> reflected(const Vector2<T> normal) const
     {
         return *this - normal * 2 * dot(normal);
+    }
+
+    /**
+     * Transforms the vector by a four dimensional matrix.
+     * @param mat The four dimensional matrix the vector is going to be
+     * transformed by.
+     */
+    inline void transform(const Matrix4<T> &mat)
+    {
+        //TODO: Test this.
+        float x = x;
+
+        for (int i = 0; i < 2; ++i) {
+            v[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] + mat[i][3];
+        }
+    }
+
+    /**
+     * Transforms the vector by a four dimensional matrix.
+     * @param mat The four dimensional matrix the vector is going to be
+     * transformed with.
+     * @return A new instance of the vector transformed by the matrix.
+     */
+    inline Vector2<T> transformed(const Matrix4<T> &mat)
+    {
+        //TODO: Test this.
+        Vector2<T> res{*this};
+
+        for (int i = 0; i < 2; ++i) {
+            res[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] + mat[i][3];
+        }
+
+        return res;
     }
 
     /**
@@ -431,7 +464,7 @@ public:
      * @param idx
      * @return The vector value at the specified array index.
      */
-    inline T operator[](int idx)
+    inline T &operator[](int idx)
     {
         return v[idx];
     }
@@ -443,7 +476,7 @@ public:
      * @param idx
      * @return The vector value at the specified array index.
      */
-    inline const T operator[](int idx) const
+    inline const T &operator[](int idx) const
     {
         return v[idx];
     }
@@ -627,7 +660,7 @@ public:
      */
     inline double length() const
     {
-        return std::sqrt(x * x + y * y + z * z);
+        return sqrt(x * x + y * y + z * z);
     }
 
     /**
@@ -750,8 +783,8 @@ public:
      */
     inline void transform(const Matrix4<T> &mat)
     {
-        float x = v[0];
-        float y = v[1];
+        float x = this->x;
+        float y = this->y;
 
         for (int i = 0; i < 3; ++i) {
             v[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] * z + mat[i][3];
@@ -1293,9 +1326,9 @@ public:
      */
     inline void transform(const Matrix4<T> &mat)
     {
-        float x = v[0];
-        float y = v[1];
-        float z = v[2];
+        float x = this->x;
+        float y = this->y;
+        float z = this->z;
 
         for (int i = 0; i < 4; ++i) {
             v[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] * z + mat[i][3] * w;
@@ -1628,6 +1661,141 @@ using Vec4ll = Vector4<long long>;
 using Vec4ull = Vector4<unsigned long long>;
 
 /**
+ * Calculates the length (magnitude) of the vector.
+ * @param v The vector whose length will be calculated.
+ * @return The vector's length as a double precision floating point number.
+ */
+template<typename T>
+inline double length(const Vector2<T> &v)
+{
+    return sqrt(v.x * v.x + v.y * v.y);
+}
+
+/**
+ * Calculates the length (magnitude) of the vector.
+ * @param v The vector whose length will be calculated.
+ * @return The vector's length as a double precision floating point number.
+ */
+template<typename T>
+inline double length(const Vector3<T> &v)
+{
+    return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+}
+
+/**
+ * Calculates the length (magnitude) of the vector.
+ * @param v The vector whose length will be calculated.
+ * @return The vector's length as a double precision floating point number.
+ */
+template<typename T>
+inline double length(const Vector4<T> &v)
+{
+    return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
+}
+
+/**
+ * Calculates the length (magnitude) of the vector.
+ * @param v The vector whose length will be calculated.
+ * @return The vector's length as a floating point number.
+ */
+template<typename T>
+inline float lengthf(const Vector2<T> &v)
+{
+    return sqrtf(v.x * v.x + v.y * v.y);
+}
+
+/**
+ * Calculates the length (magnitude) of the vector.
+ * @param v The vector whose length will be calculated.
+ * @return The vector's length as a floating point number.
+ */
+template<typename T>
+inline float lengthf(const Vector3<T> &v)
+{
+    return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+}
+
+/**
+ * Calculates the length (magnitude) of the vector.
+ * @param v The vector whose length will be calculated.
+ * @return The vector's length as a floating point number.
+ */
+template<typename T>
+inline float lengthf(const Vector4<T> &v)
+{
+    return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
+}
+
+/**
+ * Calculates the squared length (magnitude) of the vector.
+ * @param v The vector whose squared length will be calculated.
+ * @return The vector's squared length as a double precision
+ * floating point number.
+ */
+template<typename T>
+inline double length_sqrd(const Vector2<T> &v)
+{
+    return v.x * v.x + v.y * v.y;
+}
+
+/**
+ * Calculates the squared length (magnitude) of the vector.
+ * @param v The vector whose squared length will be calculated.
+ * @return The vector's squared length as a double precision
+ * floating point number.
+ */
+template<typename T>
+inline double length_sqrd(const Vector3<T> &v)
+{
+    return v.x * v.x + v.y * v.y + v.z * v.z;
+}
+
+/**
+ * Calculates the squared length (magnitude) of the vector.
+ * @param v The vector whose squared length will be calculated.
+ * @return The vector's squared length as a double precision
+ * floating point number.
+ */
+template<typename T>
+inline double length_sqrd(const Vector4<T> &v)
+{
+    return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w;
+}
+
+/**
+ * Calculates the squared length (magnitude) of the vector.
+ * @param v The vector whose squared length will be calculated.
+ * @return The vector's squared length as a floating point number.
+ */
+template<typename T>
+inline float length_sqrdf(const Vector2<T> &v)
+{
+    return v.x * v.x + v.y * v.y;
+}
+
+/**
+ * Calculates the squared length (magnitude) of the vector.
+ * @param v The vector whose squared length will be calculated.
+ * @return The vector's squared length as a floating point number.
+ */
+template<typename T>
+inline float length_sqrdf(const Vector3<T> &v)
+{
+    return v.x * v.x + v.y * v.y + v.z * v.z;
+}
+
+/**
+ * Calculates the squared length (magnitude) of the vector.
+ * @param v The vector whose squared length will be calculated.
+ * @return The vector's squared length as a floating point number.
+ */
+template<typename T>
+inline float length_sqrdf(const Vector4<T> &v)
+{
+    return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w;
+}
+
+/**
  * Calculates the dot product of two two dimensional vectors.
  * @tparam T Can be any numeric type.
  * @param v1 First vector argument.
@@ -1638,6 +1806,32 @@ template<typename T>
 inline double dot(const Vector2<T> &v1, const Vector2<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y;
+}
+
+/**
+ * Calculates the dot product of two three dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The result of the dot product as a double float.
+ */
+template<typename T>
+inline double dot(const Vector3<T> &v1, const Vector3<T> &v2)
+{
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+}
+
+/**
+ * Calculates the dot product of two four dimensional vectors.
+ * @tparam T Can be any numeric type.
+ * @param v1 First vector argument.
+ * @param v2 Second vector argument.
+ * @return The result of the dot product as a double float.
+ */
+template<typename T>
+inline double dot(const Vector4<T> &v1, const Vector4<T> &v2)
+{
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
 
 /**
@@ -1658,38 +1852,12 @@ inline float dotf(const Vector2<T> &v1, const Vector2<T> &v2)
  * @tparam T Can be any numeric type.
  * @param v1 First vector argument.
  * @param v2 Second vector argument.
- * @return The result of the dot product as a double float.
- */
-template<typename T>
-inline double dot(const Vector3<T> &v1, const Vector3<T> &v2)
-{
-    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-}
-
-/**
- * Calculates the dot product of two three dimensional vectors.
- * @tparam T Can be any numeric type.
- * @param v1 First vector argument.
- * @param v2 Second vector argument.
  * @return The result of the dot product as a float.
  */
 template<typename T>
 inline float dotf(const Vector3<T> &v1, const Vector3<T> &v2)
 {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-}
-
-/**
- * Calculates the dot product of two four dimensional vectors.
- * @tparam T Can be any numeric type.
- * @param v1 First vector argument.
- * @param v2 Second vector argument.
- * @return The result of the dot product as a double float.
- */
-template<typename T>
-inline double dot(const Vector4<T> &v1, const Vector4<T> &v2)
-{
-    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 }
 
 /**
@@ -1760,6 +1928,66 @@ template<typename T>
 inline Vector4<T> reflect(const Vector4<T> v, const Vector4<T> normal)
 {
     return v - normal * 2 * dot(v, normal);
+}
+
+/**
+ * Transforms a two dimensional vector by a four dimensional matrix.
+ * @param v The two dimensional vector to be transformed by the matrix.
+ * @param mat The four dimensional matrix the vector is going to be
+ * transformed with.
+ * @return A new instance of the vector transformed by the matrix.
+ */
+template<typename T>
+inline Vector2<T> transform(const Vector2<T> &v, const Matrix4<T> &mat)
+{
+    //TODO: Test this.
+    Vector2<T> res{v};
+
+    for (int i = 0; i < 2; ++i) {
+        res[i] = mat[i][0] * v.x + mat[i][1] * v.y + mat[i][2] + mat[i][3];
+    }
+
+    return res;
+}
+
+/**
+ * Transforms a three dimensional vector by a four dimensional matrix.
+ * @param v The three dimensional vector to be transformed by the matrix.
+ * @param mat The four dimensional matrix the vector is going to be
+ * transformed with.
+ * @return A new instance of the vector transformed by the matrix.
+ */
+template<typename T>
+inline Vector3<T> transform(const Vector3<T> &v, const Matrix4<T> &mat)
+{
+    //TODO: Test this.
+    Vector3<T> res{v};
+
+    for (int i = 0; i < 3; ++i) {
+        res[i] = mat[i][0] * v.x + mat[i][1] * v.y + mat[i][2] * v.z + mat[i][3];
+    }
+
+    return res;
+}
+
+/**
+ * Transforms a four dimensional vector by a four dimensional matrix.
+ * @param v The four dimensional vector to be transformed by the matrix.
+ * @param mat The four dimensional matrix the vector is going to be
+ * transformed with.
+ * @return A new instance of the vector transformed by the matrix.
+ */
+template<typename T>
+inline Vector4<T> transform(const Vector4<T> &v, const Matrix4<T> &mat)
+{
+    //TODO: Test this.
+    Vector4<T> res{v};
+
+    for (int i = 0; i < 4; ++i) {
+        res[i] = mat[i][0] * v.x + mat[i][1] * v.y + mat[i][2] * v.z + mat[i][3] * v.w;
+    }
+
+    return res;
 }
 
 } //namespace hm

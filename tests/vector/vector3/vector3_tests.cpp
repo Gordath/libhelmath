@@ -19,7 +19,7 @@ TEST_F(Vector3Fixture, test_member_function_length)
 {
     double len{v1.length()};
 
-    EXPECT_DOUBLE_EQ(len, 3.7416574954986572);
+    EXPECT_DOUBLE_EQ(len, 3.7416573867739413);
 }
 
 TEST_F(Vector3Fixture, test_member_function_lengthf)
@@ -276,6 +276,34 @@ TEST_F(Vector3Fixture, test_operator_vector_div_equals_scalar)
     EXPECT_FLOAT_EQ(v1.x, 0.5f);
     EXPECT_FLOAT_EQ(v1.y, 1.0f);
     EXPECT_FLOAT_EQ(v1.z, 1.5f);
+}
+
+TEST_F(Vector3Fixture, test_non_member_function_length)
+{
+    double len{length(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 3.7416573867739413);
+}
+
+TEST_F(Vector3Fixture, test_non_member_function_lengthf)
+{
+    float len{lengthf(v1)};
+
+    EXPECT_FLOAT_EQ(len, 3.7416575f);
+}
+
+TEST_F(Vector3Fixture, test_non_member_function_length_sqrd)
+{
+    double len{length_sqrd(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 14.0);
+}
+
+TEST_F(Vector3Fixture, test_non_member_function_length_sqrdf)
+{
+    float len{length_sqrdf(v1)};
+
+    EXPECT_FLOAT_EQ(len, 14.0f);
 }
 
 TEST_F(Vector3Fixture, test_non_member_function_dot)

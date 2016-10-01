@@ -287,6 +287,34 @@ TEST_F(Vector4Fixture, test_operator_vector_div_equals_scalar)
     EXPECT_FLOAT_EQ(v1.w, 2.0f);
 }
 
+TEST_F(Vector4Fixture, test_non_member_funciton_length)
+{
+    double len{length(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 5.4772255750516612);
+}
+
+TEST_F(Vector4Fixture, test_non_member_function_lengthf)
+{
+    float len{lengthf(v1)};
+
+    EXPECT_FLOAT_EQ(len, 5.4772258f);
+}
+
+TEST_F(Vector4Fixture, test_non_member_function_length_sqrd)
+{
+    double len{length_sqrd(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 30.0);
+}
+
+TEST_F(Vector4Fixture, test_non_member_function_length_sqrdf)
+{
+    float len{length_sqrdf(v1)};
+
+    EXPECT_FLOAT_EQ(len, 30.0f);
+}
+
 TEST_F(Vector4Fixture, test_non_member_function_dot)
 {
     double d{dot(v1, v2)};

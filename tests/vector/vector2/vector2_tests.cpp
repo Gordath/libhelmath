@@ -19,7 +19,7 @@ TEST_F(Vector2Fixture, test_member_function_length)
 {
     double len{v1.length()};
 
-    EXPECT_DOUBLE_EQ(len, 2.2360680103302002);
+    EXPECT_DOUBLE_EQ(len, 2.2360679774997898);
 }
 
 TEST_F(Vector2Fixture, test_member_function_lengthf)
@@ -244,6 +244,34 @@ TEST_F(Vector2Fixture, test_operator_vector_not_equals_vector)
 
     Vec2f v{1.0f, 2.0f};
     EXPECT_FALSE(v1 != v);
+}
+
+TEST_F(Vector2Fixture, test_non_member_function_length)
+{
+    double len{length(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 2.2360679774997898);
+}
+
+TEST_F(Vector2Fixture, test_non_member_function_lengthf)
+{
+    float len{lengthf(v1)};
+
+    EXPECT_FLOAT_EQ(len, 2.236068f);
+}
+
+TEST_F(Vector2Fixture, test_non_member_function_length_sqrd)
+{
+    double len{length_sqrd(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 5.0);
+}
+
+TEST_F(Vector2Fixture, test_non_member_function_length_sqrdf)
+{
+    float len{length_sqrdf(v1)};
+
+    EXPECT_FLOAT_EQ(len, 5.0f);
 }
 
 TEST_F(Vector2Fixture, test_non_member_function_dot)
