@@ -337,3 +337,17 @@ TEST_F(Vector3Fixture, test_non_member_function_reflect)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
     EXPECT_FLOAT_EQ(res.z, 3.0f);
 }
+
+TEST_F(Vector3Fixture, test_non_member_function_transform)
+{
+    Mat4f trans{1, 0, 0, 1,
+                0, 1, 0, 1,
+                0, 0, 1, 1,
+                0, 0, 0, 1};
+
+    Vec3f res{transform(v1, trans)};
+
+    EXPECT_FLOAT_EQ(res.x, 2.0f);
+    EXPECT_FLOAT_EQ(res.y, 3.0f);
+    EXPECT_FLOAT_EQ(res.z, 4.0f);
+}

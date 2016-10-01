@@ -231,8 +231,7 @@ public:
      */
     inline void transform(const Matrix4<T> &mat)
     {
-        //TODO: Test this.
-        float x = x;
+        float x = this->x;
 
         for (int i = 0; i < 2; ++i) {
             v[i] = mat[i][0] * x + mat[i][1] * y + mat[i][2] + mat[i][3];
@@ -247,7 +246,6 @@ public:
      */
     inline Vector2<T> transformed(const Matrix4<T> &mat)
     {
-        //TODO: Test this.
         Vector2<T> res{*this};
 
         for (int i = 0; i < 2; ++i) {
@@ -1940,7 +1938,6 @@ inline Vector4<T> reflect(const Vector4<T> v, const Vector4<T> normal)
 template<typename T>
 inline Vector2<T> transform(const Vector2<T> &v, const Matrix4<T> &mat)
 {
-    //TODO: Test this.
     Vector2<T> res{v};
 
     for (int i = 0; i < 2; ++i) {
@@ -1960,7 +1957,6 @@ inline Vector2<T> transform(const Vector2<T> &v, const Matrix4<T> &mat)
 template<typename T>
 inline Vector3<T> transform(const Vector3<T> &v, const Matrix4<T> &mat)
 {
-    //TODO: Test this.
     Vector3<T> res{v};
 
     for (int i = 0; i < 3; ++i) {
@@ -1980,7 +1976,6 @@ inline Vector3<T> transform(const Vector3<T> &v, const Matrix4<T> &mat)
 template<typename T>
 inline Vector4<T> transform(const Vector4<T> &v, const Matrix4<T> &mat)
 {
-    //TODO: Test this.
     Vector4<T> res{v};
 
     for (int i = 0; i < 4; ++i) {
