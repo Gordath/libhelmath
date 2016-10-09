@@ -28,7 +28,6 @@ before_script:
 
 script:
     - make
-    - make check
     - cd tests
     - ./all_tests
 
