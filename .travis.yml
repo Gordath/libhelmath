@@ -17,6 +17,8 @@ install:
     - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
 
 before_script:
+    - export COVERALLS_SERVICE_NAME=travis-ci
+    - export COVERALLS_REPO_TOKEN=abc12345
     - mkdir build
     - cd build
     - cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug ..
