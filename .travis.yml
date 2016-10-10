@@ -36,7 +36,7 @@ before_script:
     - lcov --directory . --zerocounters
     - mkdir build
     - cd build
-    - cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug ..
+    - cmake -DCOVERAGE=ON ..
 
 script:
     - make

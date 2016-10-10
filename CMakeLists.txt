@@ -3,21 +3,11 @@ project(helmath)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+option(COVERAGE "Generate coverage data" OFF)
 
-option(COVERALLS "Generate coveralls data" OFF)
-
-if (COVERALLS)
-    include(Coveralls)
-    coveralls_turn_on_coverage()
-
-    set(COVERAGE_SRCS src/helmath.cpp)
-
-    # Create the coveralls target.
-    coveralls_setup(
-            "${COVERAGE_SRCS}" # The source files.
-            OFF                 # If we should upload.
-            )
+if(COVERAGE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
 endif()
 
 include_directories(src/include)
