@@ -2,7 +2,7 @@ sudo: required
 dist: precise
 language: cpp
 compiler:
-    - gcc
+    - gcc-5
 
 addons:
     apt:
@@ -13,8 +13,6 @@ addons:
             - clang-3.7
             - g++-5
             - gcc-5
-            - libffi-dev
-            - libssl-dev
 
 before_install:
    - sudo apt-get update
@@ -23,11 +21,11 @@ before_install:
 
 install:
     - sudo apt-get install lcov
-    - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+    - if [ "$CXX" = "g++" ]; then export CXX="/usr/bin/g++-5" CC="/usr/bin/gcc-5"; fi
+    - if [ "$CXX" = "g++" ]; then echo "USING g++"; fi
 
 before_script:
     - gcov -version
-    - lcov -v
     - gcc -v
     - g++ -v
     - mkdir build
