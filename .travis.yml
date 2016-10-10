@@ -28,8 +28,8 @@ install:
 
 before_script:
     - gcov -version
-    - gcc -version
-    - g++ -version
+    - gcc -v
+    - g++ -v
     - mkdir build
     - cd build
     - cmake -DCOVERAGE=ON ..
