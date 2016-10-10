@@ -1,13 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 project(helmath)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -g -O0 --coverage -fno-inline")
 
-option(COVERAGE "Generate coverage data" OFF)
+option(COVERAGE OFF)
 
 if(COVERAGE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage -fno-inline")
 endif()
 
 include_directories(src/include)
