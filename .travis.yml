@@ -15,7 +15,7 @@ addons:
             - libssl-dev
 
 before_install:
-  - pip install requests[security]
+  - pip install pyopenssl ndg-httpsclient pyasn1
   - pip install --user cpp-coveralls
 
 install:
