@@ -18,7 +18,7 @@ addons:
 
 before_install:
    - sudo apt-get install lcov rubygems
-   - gem install lcoveralls
+   - sudo gem install lcoveralls
 
 install:
     - sudo pip install requests[security]
@@ -34,6 +34,9 @@ script:
     - make
     - cd tests
     - ./all_tests
+    - cd CMakeFiles/all_tests.dir/
+    - find . -type f -iname "*.gc*" -exec mv {} . \;
+    - lcov -c -d . -o all_tests.info
 
 after_success:
   - lcoveralls --root .. -v
