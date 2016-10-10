@@ -36,12 +36,12 @@ before_script:
     - cmake -DCOVERAGE=ON ..
 
 script:
-    - make
+    - make -j4
     - cd tests
     - ./all_tests
     - cd CMakeFiles/all_tests.dir/
 #    - find . -type f -iname "*.gc*" -exec mv {} . \;
-    - lcov -c -d . -compat split_crc=on -o all_tests.info
+    - lcov -c -d . -compat split_crc -o all_tests.info
 
 after_success:
   - lcoveralls --root .. -v
