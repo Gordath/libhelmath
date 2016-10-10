@@ -17,14 +17,14 @@ addons:
             - libssl-dev
 
 before_install:
-   - sudo apt-get install lcov rubygems
-   - sudo gem install lcoveralls
+   - sudo apt-get update
 
 install:
+    - sudo apt-get install lcov rubygems
+    - sudo gem install lcoveralls
     - sudo pip install requests[security]
     - sudo apt-get install lcov
     - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
 
 before_script:
     - gcov -version
