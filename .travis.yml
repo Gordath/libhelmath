@@ -17,7 +17,8 @@ addons:
             - libssl-dev
 
 before_install:
-  - pip install --user cpp-coveralls
+   - sudo apt-get install lcov rubygems
+   - gem install lcoveralls
 
 install:
     - sudo pip install requests[security]
@@ -35,7 +36,7 @@ script:
     - ./all_tests
 
 after_success:
-  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
+  - lcoveralls --root .. -v
 
 notifications:
   recipients:
