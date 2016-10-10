@@ -28,6 +28,7 @@ install:
 
 before_script:
     - gcov -version
+    - lcov -v
     - gcc -v
     - g++ -v
     - mkdir build
@@ -39,7 +40,8 @@ script:
     - cd tests
     - ./all_tests
     - cd CMakeFiles/all_tests.dir/
-    - find . -type f -iname "*.gc*" -exec mv {} . \;
+    - mv CMakeFiles/all_tests.dir/matrix/matrix2/*.gc* .
+#    - find . -type f -iname "*.gc*" -exec mv {} . \;
     - lcov -c -d . -o all_tests.info
 
 after_success:
