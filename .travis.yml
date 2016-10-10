@@ -18,11 +18,10 @@ addons:
 
 before_install:
    - sudo apt-get update
+   - sudo pip install requests[security]
+   - sudo pip install codecov
 
 install:
-    - sudo apt-get install lcov rubygems
-    - sudo gem install lcoveralls
-    - sudo pip install requests[security]
     - sudo apt-get install lcov
     - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 
@@ -37,14 +36,11 @@ before_script:
 
 script:
     - make -j4
-    - cd tests
-    - ./all_tests
-    - cd CMakeFiles/all_tests.dir/
-#    - find . -type f -iname "*.gc*" -exec mv {} . \;
-    - lcov -c -d . -compat split_crc -o all_tests.info
+    - ./tests/all_tests
+    - find . -iname "*.gcov" -type f -exec mv {} . \;
 
 after_success:
-  - lcoveralls --root .. -v
+    - codecov
 
 notifications:
   recipients:
