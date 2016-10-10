@@ -15,8 +15,8 @@ addons:
             - libssl-dev
 
 before_install:
-  - pip install pyopenssl ndg-httpsclient pyasn1
-  - pip install --user cpp-coveralls
+    - sudo pip install pyopenssl ndg-httpsclient pyasn1
+    - sudo pip install --user cpp-coveralls
 
 install:
     - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
