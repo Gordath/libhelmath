@@ -40,7 +40,7 @@ script:
     - cd tests
     - ./all_tests
     - cd CMakeFiles/all_tests.dir/
-    - mv CMakeFiles/all_tests.dir/matrix/matrix2/*.gc* .
+    - mv matrix/matrix2/*.*.gc* .
 #    - find . -type f -iname "*.gc*" -exec mv {} . \;
     - lcov -c -d . -o all_tests.info
 
