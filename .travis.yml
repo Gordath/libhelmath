@@ -37,7 +37,9 @@ before_script:
 script:
     - make -j4
     - ./tests/all_tests
-#    - find . -iname "*.gcov" -type f -exec mv {} . \;
+    - find . -iname "*.gcda" -type f -exec mv {} . \;
+    - find . -iname "*.o" -type f -exec mv {} . \;
+    - find . -iname "*.gcno" -type f -exec mv {} . \;
 
 after_success:
     - codecov
