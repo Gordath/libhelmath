@@ -25,6 +25,7 @@ install:
     - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 20
     - sudo update-alternatives --config gcc
     - sudo update-alternatives --config g++
+    - sudo find /usr/bin/ -name "gcov*"
 
 before_script:
     - gcov -version
@@ -40,7 +41,6 @@ script:
     - find . -iname "*.gcda" -type f -exec mv {} . \;
     - find . -iname "*.o" -type f -exec mv {} . \;
     - find . -iname "*.gcno" -type f -exec mv {} . \;
-    - sudo ls -la /usr/local/bin/gco*
     - find . -iname "*.gcno" -type f -exec gcov {} \;
 
 after_success:
