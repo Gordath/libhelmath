@@ -1,6 +1,8 @@
 sudo: required
-dist: precise
+dist: trusty
 language: cpp
+compiler:
+    - gcc-5
 
 addons:
     apt:
@@ -12,19 +14,38 @@ addons:
             - g++-5
             - gcc-5
 
+before_install:
+   - sudo apt-get update
+   - sudo pip install requests[security]
+   - sudo pip install codecov
+
 install:
-    - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
+    - sudo apt-get install gcc-5 g++-5
+    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 20
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 20
+    - sudo update-alternatives --config gcc
+    - sudo update-alternatives --config g++
+    - sudo find /usr/bin/ -name "gcov*"
 
 before_script:
+    - gcov -version
+    - gcc -v
+    - g++ -v
     - mkdir build
     - cd build
-    - cmake ..
+    - cmake -DCOVERAGE=ON ..
 
 script:
-    - make
-    - cd tests
-    - ./all_tests
+    - make -j4
+    - ./tests/all_tests
+    - find . -iname "*.gcda" -type f -exec mv {} . \;
+    - find . -iname "*.o" -type f -exec mv {} . \;
+    - find . -iname "*.gcno" -type f -exec mv {} . \;
+    - find . -iname "*.gcno" -type f -exec gcov {} \;
+    - rm -f gtest*
+
+after_success:
+    - sudo codecov -X
 
 notifications:
   recipients:

@@ -4,7 +4,7 @@
 using namespace hm;
 
 class Vector2SwizzleFixture : public ::testing::Test {
-public:
+protected:
     Vec2f rhs;
     Vec2f lhs;
 

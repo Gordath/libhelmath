@@ -17,16 +17,9 @@ protected:
 
 TEST_F(Vector4Fixture, test_member_function_length)
 {
-    double len{v1.length()};
+    float len{v1.length()};
 
-    EXPECT_DOUBLE_EQ(len, 5.4772255750516612);
-}
-
-TEST_F(Vector4Fixture, test_member_function_lengthf)
-{
-    float len{v1.lengthf()};
-
-    EXPECT_FLOAT_EQ(len, 5.4772258f);
+    EXPECT_FLOAT_EQ(len, 5.4772255750516612);
 }
 
 TEST_F(Vector4Fixture, test_member_function_normalize)
@@ -38,7 +31,7 @@ TEST_F(Vector4Fixture, test_member_function_normalize)
     EXPECT_FLOAT_EQ(v1.z, 0.54772252f);
     EXPECT_FLOAT_EQ(v1.w, 0.73029673f);
 
-    float len{v1.lengthf()};
+    float len{v1.length()};
 
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
@@ -52,7 +45,7 @@ TEST_F(Vector4Fixture, test_member_function_normalized)
     EXPECT_FLOAT_EQ(res.z, 0.54772252f);
     EXPECT_FLOAT_EQ(res.w, 0.73029673f);
 
-    float len = res.lengthf();
+    float len = res.length();
 
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
@@ -62,13 +55,6 @@ TEST_F(Vector4Fixture, test_member_function_dot)
     double d{v1.dot(v2)};
 
     EXPECT_DOUBLE_EQ(d, 20.0);
-}
-
-TEST_F(Vector4Fixture, test_member_function_dotf)
-{
-    float d{v1.dotf(v2)};
-
-    EXPECT_FLOAT_EQ(d, 20.0f);
 }
 
 TEST_F(Vector4Fixture, test_member_function_reflect)
@@ -85,6 +71,46 @@ TEST_F(Vector4Fixture, test_member_function_reflected)
 
     EXPECT_FLOAT_EQ(res.x, -1.0f);
     EXPECT_FLOAT_EQ(res.y, 2.0f);
+}
+
+TEST_F(Vector4Fixture, test_member_function_transform)
+{
+    Mat4f trans{1, 0, 0, 1,
+                0, 1, 0, 1,
+                0, 0, 1, 1,
+                0, 0, 0, 1};
+
+    v1.transform(trans);
+
+    EXPECT_FLOAT_EQ(v1.x, 5.0f);
+    EXPECT_FLOAT_EQ(v1.y, 6.0f);
+    EXPECT_FLOAT_EQ(v1.z, 7.0f);
+    EXPECT_FLOAT_EQ(v1.w, 4.0f);
+}
+
+TEST_F(Vector4Fixture, test_member_function_transformed)
+{
+    Mat4f trans{1, 0, 0, 1,
+                0, 1, 0, 1,
+                0, 0, 1, 1,
+                0, 0, 0, 1};
+
+    Vec4f res{v1.transformed(trans)};
+
+    EXPECT_FLOAT_EQ(res.x, 5.0f);
+    EXPECT_FLOAT_EQ(res.y, 6.0f);
+    EXPECT_FLOAT_EQ(res.z, 7.0f);
+    EXPECT_FLOAT_EQ(res.w, 4.0f);
+}
+
+TEST_F(Vector4Fixture, test_implicit_conversion_to_pointer)
+{
+    float *vec = v1;
+
+    const float *vec2 = v2;
+
+    EXPECT_FLOAT_EQ(*(++vec), 2.0f);
+    EXPECT_FLOAT_EQ(*(vec2 + 3), 1.0f);
 }
 
 TEST_F(Vector4Fixture, test_vector_plus_vector)
@@ -247,18 +273,25 @@ TEST_F(Vector4Fixture, test_operator_vector_div_equals_scalar)
     EXPECT_FLOAT_EQ(v1.w, 2.0f);
 }
 
+TEST_F(Vector4Fixture, test_non_member_funciton_length)
+{
+    float len{length(v1)};
+
+    EXPECT_FLOAT_EQ(len, 5.4772255750516612);
+}
+
+TEST_F(Vector4Fixture, test_non_member_function_length_sqrd)
+{
+    double len{length_sqrd(v1)};
+
+    EXPECT_DOUBLE_EQ(len, 30.0);
+}
+
 TEST_F(Vector4Fixture, test_non_member_function_dot)
 {
     double d{dot(v1, v2)};
 
     EXPECT_DOUBLE_EQ(d, 20.0);
-}
-
-TEST_F(Vector4Fixture, test_non_member_function_dotf)
-{
-    float d{dotf(v1, v2)};
-
-    EXPECT_FLOAT_EQ(d, 20.0f);
 }
 
 TEST_F(Vector4Fixture, test_non_member_function_reflect)
@@ -269,3 +302,17 @@ TEST_F(Vector4Fixture, test_non_member_function_reflect)
     EXPECT_FLOAT_EQ(res.y, 2.0f);
 }
 
+TEST_F(Vector4Fixture, test_non_member_function_transform)
+{
+    Mat4f trans{1, 0, 0, 1,
+                0, 1, 0, 1,
+                0, 0, 1, 1,
+                0, 0, 0, 1};
+
+    Vec4f res{transform(v1, trans)};
+
+    EXPECT_FLOAT_EQ(res.x, 5.0f);
+    EXPECT_FLOAT_EQ(res.y, 6.0f);
+    EXPECT_FLOAT_EQ(res.z, 7.0f);
+    EXPECT_FLOAT_EQ(res.w, 4.0f);
+}
