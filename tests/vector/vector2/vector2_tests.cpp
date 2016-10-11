@@ -17,16 +17,9 @@ protected:
 
 TEST_F(Vector2Fixture, test_member_function_length)
 {
-    double len{v1.length()};
+    float len{v1.length()};
 
-    EXPECT_DOUBLE_EQ(len, 2.2360679774997898);
-}
-
-TEST_F(Vector2Fixture, test_member_function_lengthf)
-{
-    float len{v1.lengthf()};
-
-    EXPECT_FLOAT_EQ(len, 2.236068f);
+    EXPECT_FLOAT_EQ(len, 2.2360679774997898);
 }
 
 TEST_F(Vector2Fixture, test_member_function_normalize)
@@ -36,7 +29,7 @@ TEST_F(Vector2Fixture, test_member_function_normalize)
     EXPECT_FLOAT_EQ(v1.x, 0.44721359f);
     EXPECT_FLOAT_EQ(v1.y, 0.89442718f);
 
-    float len{v1.lengthf()};
+    float len{v1.length()};
 
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
@@ -48,7 +41,7 @@ TEST_F(Vector2Fixture, test_member_function_normalized)
     EXPECT_FLOAT_EQ(res.x, 0.44721359f);
     EXPECT_FLOAT_EQ(res.y, 0.89442718f);
 
-    float len = res.lengthf();
+    float len = res.length();
 
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
@@ -58,13 +51,6 @@ TEST_F(Vector2Fixture, test_member_function_dot)
     double d{v1.dot(v2)};
 
     EXPECT_DOUBLE_EQ(d, 7.0);
-}
-
-TEST_F(Vector2Fixture, test_member_function_dotf)
-{
-    float d{v1.dotf(v2)};
-
-    EXPECT_FLOAT_EQ(d, 7.0f);
 }
 
 TEST_F(Vector2Fixture, test_member_function_reflect)
@@ -256,34 +242,11 @@ TEST_F(Vector2Fixture, test_subscript_operator)
     EXPECT_FLOAT_EQ(val2, 2.0f);
 }
 
-TEST_F(Vector2Fixture, test_operator_vector_equals_vector)
-{
-    EXPECT_FALSE(v1 == v2);
-
-    Vec2f v{1.0f, 2.0f};
-    EXPECT_TRUE(v1 == v);
-}
-
-TEST_F(Vector2Fixture, test_operator_vector_not_equals_vector)
-{
-    EXPECT_TRUE(v1 != v2);
-
-    Vec2f v{1.0f, 2.0f};
-    EXPECT_FALSE(v1 != v);
-}
-
 TEST_F(Vector2Fixture, test_non_member_function_length)
 {
-    double len{length(v1)};
+    float len{length(v1)};
 
-    EXPECT_DOUBLE_EQ(len, 2.2360679774997898);
-}
-
-TEST_F(Vector2Fixture, test_non_member_function_lengthf)
-{
-    float len{lengthf(v1)};
-
-    EXPECT_FLOAT_EQ(len, 2.236068f);
+    EXPECT_FLOAT_EQ(len, 2.2360679774997898);
 }
 
 TEST_F(Vector2Fixture, test_non_member_function_length_sqrd)
@@ -293,25 +256,11 @@ TEST_F(Vector2Fixture, test_non_member_function_length_sqrd)
     EXPECT_DOUBLE_EQ(len, 5.0);
 }
 
-TEST_F(Vector2Fixture, test_non_member_function_length_sqrdf)
-{
-    float len{length_sqrdf(v1)};
-
-    EXPECT_FLOAT_EQ(len, 5.0f);
-}
-
 TEST_F(Vector2Fixture, test_non_member_function_dot)
 {
     double d{dot(v1, v2)};
 
     EXPECT_DOUBLE_EQ(d, 7.0);
-}
-
-TEST_F(Vector2Fixture, test_non_member_function_dotf)
-{
-    float d{dotf(v1, v2)};
-
-    EXPECT_FLOAT_EQ(d, 7.0f);
 }
 
 TEST_F(Vector2Fixture, test_non_member_function_reflect)

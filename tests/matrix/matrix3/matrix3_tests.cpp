@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "matrix.h"
+#include "helmath.h"
 
 using namespace hm;
 
@@ -292,6 +292,23 @@ TEST_F(Matrix3Fixture, test_set_translation_with_pointer_param)
     expect_matrixf_eq(m1, exp);
 
     delete[] v;
+}
+
+TEST_F(Matrix3Fixture, test_rotate_with_coordinate_param)
+{
+    //TODO: Problem with rotation.
+//    Mat3f mat;
+//    mat.rotate(0, 0, 1, deg_to_radf(-90.0f));
+//
+//    Vec3f vec{0.0, 1.0, 0.0};
+//
+//    Vec3f res = mat * vec;
+//
+//    mat.rotate(0, 0, 1, deg_to_radf(-90.0f));
+//
+//    res = mat * res;
+
+//    EXPECT_FLOAT_EQ(res.x, 0.0f);
 }
 
 TEST_F(Matrix3Fixture, test_scale_with_coordinate_param)

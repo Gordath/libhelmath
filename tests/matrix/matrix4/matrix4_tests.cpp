@@ -661,14 +661,6 @@ TEST_F(Matrix4Fixture, test_operator_matrix_mult_scalar)
     expect_matrixf_eq(res, exp);
 }
 
-TEST_F(Matrix4Fixture, test_operator_matrix_equals_matrix)
-{
-    Mat4f mat;
-    Mat4f exp;
-
-    EXPECT_TRUE(mat == exp);
-}
-
 TEST_F(Matrix4Fixture, test_operator_matrix_not_equals_matrix)
 {
     Mat4f mat;

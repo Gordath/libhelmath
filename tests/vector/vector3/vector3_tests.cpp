@@ -17,16 +17,9 @@ protected:
 
 TEST_F(Vector3Fixture, test_member_function_length)
 {
-    double len{v1.length()};
+    float len{v1.length()};
 
-    EXPECT_DOUBLE_EQ(len, 3.7416573867739413);
-}
-
-TEST_F(Vector3Fixture, test_member_function_lengthf)
-{
-    float len{v1.lengthf()};
-
-    EXPECT_FLOAT_EQ(len, 3.7416575f);
+    EXPECT_FLOAT_EQ(len, 3.7416573867739413);
 }
 
 TEST_F(Vector3Fixture, test_member_function_normalize)
@@ -37,7 +30,7 @@ TEST_F(Vector3Fixture, test_member_function_normalize)
     EXPECT_FLOAT_EQ(v1.y, 0.5345224f);
     EXPECT_FLOAT_EQ(v1.z, 0.8017837f);
 
-    float len{v1.lengthf()};
+    float len{v1.length()};
 
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
@@ -50,7 +43,7 @@ TEST_F(Vector3Fixture, test_member_function_normalized)
     EXPECT_FLOAT_EQ(res.y, 0.5345224f);
     EXPECT_FLOAT_EQ(res.z, 0.8017837f);
 
-    float len = res.lengthf();
+    float len{res.length()};
 
     EXPECT_FLOAT_EQ(len, 1.0f);
 }
@@ -60,13 +53,6 @@ TEST_F(Vector3Fixture, test_member_function_dot)
     double d{v1.dot(v2)};
 
     EXPECT_DOUBLE_EQ(d, 10.0);
-}
-
-TEST_F(Vector3Fixture, test_member_function_dotf)
-{
-    float d{v1.dotf(v2)};
-
-    EXPECT_FLOAT_EQ(d, 10.0f);
 }
 
 TEST_F(Vector3Fixture, test_member_function_cross)
@@ -280,16 +266,9 @@ TEST_F(Vector3Fixture, test_operator_vector_div_equals_scalar)
 
 TEST_F(Vector3Fixture, test_non_member_function_length)
 {
-    double len{length(v1)};
+    float len{length(v1)};
 
-    EXPECT_DOUBLE_EQ(len, 3.7416573867739413);
-}
-
-TEST_F(Vector3Fixture, test_non_member_function_lengthf)
-{
-    float len{lengthf(v1)};
-
-    EXPECT_FLOAT_EQ(len, 3.7416575f);
+    EXPECT_FLOAT_EQ(len, 3.7416573867739413);
 }
 
 TEST_F(Vector3Fixture, test_non_member_function_length_sqrd)
@@ -299,25 +278,11 @@ TEST_F(Vector3Fixture, test_non_member_function_length_sqrd)
     EXPECT_DOUBLE_EQ(len, 14.0);
 }
 
-TEST_F(Vector3Fixture, test_non_member_function_length_sqrdf)
-{
-    float len{length_sqrdf(v1)};
-
-    EXPECT_FLOAT_EQ(len, 14.0f);
-}
-
 TEST_F(Vector3Fixture, test_non_member_function_dot)
 {
     double d{dot(v1, v2)};
 
     EXPECT_DOUBLE_EQ(d, 10.0);
-}
-
-TEST_F(Vector3Fixture, test_non_member_function_dotf)
-{
-    float d{dotf(v1, v2)};
-
-    EXPECT_FLOAT_EQ(d, 10.0f);
 }
 
 TEST_F(Vector3Fixture, test_non_member_function_cross)
