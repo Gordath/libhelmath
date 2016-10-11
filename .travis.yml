@@ -42,9 +42,10 @@ script:
     - find . -iname "*.o" -type f -exec mv {} . \;
     - find . -iname "*.gcno" -type f -exec mv {} . \;
     - find . -iname "*.gcno" -type f -exec gcov {} \;
+    - rm -f gtest*
 
 after_success:
-    - sudo codecov -X ./usr/bin/gcov-5
+    - sudo codecov -X
 
 notifications:
   recipients:
