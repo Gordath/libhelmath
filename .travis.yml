@@ -1,5 +1,5 @@
 sudo: required
-dist: precise
+dist: trusty
 language: cpp
 compiler:
     - gcc-5
@@ -44,7 +44,7 @@ script:
     - find . -iname "*.gcno" -type f -exec gcov {} \;
 
 after_success:
-    - codecov -X gcov
+    - sudo codecov -X ./usr/bin/gcov-5
 
 notifications:
   recipients:
