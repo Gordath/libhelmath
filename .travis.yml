@@ -40,6 +40,7 @@ script:
     - find . -iname "*.gcda" -type f -exec mv {} . \;
     - find . -iname "*.o" -type f -exec mv {} . \;
     - find . -iname "*.gcno" -type f -exec mv {} . \;
+    - ls -la /usr/local/bin/gco*
     - find . -iname "*.gcno" -type f -exec gcov {} \;
 
 after_success:
