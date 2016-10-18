@@ -141,6 +141,11 @@ namespace hm {
             }
         }
 
+        inline T determinant() const
+        {
+            return data[0][0] * data[1][1] - data[0][1] * data[1][0];
+        }
+
         /**
          * Implicit conversion to pointer.
          * @return A pointer to the internal array of the matrix.
@@ -179,30 +184,7 @@ namespace hm {
             return data[idx];
         }
 
-        /**
-         * Assigns each value of the right hand side matrix operand
-         * to the the left hand side matrix operand.
-         * @param rhs The matrix assigned to the left hand side matrix operand.
-         */
-        inline Matrix2<T> &operator=(const Matrix2<T> &rhs)
-        {
-            for (int i = 0; i < 2; ++i) {
-                for (int j = 0; j < 2; ++j) {
-                    data[i][j] = rhs[i][j];
-                }
-            }
-
-            return *this;
-        }
-
-        /**
-         * Performs matrix multiplication.
-         * @details Mutiplies the left hand side matrix operand with the right hand
-         * side matrix operand.
-         * @param rhs The right hand side matrix operand.
-         * @return A new Matrix2 as the result of the matrix multiplication.
-         */
-        inline Matrix2<T> operator*(const Matrix2<T> &rhs)
+        inline Matrix2<T> &operator*=(const Matrix2<T> &rhs)
         {
             Matrix2<T> res;
 
@@ -212,39 +194,24 @@ namespace hm {
                 }
             }
 
-            return res;
-        }
+            *this = res;
 
-        /**
-         * Equality operator overload.
-         * @warning May not work as intended for floating point matrices.
-         * @param rhs The right hand side matrix operand with whom equality is tested.
-         * @return True only when all values of both matrices are equal.
-         */
-        inline bool operator==(const Matrix2<T> &rhs) const
-        {
-            for (int i = 0; i < 2; ++i) {
-                for (int j = 0; j < 2; ++j) {
-                    if (data[i][j] != rhs[i][j]) {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        /**
-         * Non equality operator overload.
-         * @warning May not work as intended for floating point matrices.
-         * @param rhs The right hand side matrix operand with whom non equality is tested.
-         * @return True when one of the matrix's values is not equal the the other's.
-         */
-        inline bool operator!=(const Matrix2<T> &rhs) const
-        {
-            return !(*this == rhs);
+            return *this;
         }
     };
+
+    /**
+     * Performs matrix multiplication.
+     * @param rhs The right hand side matrix operand.
+     * @return A new Matrix2 as the result of the matrix multiplication.
+     */
+    template<typename T>
+    inline Matrix2<T> operator*(Matrix2<T> &lhs, const Matrix2<T> &rhs)
+    {
+        lhs *= rhs;
+
+        return lhs;
+    }
 
     /**
      * @typedef Mat2f
@@ -852,6 +819,50 @@ namespace hm {
         }
 
         /**
+         * Calculates a submatrix (Matrix2) from the three dimensional matrix.
+         * @param row The matrix row to be excluded.
+         * @param col The matrix column to be excluded.
+         * @return A Matrix2 submatrix.
+         */
+        inline Matrix2<T> submatrix(const int row, const int col) const
+        {
+            Matrix2<T> res;
+
+            int row_c = 0;
+            int col_c = 0;
+
+            for (int i = 0; i < 3; ++i) {
+
+                if (i == row) {
+                    continue;
+                }
+
+                for (int j = 0; j < 3; ++j) {
+
+                    if (j == col) {
+                        continue;
+                    }
+
+                    res[row_c][col_c] = data[i][j];
+
+                    ++col_c;
+                }
+
+                col_c = 0;
+                ++row_c;
+            }
+
+            return res;
+        }
+
+        inline T determinant() const
+        {
+            return data[0][0] * submatrix(0, 0).determinant() -
+                   data[0][1] * submatrix(0, 1).determinant() +
+                   data[0][2] * submatrix(0, 2).determinant();
+        }
+
+        /**
          * Calculates the matrix transpose.
          */
         inline void transpose()
@@ -921,92 +932,21 @@ namespace hm {
         }
 
         /**
-         * Assigns each value of the right hand side matrix operand
-         * to the the left hand side matrix operand.
-         * @param rhs The matrix assigned to the left hand side matrix operand.
-         */
-        inline void operator=(const Matrix3<T> &rhs)
-        {
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    data[i][j] = rhs[i][j];
-                }
-            }
-        }
-
-        /**
          * Assigns each value of the Matrix2 to the upper 2x2 section
          * of the Matrix3.
          * @param rhs The 2x2 Matrix assigned to the upper 2x2 section of
          * the 3x3 matrix.
+         * @return The Matrix3 as the result of the assignment.
          */
-        inline void operator=(const Matrix2<T> &rhs)
+        inline Matrix3<T> &operator=(const Matrix2<T> &rhs)
         {
             for (int i = 0; i < 2; ++i) {
                 for (int j = 0; j < 2; ++j) {
                     data[i][j] = rhs[i][j];
                 }
             }
-        }
 
-        /**
-         * Performs index based addition of two three dimensional matrices.
-         * @param rhs The matrix whose values will be added
-         * to the left hand side operand.
-         * @return A new Matrix3 instance resulting from the addition.
-         */
-        inline Matrix3<T> operator+(const Matrix3<T> &rhs) const
-        {
-            Matrix3<T> res;
-
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][j] + rhs[i][j];
-                }
-            }
-
-            return res;
-        }
-
-        /**
-         * Performs index based subtraction of two three dimensional matrices.
-         * @param rhs The matrix whose values will be subtracted
-         * from the left hand side operand.
-         * @return A new Matrix3 instance resulting from the subtraction.
-         */
-        inline Matrix3<T> operator-(const Matrix3<T> &rhs) const
-        {
-            Matrix3<T> res;
-
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][j] - rhs[i][j];
-                }
-            }
-
-            return res;
-        }
-
-
-        /**
-         * Performs matrix multiplication.
-         * @details Mutiplies the left hand side matrix operand with the right hand
-         * side matrix operand.
-         * @param rhs The right hand side matrix operand.
-         * @return A new Matrix3 as the result of the matrix multiplication.
-         */
-        inline Matrix3<T> operator*(const Matrix3<T> &rhs) const
-        {
-            Matrix3<T> res;
-
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][0] * rhs[0][j] + data[i][1] * rhs[1][j]
-                                + data[i][2] * rhs[2][j];
-                }
-            }
-
-            return res;
+            return *this;
         }
 
         /**
@@ -1043,169 +983,235 @@ namespace hm {
          * side matrix operand.
          * @param rhs The right hand side matrix operand.
          */
-        inline void operator*=(const Matrix3<T> &rhs)
-        {
-            *this = *this * rhs;
-        }
-
-        /**
-         * Performs index based addition between a three dimensional matrix and a scalar.
-         * @param rhs The scalar to be added to each value of the matrix.
-         * @return A new Matrix3 instance resulting from the addition.
-         */
-        inline Matrix3<T> operator+(const T rhs) const
+        inline Matrix3<T> &operator*=(const Matrix3<T> &rhs)
         {
             Matrix3<T> res;
 
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][j] + rhs;
+                    res[i][j] = data[i][0] * rhs[0][j] + data[i][1] * rhs[1][j]
+                                + data[i][2] * rhs[2][j];
                 }
             }
 
-            return res;
-        }
+            *this = res;
 
-        /**
-         * Performs index based subtraction between a three dimensional matrix and a scalar.
-         * @param rhs The scalar to be subtracted from each value of the matrix.
-         * @return A new Matrix3 instance resulting from the subtraction.
-         */
-        inline Matrix3<T> operator-(const T rhs) const
-        {
-            Matrix3<T> res;
-
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][j] - rhs;
-                }
-            }
-
-            return res;
-        }
-
-        /**
-         * Perform index based multiplication between a three dimensional matrix and a scalar.
-         * @param rhs The scalar to be multiplied with each value of the matrix.
-         * @return A new Matrix3 instance resulting from the multiplication.
-         */
-        inline Matrix3<T> operator*(const T rhs) const
-        {
-            Matrix3<T> res;
-
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][j] * rhs;
-                }
-            }
-
-            return res;
-        }
-
-        /**
-         * Performs index based division between a three dimensional matrix and a scalar.
-         * @param rhs The scalar to divide each value of the matrix by.
-         * @return A new Matrix3 instance resulting from the multiplicaiton.
-         */
-        inline Matrix3<T> operator/(const T rhs) const
-        {
-            Matrix3<T> res;
-
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    res[i][j] = data[i][j] / rhs;
-                }
-            }
-
-            return res;
+            return *this;
         }
 
         /**
          * Performs index based addition between a three dimensional matrix and a scalar.
          * @param rhs The scalar to be added to each value of the matrix.
          */
-        inline void operator+=(const T rhs)
+        inline Matrix3<T> &operator+=(const T rhs)
         {
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
                     data[i][j] += rhs;
                 }
             }
+
+            return *this;
         }
 
         /**
          * Performs index based subtraction between a three dimensional matrix and a scalar.
          * @param rhs The scalar to be subtracted from each value of the matrix.
          */
-        inline void operator-=(const T rhs)
+        inline Matrix3<T> &operator-=(const T rhs)
         {
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
                     data[i][j] -= rhs;
                 }
             }
+
+            return *this;
         }
 
         /**
          * Performs index based multiplication between a three dimensional matrix and a scalar.
          * @param rhs The scalar to be multiplied with each value of the matrix.
          */
-        inline void operator*=(const T rhs)
+        inline Matrix3<T> &operator*=(const T rhs)
         {
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
                     data[i][j] *= rhs;
                 }
             }
+
+            return *this;
         }
 
         /**
          * Performs index based division between a three dimensional matrix and a scalar.
          * @param rhs The scalar to divide each value of the matrix by.
          */
-        inline void operator/=(const T rhs)
+        inline Matrix3<T> &operator/=(const T rhs)
         {
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
                     data[i][j] /= rhs;
                 }
             }
-        }
 
-        /**
-         * Equality operator overload.
-         * @warning May not work as intended for floating point matrices.
-         * @param rhs The right hand side matrix operand with whom equality is tested.
-         * @return True only when all values of both matrices are equal.
-         */
-        inline bool operator==(const Matrix3<T> &rhs) const
-        {
-            for (int i = 0; i < 3; ++i) {
-                for (int j = 0; j < 3; ++j) {
-                    if (data[i][j] != rhs[i][j]) {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        /**
-         * Non equality operator overload.
-         * @warning May not work as intended for floating point matrices.
-         * @param rhs The right hand side matrix operand with whom non equality is tested.
-         * @return True when one of the matrix's values is not equal the the other's.
-         */
-        inline bool operator!=(const Matrix3<T> &rhs) const
-        {
-            return !(*this == rhs);
+            return *this;
         }
     };
 
     /**
+     * Performs index based addition of two three dimensional matrices.
+     * @param lhs The left hand side matrix operand.
+     * @param rhs The matrix whose values will be added
+     * to the left hand side operand.
+     * @return A new Matrix3 instance resulting from the addition.
+     */
+    template<typename T>
+    inline Matrix3<T> operator+(Matrix3<T> lhs, const Matrix3<T> &rhs)
+    {
+        lhs += rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Performs index based subtraction of two three dimensional matrices.
+     * @param rhs The matrix whose values will be subtracted
+     * from the left hand side operand.
+     * @return A new Matrix3 instance resulting from the subtraction.
+     */
+    template<typename T>
+    inline Matrix3<T> operator-(Matrix3<T> lhs, const Matrix3<T> &rhs)
+    {
+        lhs -= rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Performs matrix multiplication.
+     * @details Mutiplies the left hand side matrix operand with the right hand
+     * side matrix operand.
+     * @param rhs The right hand side matrix operand.
+     * @return A new Matrix3 as the result of the matrix multiplication.
+     */
+    template<typename T>
+    inline Matrix3<T> operator*(Matrix3<T> lhs, const Matrix3<T> &rhs)
+    {
+        lhs *= rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Performs index based addition between a three dimensional matrix and a scalar.
+     * @param lhs The matrix whose values are going to be added with the scalar.
+     * @param rhs The scalar to be added to each value of the matrix.
+     * @return A new Matrix3 instance resulting from the addition.
+     */
+    template<typename T>
+    inline Matrix3<T> operator+(Matrix3<T> lhs, const T rhs)
+    {
+        lhs += rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Performs index based addition between a three dimensional matrix and a scalar.
+     * @param lhs The scalar to be added to each value of the matrix.
+     * @param rhs The matrix whose values are going to be added with the scalar.
+     * @return A new Matrix3 instance resulting from the addition.
+     */
+    template<typename T>
+    inline Matrix3<T> operator+(const T lhs, Matrix3<T> rhs)
+    {
+        return rhs + lhs;
+    }
+
+    /**
+     * Performs index based subtraction between a three dimensional matrix and a scalar.
+     * @param lhs The matrix from whom the scalar will be subtracted from.
+     * @param rhs The scalar to be subtracted from each value of the matrix.
+     * @return A new Matrix3 instance resulting from the subtraction.
+     */
+    template<typename T>
+    inline Matrix3<T> operator-(Matrix3<T> lhs, const T rhs)
+    {
+        lhs -= rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Performs index based subtraction between a three dimensional matrix and a scalar.
+     * @param lhs The scalar to be subtracted from each value of the matrix.
+     * @param rhs The matrix from whom the scalar will be subtracted from.
+     * @return A new Matrix3 instance resulting from the subtraction.
+     */
+    template<typename T>
+    inline Matrix3<T> operator-(const T lhs, Matrix3<T> rhs)
+    {
+        return rhs - lhs;
+    }
+
+    /**
+     * Perform index based multiplication between a three dimensional matrix and a scalar.
+     * @param lhs The matrix whose values are going to be multiplied by the scalar.
+     * @param rhs The scalar to be multiplied with each value of the matrix.
+     * @return A new Matrix3 instance resulting from the multiplication.
+     */
+    template<typename T>
+    inline Matrix3<T> operator*(Matrix3<T> lhs, const T rhs)
+    {
+        lhs *= rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Perform index based multiplication between a three dimensional matrix and a scalar.
+     * @param lhs The scalar to be multiplied with each value of the matrix.
+     * @param rhs The matrix whose values are going to be multiplied by the scalar.
+     * @return A new Matrix3 instance resulting from the multiplication.
+     */
+    template<typename T>
+    inline Matrix3<T> operator*(const T lhs, Matrix3<T> rhs)
+    {
+        return rhs * lhs;
+    }
+
+    /**
+     * Performs index based division between a three dimensional matrix and a scalar.
+     * @param lhs The matrix whose values are going to be divided by the scalar.
+     * @param rhs The scalar to divide each value of the matrix by.
+     * @return A new Matrix3 instance resulting from the multiplicaiton.
+     */
+    template<typename T>
+    inline Matrix3<T> operator/(Matrix3<T> lhs, const T rhs)
+    {
+        lhs /= rhs;
+
+        return lhs;
+    }
+
+    /**
+     * Performs index based division between a three dimensional matrix and a scalar.
+     * @param lhs The scalar to divide each value of the matrix by.
+     * @param rhs The matrix whose values are going to be divided by the scalar.
+     * @return A new Matrix3 instance resulting from the multiplicaiton.
+     */
+    template<typename T>
+    inline Matrix3<T> operator/(const T lhs, Matrix3<T> rhs)
+    {
+        return rhs / lhs;
+    }
+
+    /**
       * Performs multiplication between the matrix and the vector.
-      * @param vec The three dimensional vector to be multiplied with the matrix.
+      * @param lhs The matrix to be multiplied with the vector.
+      * @param rhs The three dimensional vector to be multiplied with the matrix.
       * @return A new Vector3 instance as the result of the multiplication.
       */
     template<typename T>
@@ -1873,54 +1879,52 @@ namespace hm {
         }
 
         /**
-         * Calculates the determinant of the matrix.
-         * @return The calculated determinant as a double precision
-         * floating point number.
+         * Calculates a submatrix (Matrix3) from the three dimensional matrix.
+         * @param row The matrix row to be excluded.
+         * @param col The matrix column to be excluded.
+         * @return A Matrix3 submatrix.
          */
-        inline double determinant() const
+        inline Matrix3<T> submatrix(const int row, const int col) const
         {
-            double det11 = data[1][1] * (data[2][2] * data[3][3] - data[3][2] * data[2][3]) -
-                           data[1][2] * (data[2][1] * data[3][3] - data[3][1] * data[2][3]) +
-                           data[1][3] * (data[2][1] * data[3][2] - data[3][1] * data[2][2]);
+            Matrix3<T> res;
 
-            double det12 = data[1][0] * (data[2][2] * data[3][3] - data[3][2] * data[2][3]) -
-                           data[1][2] * (data[2][0] * data[3][3] - data[3][0] * data[2][3]) +
-                           data[1][3] * (data[2][0] * data[3][2] - data[3][0] * data[2][2]);
+            int row_c = 0;
+            int col_c = 0;
 
-            double det13 = data[1][0] * (data[2][1] * data[3][3] - data[3][1] * data[2][3]) -
-                           data[1][1] * (data[2][0] * data[3][3] - data[3][0] * data[2][3]) +
-                           data[1][3] * (data[2][0] * data[3][1] - data[3][0] * data[2][1]);
+            for (int i = 0; i < 4; ++i) {
 
-            double det14 = data[1][0] * (data[2][1] * data[3][2] - data[3][1] * data[2][2]) -
-                           data[1][1] * (data[2][0] * data[3][2] - data[3][0] * data[2][2]) +
-                           data[1][2] * (data[2][0] * data[3][1] - data[3][0] * data[2][1]);
+                if (i == row) {
+                    continue;
+                }
 
-            return data[0][0] * det11 - data[0][1] * det12 + data[0][2] * det13 - data[0][3] * det14;
+                for (int j = 0; j < 4; ++j) {
+
+                    if (j == col) {
+                        continue;
+                    }
+
+                    res[row_c][col_c] = data[i][j];
+
+                    ++col_c;
+                }
+
+                col_c = 0;
+                ++row_c;
+            }
+
+            return res;
         }
 
         /**
          * Calculates the determinant of the matrix.
-         * @return The calculated determinant as a floating point number.
+         * @return The calculated determinant.
          */
-        inline float determinantf() const
+        inline T determinant() const
         {
-            float det11 = data[1][1] * (data[2][2] * data[3][3] - data[3][2] * data[2][3]) -
-                          data[1][2] * (data[2][1] * data[3][3] - data[3][1] * data[2][3]) +
-                          data[1][3] * (data[2][1] * data[3][2] - data[3][1] * data[2][2]);
-
-            float det12 = data[1][0] * (data[2][2] * data[3][3] - data[3][2] * data[2][3]) -
-                          data[1][2] * (data[2][0] * data[3][3] - data[3][0] * data[2][3]) +
-                          data[1][3] * (data[2][0] * data[3][2] - data[3][0] * data[2][2]);
-
-            float det13 = data[1][0] * (data[2][1] * data[3][3] - data[3][1] * data[2][3]) -
-                          data[1][1] * (data[2][0] * data[3][3] - data[3][0] * data[2][3]) +
-                          data[1][3] * (data[2][0] * data[3][1] - data[3][0] * data[2][1]);
-
-            float det14 = data[1][0] * (data[2][1] * data[3][2] - data[3][1] * data[2][2]) -
-                          data[1][1] * (data[2][0] * data[3][2] - data[3][0] * data[2][2]) +
-                          data[1][2] * (data[2][0] * data[3][1] - data[3][0] * data[2][1]);
-
-            return data[0][0] * det11 - data[0][1] * det12 + data[0][2] * det13 - data[0][3] * det14;
+            return data[0][0] * submatrix(0, 0).determinant() -
+                   data[0][1] * submatrix(0, 1).determinant() +
+                   data[0][2] * submatrix(0, 2).determinant() -
+                   data[0][3] * submatrix(0, 3).determinant();
         }
 
         /**
@@ -2008,7 +2012,6 @@ namespace hm {
 
             return *this;
         }
-
 
 
         /**
@@ -2128,6 +2131,7 @@ namespace hm {
 
     /**
       * Performs index based addition of two four dimensional matrices.
+      * @param lhs The left hand side matrix operand.
       * @param rhs The matrix whose values will be added
       * to the left hand side operand.
       * @return A new Matrix4 instance resulting from the addition.
@@ -2142,6 +2146,7 @@ namespace hm {
 
     /**
      * Performs index based subtraction of two four dimensional matrices.
+     * @param lhs The left hand side matrix operand.
      * @param rhs The matrix whose values will be subtracted
      * from the left hand side operand.
      * @return A new Matrix4 instance resulting from the subtraction.
@@ -2156,8 +2161,7 @@ namespace hm {
 
     /**
      * Performs matrix multiplication.
-     * @details Mutiplies the left hand side matrix operand with the right hand
-     * side matrix operand.
+     * @param lhs The left hand side matrix operand.
      * @param rhs The right hand side matrix operand.
      * @return A new Matrix4 as the result of the matrix multiplication.
      */
@@ -2171,6 +2175,7 @@ namespace hm {
 
     /**
       * Performs index based addition between a four dimensional matrix and a scalar.
+      * @param lhs The matrix whose values are going to be added with the scalar.
       * @param rhs The scalar to be added to each value of the matrix.
       * @return A new Matrix4 instance resulting from the addition.
       */
@@ -2182,15 +2187,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Performs index based addition between a four dimensional matrix and a scalar.
+     * @param lhs The scalar to be added to each value of the matrix.
+     * @param rhs The matrix whose values are going to be added with scalar.
+     * @return A new Matrix4 instance resulting from the addition.
+     */
     template<typename T>
     inline Matrix4<T> operator+(const T lhs, Matrix4<T> rhs)
     {
-        //TODO: Test this.
         return rhs + lhs;
     }
 
     /**
      * Performs index based subtraction between a four dimensional matrix and a scalar.
+     * @param lhs The matrix from whom the scalar will be subtracted from.
      * @param rhs The scalar to be subtracted from each value of the matrix.
      * @return A new Matrix4 instance resulting from the subtraction.
      */
@@ -2202,15 +2213,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Performs index based subtraction between a four dimensional matrix and a scalar.
+     * @param lhs The scalar to be subtracted from each value of the matrix.
+     * @param rhs The matrix from whom the scalar will be subtracted from.
+     * @return A new Matrix4 instance resulting from the subtraction.
+     */
     template<typename T>
     inline Matrix4<T> operator-(const T lhs, Matrix4<T> rhs)
     {
-        //TODO: Test this.
         return rhs - lhs;
     }
 
     /**
      * Perform index based multiplication between a four dimensional matrix and a scalar.
+     * @param lhs The matrix whose values are going to be multiplied by the scalar.
      * @param rhs The scalar to be multiplied with each value of the matrix.
      * @return A new Matrix4 instance resulting from the multiplication.
      */
@@ -2222,15 +2239,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Perform index based multiplication between a four dimensional matrix and a scalar.
+     * @param lhs The scalar to be multiplied with each value of the matrix.
+     * @param rhs The matrix whose values are going to be multiplied by the scalar.
+     * @return A new Matrix4 instance resulting from the multiplication.
+     */
     template<typename T>
     inline Matrix4<T> operator*(const T lhs, Matrix4<T> rhs)
     {
-        //TODO: Test this.
         return rhs * lhs;
     }
 
     /**
      * Performs index based division between a four dimensional matrix and a scalar.
+     * @param lhs The matrix whose values are going to be divided by the scalar.
      * @param rhs The scalar to divide each value of the matrix by.
      * @return A new Matrix4 instance resulting from the multiplicaiton.
      */
@@ -2242,26 +2265,32 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Performs index based division between a four dimensional matrix and a scalar.
+     * @param lhs The scalar to divide each value of the matrix by.
+     * @param rhs The matrix whose values are going to be divided by the scalar.
+     * @return A new Matrix4 instance resulting from the multiplicaiton.
+     */
     template<typename T>
     inline Matrix4<T> operator/(const T lhs, Matrix4<T> rhs)
     {
-        //TODO: Test this.
         return rhs / lhs;
     }
 
     /**
       * Performs multiplication between the matrix and the vector.
+      * @param lhs The matrix to be multiplied with the vector.
       * @param vec The four dimensional vector to be multiplied with the matrix.
       * @return A new Vector4 instance as the result of the multiplication.
       */
     template<typename T>
-    inline Vector4<T> operator*(const Matrix4<T> &lhs, const Vector4<T> &vec)
+    inline Vector4<T> operator*(const Matrix4<T> &lhs, const Vector4<T> &rhs)
     {
         Vector4<T> res;
 
         for (int i = 0; i < 4; ++i) {
-            res[i] = lhs[i][0] * vec.x + lhs[i][1] * vec.y
-                     + lhs[i][2] * vec.z + lhs[i][3] * vec.w;
+            res[i] = lhs[i][0] * rhs.x + lhs[i][1] * rhs.y
+                     + lhs[i][2] * rhs.z + lhs[i][3] * rhs.w;
         }
 
         return res;

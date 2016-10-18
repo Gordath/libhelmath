@@ -28,15 +28,32 @@ protected:
     }
 };
 
-//TEST_F(Matrix2Fixture, test_operator_matrix_mult_matrix)
-//{
-////    Mat2f res{m1 * m2};
-////
-////    Mat2f exp{8, 5, 20, 13};
-////    float s[2]{1, 2};
-////    exp.set_row_vector(s, -1);
-////    EXPECT_EQ(res, exp);
-//}
+TEST_F(Matrix2Fixture, test_determinant)
+{
+    float res{m1.determinant()};
+
+    EXPECT_FLOAT_EQ(res, -2.0f);
+}
+
+TEST_F(Matrix2Fixture, test_operator_matrix_mult_equals_matrix)
+{
+    m1 *= m2;
+
+    Mat2f exp{8, 5,
+              20, 13};
+
+    expect_matrixf_eq(m1, exp);
+}
+
+TEST_F(Matrix2Fixture, test_operator_matrix_mult_matrix)
+{
+    Mat2f res{m1 * m2};
+
+    Mat2f exp{8, 5,
+              20, 13};
+
+    expect_matrixf_eq(res, exp);
+}
 
 TEST_F(Matrix2Fixture, test_operator_assignment)
 {

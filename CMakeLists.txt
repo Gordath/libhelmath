@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(helmath)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -g -O0 --coverage -fno-inline")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 option(COVERAGE OFF)
 

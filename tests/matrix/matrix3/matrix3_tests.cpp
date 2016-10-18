@@ -10,19 +10,29 @@ protected:
 
     void SetUp() override
     {
-        m1 = Mat3f{1, 2, 3,
-                   4, 5, 6,
-                   7, 8, 9};
+        m1 = Mat3f{1.0f, 2.0f, 3.0f,
+                   4.0f, 5.0f, 6.0f,
+                   7.0f, 8.0f, 9.0f};
 
-        m2 = Mat3f{9, 8, 7,
-                   6, 5, 4,
-                   3, 2, 1};
+        m2 = Mat3f{9.0f, 8.0f, 7.0f,
+                   6.0f, 5.0f, 4.0f,
+                   3.0f, 2.0f, 1.0f};
     }
 
-    void expect_matrixf_eq(const Mat3f &act, const Mat3f &exp)
+    void expect_matrix3f_eq(const Mat3f &act, const Mat3f &exp)
     {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
+                EXPECT_FLOAT_EQ(act[i][j], exp[i][j]) << "Expectation indices:\n" << "row: " << i
+                                                      << "\ncolumn: " << j << std::endl;
+            }
+        }
+    }
+
+    void expect_matrix2f_eq(const Mat2f &act, const Mat2f &exp)
+    {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
                 EXPECT_FLOAT_EQ(act[i][j], exp[i][j]) << "Expectation indices:\n" << "row: " << i
                                                       << "\ncolumn: " << j << std::endl;
             }
@@ -38,7 +48,7 @@ TEST_F(Matrix3Fixture, test_set_row_vector_with_coordinate_param)
                       4.0f, 5.0f, 6.0f,
                       0.0f, 0.0f, 0.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_row_vector_with_vector_param)
@@ -49,7 +59,7 @@ TEST_F(Matrix3Fixture, test_set_row_vector_with_vector_param)
                       0.0f, 0.0f, 0.0f,
                       7.0f, 8.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_row_vector_with_array_param)
@@ -62,7 +72,7 @@ TEST_F(Matrix3Fixture, test_set_row_vector_with_array_param)
                       4.0f, 5.0f, 6.0f,
                       7.0f, 8.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_row_vector_with_pointer_param)
@@ -79,7 +89,7 @@ TEST_F(Matrix3Fixture, test_set_row_vector_with_pointer_param)
                       4.0f, 5.0f, 6.0f,
                       7.0f, 8.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 
     delete[] v;
 }
@@ -92,7 +102,7 @@ TEST_F(Matrix3Fixture, test_set_column_vector_with_coordinate_param)
               4.0f, 0.0f, 6.0f,
               7.0f, 0.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_column_vector_with_vector_param)
@@ -103,7 +113,7 @@ TEST_F(Matrix3Fixture, test_set_column_vector_with_vector_param)
               4.0f, 5.0f, 0.0f,
               7.0f, 8.0f, 0.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_column_vector_with_array_param)
@@ -116,7 +126,7 @@ TEST_F(Matrix3Fixture, test_set_column_vector_with_array_param)
               0.0f, 5.0f, 6.0f,
               0.0f, 8.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_colum_vector_with_pointer_param)
@@ -133,7 +143,7 @@ TEST_F(Matrix3Fixture, test_set_colum_vector_with_pointer_param)
               4.0f, 0.0f, 6.0f,
               7.0f, 0.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 
     delete[] v;
 }
@@ -146,7 +156,7 @@ TEST_F(Matrix3Fixture, test_translate_with_coordinate_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_translate_with_vector_param)
@@ -157,7 +167,7 @@ TEST_F(Matrix3Fixture, test_translate_with_vector_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_translate_with_array_param)
@@ -169,7 +179,7 @@ TEST_F(Matrix3Fixture, test_translate_with_array_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_translate_with_pointer_param)
@@ -185,7 +195,7 @@ TEST_F(Matrix3Fixture, test_translate_with_pointer_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 
     delete[] v;
 }
@@ -198,7 +208,7 @@ TEST_F(Matrix3Fixture, test_translated_with_coordinate_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_tranlated_with_vector_param)
@@ -209,7 +219,7 @@ TEST_F(Matrix3Fixture, test_tranlated_with_vector_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_translated_with_array_param)
@@ -221,7 +231,7 @@ TEST_F(Matrix3Fixture, test_translated_with_array_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_translated_with_pointer_param)
@@ -237,7 +247,7 @@ TEST_F(Matrix3Fixture, test_translated_with_pointer_param)
               4.0f, 5.0f, 15.0f,
               7.0f, 8.0f, 24.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 
     delete[] v;
 }
@@ -250,7 +260,7 @@ TEST_F(Matrix3Fixture, test_set_translation_with_coordinate_param)
               4.0f, 5.0f, 1.0f,
               7.0f, 8.0f, 1.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_translation_with_vector_param)
@@ -261,7 +271,7 @@ TEST_F(Matrix3Fixture, test_set_translation_with_vector_param)
                       4.0f, 5.0f, 1.0f,
                       7.0f, 8.0f, 1.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_translation_with_array_param)
@@ -273,7 +283,7 @@ TEST_F(Matrix3Fixture, test_set_translation_with_array_param)
               4.0f, 5.0f, 1.0f,
               7.0f, 8.0f, 1.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_translation_with_pointer_param)
@@ -289,7 +299,7 @@ TEST_F(Matrix3Fixture, test_set_translation_with_pointer_param)
               4.0f, 5.0f, 1.0f,
               7.0f, 8.0f, 1.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 
     delete[] v;
 }
@@ -319,7 +329,7 @@ TEST_F(Matrix3Fixture, test_scale_with_coordinate_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_scale_with_vector_param)
@@ -330,7 +340,7 @@ TEST_F(Matrix3Fixture, test_scale_with_vector_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_scale_with_array_param)
@@ -342,7 +352,7 @@ TEST_F(Matrix3Fixture, test_scale_with_array_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_scale_with_pointer_param)
@@ -359,7 +369,7 @@ TEST_F(Matrix3Fixture, test_scale_with_pointer_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 
     delete[] v;
 }
@@ -372,7 +382,7 @@ TEST_F(Matrix3Fixture, test_scaled_with_coordinate_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_scaled_with_vector_param)
@@ -383,7 +393,7 @@ TEST_F(Matrix3Fixture, test_scaled_with_vector_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_scaled_with_array_param)
@@ -395,7 +405,7 @@ TEST_F(Matrix3Fixture, test_scaled_with_array_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_scaled_with_pointer_param)
@@ -412,7 +422,7 @@ TEST_F(Matrix3Fixture, test_scaled_with_pointer_param)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 
     delete[] v;
 }
@@ -425,7 +435,7 @@ TEST_F(Matrix3Fixture, test_set_scaling_with_coordinate_param)
               4.0f, 2.0f, 6.0f,
               7.0f, 8.0f, 2.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_scaling_with_vector_param)
@@ -436,7 +446,7 @@ TEST_F(Matrix3Fixture, test_set_scaling_with_vector_param)
               4.0f, 2.0f, 6.0f,
               7.0f, 8.0f, 2.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_scaling_with_array_param)
@@ -448,7 +458,7 @@ TEST_F(Matrix3Fixture, test_set_scaling_with_array_param)
               4.0f, 2.0f, 6.0f,
               7.0f, 8.0f, 2.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_set_scaling_with_pointer_param)
@@ -465,9 +475,30 @@ TEST_F(Matrix3Fixture, test_set_scaling_with_pointer_param)
               4.0f, 2.0f, 6.0f,
               7.0f, 8.0f, 2.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 
     delete[] v;
+}
+
+TEST_F(Matrix3Fixture, test_submatrix)
+{
+    Mat2f res{m1.submatrix(0, 2)};
+
+    Mat2f exp{4.0f, 5.0f,
+              7.0f, 8.0f};
+
+    expect_matrix2f_eq(res, exp);
+}
+
+TEST_F(Matrix3Fixture, test_determinant)
+{
+    Mat3f mat{1.0f, 1.0f, 3.0f,
+              4.0f, 5.0f, 6.0f,
+              7.0f, 8.0f, 9.0f};
+
+    float res{mat.determinant()};
+
+    EXPECT_FLOAT_EQ(res, -6.0f);
 }
 
 TEST_F(Matrix3Fixture, test_transpose)
@@ -478,7 +509,7 @@ TEST_F(Matrix3Fixture, test_transpose)
               2.0f, 5.0f, 8.0f,
               3.0f, 6.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_transposed)
@@ -489,7 +520,7 @@ TEST_F(Matrix3Fixture, test_transposed)
               2.0f, 5.0f, 8.0f,
               3.0f, 6.0f, 9.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_implicit_conversion_to_pointer)
@@ -511,7 +542,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_assignment_matrix3)
     Mat3f res;
     res = m1;
 
-    expect_matrixf_eq(res, m1);
+    expect_matrix3f_eq(res, m1);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_assignment_matrix2)
@@ -524,7 +555,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_assignment_matrix2)
               0.0f, 1.0f, 6.0f,
               7.0f, 8.0f, 9.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_plus_matrix)
@@ -537,7 +568,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_plus_matrix)
               5.0f, 6.0f, 7.0f,
               8.0f, 9.0f, 10.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_minus_matrix)
@@ -550,7 +581,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_minus_matrix)
               3.0f, 4.0f, 5.0f,
               6.0f, 7.0f, 8.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_mult_matrix)
@@ -561,7 +592,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_mult_matrix)
               84.0f, 69.0f, 54.0f,
               138.0f, 114.0f, 90.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_plus_equals_matrix)
@@ -574,7 +605,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_plus_equals_matrix)
               5.0f, 6.0f, 7.0f,
               8.0f, 9.0f, 10.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_minus_equals_matrix)
@@ -587,7 +618,7 @@ TEST_F(Matrix3Fixture, test_operator_matrix_minus_equals_matrix)
               3.0f, 4.0f, 5.0f,
               6.0f, 7.0f, 8.0f};
 
-    expect_matrixf_eq(m1, exp);
+    expect_matrix3f_eq(m1, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_plus_scalar)
@@ -598,7 +629,18 @@ TEST_F(Matrix3Fixture, test_operator_matrix_plus_scalar)
               5.0f, 6.0f, 7.0f,
               8.0f, 9.0f, 10.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
+}
+
+TEST_F(Matrix3Fixture, test_operator_scalar_plus_matrix)
+{
+    Mat3f res{1.0f + m1};
+
+    Mat3f exp{2.0f, 3.0f, 4.0f,
+              5.0f, 6.0f, 7.0f,
+              8.0f, 9.0f, 10.0f};
+
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_minus_scalar)
@@ -609,7 +651,18 @@ TEST_F(Matrix3Fixture, test_operator_matrix_minus_scalar)
               3.0f, 4.0f, 5.0f,
               6.0f, 7.0f, 8.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
+}
+
+TEST_F(Matrix3Fixture, test_operator_scalar_minus_matrix)
+{
+    Mat3f res{1.0f - m1};
+
+    Mat3f exp{0.0f, 1.0f, 2.0f,
+              3.0f, 4.0f, 5.0f,
+              6.0f, 7.0f, 8.0f};
+
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_mult_scalar)
@@ -620,24 +673,40 @@ TEST_F(Matrix3Fixture, test_operator_matrix_mult_scalar)
               8.0f, 10.0f, 12.0f,
               14.0f, 16.0f, 18.0f};
 
-    expect_matrixf_eq(res, exp);
+    expect_matrix3f_eq(res, exp);
 }
 
-TEST_F(Matrix3Fixture, test_operator_matrix_equals_matrix)
+TEST_F(Matrix3Fixture, test_operator_scalar_mult_matrix)
 {
-    Mat3f mat;
-    Mat3f exp;
+    Mat3f res{2.0f * m1};
 
-    EXPECT_TRUE(mat == exp);
+    Mat3f exp{2.0f, 4.0f, 6.0f,
+              8.0f, 10.0f, 12.0f,
+              14.0f, 16.0f, 18.0f};
+
+    expect_matrix3f_eq(res, exp);
 }
 
-TEST_F(Matrix3Fixture, test_operator_matrix_not_equals_matrix)
+TEST_F(Matrix3Fixture, test_operator_matrix_div_scalar)
 {
-    Mat3f mat;
-    Mat3f exp;
-    exp.set_row_vector(Vec3f{1, 2, 3}, 0);
+    Mat3f res{m1 / 2.0f};
 
-    EXPECT_TRUE(mat != exp);
+    Mat3f exp{0.5f, 1.0f, 1.5f,
+              2.0f, 2.5f, 3.0f,
+              3.5f, 4.0f, 4.5f};
+
+    expect_matrix3f_eq(res, exp);
+}
+
+TEST_F(Matrix3Fixture, test_operator_scalar_div_matrix)
+{
+    Mat3f res{2.0f / m1};
+
+    Mat3f exp{0.5f, 1.0f, 1.5f,
+              2.0f, 2.5f, 3.0f,
+              3.5f, 4.0f, 4.5f};
+
+    expect_matrix3f_eq(res, exp);
 }
 
 TEST_F(Matrix3Fixture, test_operator_matrix_mult_vector4)

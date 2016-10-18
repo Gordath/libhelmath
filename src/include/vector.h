@@ -456,7 +456,6 @@ namespace hm {
     template<typename T>
     inline Vector2<T> operator+(const T lhs, Vector2<T> rhs)
     {
-        //TODO: Test this.
         return rhs + lhs;
     }
 
@@ -482,7 +481,6 @@ namespace hm {
     template<typename T>
     inline Vector2<T> operator-(const T lhs, Vector2<T> rhs)
     {
-        //TODO: Test this.
         return rhs - lhs;
     }
 
@@ -508,7 +506,6 @@ namespace hm {
     template<typename T>
     inline Vector2<T> operator*(const T lhs, Vector2<T> rhs)
     {
-        //TODO: Test this.
         return rhs * lhs;
     }
 
@@ -534,7 +531,6 @@ namespace hm {
     template<typename T>
     inline Vector2<T> operator/(const T lhs, Vector2<T> rhs)
     {
-        //TODO: Test this.
         return rhs / lhs;
     }
 
@@ -972,6 +968,7 @@ namespace hm {
 
     /**
       * Adds a scalar to each value of the vector.
+      * @param lhs The vector to whom the scalar is added.
       * @param rhs The scalar added to each value of the vector.
       * @return A new three dimensional vector as the result of the addition.
       */
@@ -982,15 +979,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Adds a scalar to each value of the vector.
+     * @param lhs The scalar added to each value of the vector.
+     * @param rhs The vector to whom the scalar is added.
+     * @return A new three dimensional vector as the result of the addition.
+     */
     template<typename T>
     inline Vector3<T> operator+(const T lhs, Vector3<T> rhs)
     {
-        //TODO: Test this.
         return rhs + lhs;
     }
 
     /**
      * Subtracts a scalar from each value of the vector.
+     * @param lhs The vector from whom the scalar is subtracted.
      * @param rhs The scalar subtracted from each value of the vector.
      * @return A new three dimensional vector as the result of the subtraction.
      */
@@ -1001,15 +1004,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Subtracts a scalar from each value of the vector.
+     * @param lhs The scalar subtracted from each value of the vector.
+     * @param rhs The vector from whom the scalar is subtracted.
+     * @return A new three dimensional vector as the result of the subtraction.
+     */
     template<typename T>
     inline Vector3<T> operator-(const T lhs, Vector3<T> rhs)
     {
-        //TODO: Test this;
         return rhs - lhs;
     }
 
     /**
      * Multiplies a scalar with each value of the vector.
+     * @param lhs The vector with whom the scalar is multiplied.
      * @param rhs The scalar multiplied with each value of the vector.
      * @return A new three dimensional vector as the result of the multiplication.
      */
@@ -1020,15 +1029,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Multiplies a scalar with each value of the vector.
+     * @param lhs The scalar multiplied with each value of the vector.
+     * @param rhs The vector with whom the scalar is multiplied.
+     * @return A new three dimensional vector as the result of the multiplication.
+     */
     template<typename T>
     inline Vector3<T> operator*(const T lhs, Vector3<T> rhs)
     {
-        //TODO: Test this;
         return rhs * lhs;
     }
 
     /**
      * Divides each value of the vector by a scalar.
+     * @param lhs The vector whose values are to be divided by the scalar.
      * @param rhs The scalar to divide each value of the vector by.
      * @return A new three dimensional vector as the result of the division.
      */
@@ -1039,11 +1054,15 @@ namespace hm {
         return lhs;
     }
 
-
+    /**
+     * Divides each value of the vector by a scalar.
+     * @param lhs The scalar to divide each value of the vector by.
+     * @param rhs The vector whose values are to be divided by the scalar.
+     * @return A new three dimensional vector as the result of the division.
+     */
     template<typename T>
     inline Vector3<T> operator/(const T lhs, Vector3<T> rhs)
     {
-        //TODO: Test this.
         return rhs / lhs;
     }
 
@@ -1401,9 +1420,9 @@ namespace hm {
     };
 
     /**
-      * Negates the vector's values.
-      * @return A new four dimensional vector with negated values.
-      */
+     * Negates the vector's values.
+     * @return A new four dimensional vector with negated values.
+     */
     template<typename T>
     inline Vector4<T> operator-(const Vector4<T> &rhs)
     {
@@ -1411,12 +1430,12 @@ namespace hm {
     }
 
     /**
-    * Calculates the addition of 2 four dimensional vectors.
-    * @details Adds each value of the right hand side vector operand
-    * to the respective value of the left hand side vector operand.
-    * @param rhs The right hand side vector of the addition.
-    * @return A new four dimensional vector as the result of the addition.
-    */
+     * Calculates the addition of 2 four dimensional vectors.
+     * @details Adds each value of the right hand side vector operand
+     * to the respective value of the left hand side vector operand.
+     * @param rhs The right hand side vector of the addition.
+     * @return A new four dimensional vector as the result of the addition.
+     */
     template<typename T>
     inline Vector4<T> operator+(Vector4<T> lhs, const Vector4<T> &rhs)
     {
@@ -1425,12 +1444,13 @@ namespace hm {
     }
 
     /**
-    * Calculates the subtraction of 2 four dimensional vectors.
-    * @details Subtracts each value of the right hand side vector operand
-    * from the respective value of the left hand side vector operand.
-    * @param rhs The right hand side vector of the subtraction.
-    * @return A new four dimensional vector as the result of the subtraction.
-    */
+     * Calculates the subtraction of 2 four dimensional vectors.
+     * @details Subtracts each value of the right hand side vector operand
+     * from the respective value of the left hand side vector operand.
+     * @param lhs The left hand side vector of the subtraction.
+     * @param rhs The right hand side vector of the subtraction.
+     * @return A new four dimensional vector as the result of the subtraction.
+     */
     template<typename T>
     inline Vector4<T> operator-(Vector4<T> lhs, const Vector4<T> &rhs)
     {
@@ -1439,12 +1459,13 @@ namespace hm {
     }
 
     /**
-    * Calculates the multiplication of 2 four dimensional vectors.
-    * @details Multiplies each value of the right hand side vector operand
-    * with the respective value of the left hand side vector operand.
-    * @param rhs The right hand side vector of the multiplication.
-    * @return A new four dimensional vector as the result of the multiplication.
-    */
+     * Calculates the multiplication of 2 four dimensional vectors.
+     * @details Multiplies each value of the right hand side vector operand
+     * with the respective value of the left hand side vector operand.
+     * @param lhs The left hand side vector of the multiplication.
+     * @param rhs The right hand side vector of the multiplication.
+     * @return A new four dimensional vector as the result of the multiplication.
+     */
     template<typename T>
     inline Vector4<T> operator*(Vector4<T> lhs, const Vector4<T> &rhs)
     {
@@ -1453,12 +1474,13 @@ namespace hm {
     }
 
     /**
-    * Calculates the division of 2 four dimensional vectors.
-    * @details Divides each value of the right hand side vector operand
-    * by the respective value of the left hand side vector operand.
-    * @param rhs The right hand side vector of the division.
-    * @return A new four dimensional vector as the result of the division.
-    */
+     * Calculates the division of 2 four dimensional vectors.
+     * @details Divides each value of the right hand side vector operand
+     * by the respective value of the left hand side vector operand.
+     * @param lhs The left hand side vector of the division.
+     * @param rhs The right hand side vector of the division.
+     * @return A new four dimensional vector as the result of the division.
+     */
     template<typename T>
     inline Vector4<T> operator/(Vector4<T> lhs, const Vector4<T> &rhs)
     {
@@ -1468,6 +1490,7 @@ namespace hm {
 
     /**
       * Adds a scalar to each value of the vector.
+      * @param lhs The vector to whom the scalar is added.
       * @param rhs The scalar added to each value of the vector.
       * @return A new four dimensional vector as the result of the addition.
       */
@@ -1478,18 +1501,24 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Adds a scalar to each value of the vector.
+     * @param lhs The scalar added to each value of the vector.
+     * @param rhs The vector to whom the scalar is added.
+     * @return A new four dimensional vector as the result of the addition.
+     */
     template<typename T>
     inline Vector4<T> operator+(const T lhs, Vector4<T> rhs)
     {
-        //TODO: Test this.
         return rhs + lhs;
     }
 
     /**
-    * Subtracts a scalar from each value of the vector.
-    * @param rhs The scalar subtracted from each value of the vector.
-    * @return A new four dimensional vector as the result of the addition.
-    */
+     * Subtracts a scalar from each value of the vector.
+     * @param lhs The vector from whom the scalar is subtracted.
+     * @param rhs The scalar subtracted from each value of the vector.
+     * @return A new four dimensional vector as the result of the subtraction.
+     */
     template<typename T>
     inline Vector4<T> operator-(Vector4<T> lhs, const T rhs)
     {
@@ -1497,18 +1526,24 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Subtracts a scalar from each value of the vector.
+     * @param lhs The scalar subtracted from each value of the the vector.
+     * @param rhs The vector from whom the scalar is subtracted.
+     * @return A new four dimensional vector as the result of the subtraction.
+     */
     template<typename T>
     inline Vector4<T> operator-(const T lhs, Vector4<T> rhs)
     {
-        //TODO: Test this.
         return rhs - lhs;
     }
 
     /**
-    * Multiplies a scalar with each value of the vector.
-    * @param rhs The scalar multiplied with each value of the vector.
-    * @return A new four dimensional vector as the result of the multiplication.
-    */
+     * Multiplies a scalar with each value of the vector.
+     * @param lhs The vector with whom the scalar is multiplied.
+     * @param rhs The scalar multiplied with each value of the vector.
+     * @return A new four dimensional vector as the result of the multiplication.
+     */
     template<typename T>
     inline Vector4<T> operator*(Vector4<T> lhs, const T rhs)
     {
@@ -1516,15 +1551,21 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Multiplies a scalar with each value of the vector.
+     * @param lhs The scalar multiplied with each value of the vector.
+     * @param rhs The vector with whom the scalar is multiplied.
+     * @return A new four dimensional vector as the result of the multiplication.
+     */
     template<typename T>
     inline Vector4<T> operator*(const T lhs, Vector4<T> rhs)
     {
-        //TODO: Test this.
         return rhs * lhs;
     }
 
     /**
      * Divides each value of the vector by a scalar.
+     * @param lhs The vector whose values are to be divided by the scalar.
      * @param rhs The scalar to divide each value of the vector by.
      * @return A new four dimensional vector as the result of the division.
      */
@@ -1535,10 +1576,15 @@ namespace hm {
         return lhs;
     }
 
+    /**
+     * Divides each value of the vector by a scalar.
+     * @param lhs The scalar to divide each value of the vector by.
+     * @param rhs The vector whose values are to be divided by the scalar.
+     * @return A new four dimensional vector as the result of the division.
+     */
     template<typename T>
     inline Vector4<T> operator/(const T lhs, Vector4<T> rhs)
     {
-        //TODO: Test this.
         return rhs / lhs;
     }
 

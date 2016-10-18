@@ -145,9 +145,25 @@ TEST_F(Vector2Fixture, test_operator_vector_plus_scalar)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
+TEST_F(Vector2Fixture, test_operator_scalar_plus_vector)
+{
+    Vec2f res{2.0f + v1};
+
+    EXPECT_FLOAT_EQ(res.x, 3.0f);
+    EXPECT_FLOAT_EQ(res.y, 4.0f);
+}
+
 TEST_F(Vector2Fixture, test_operator_vector_minus_scalar)
 {
     Vec2f res{v1 - 2.0f};
+
+    EXPECT_FLOAT_EQ(res.x, -1.0f);
+    EXPECT_FLOAT_EQ(res.y, 0.0f);
+}
+
+TEST_F(Vector2Fixture, test_operator_scalar_minus_vector)
+{
+    Vec2f res{2.0f - v1};
 
     EXPECT_FLOAT_EQ(res.x, -1.0f);
     EXPECT_FLOAT_EQ(res.y, 0.0f);
@@ -161,9 +177,25 @@ TEST_F(Vector2Fixture, test_operator_vector_mult_scalar)
     EXPECT_FLOAT_EQ(res.y, 4.0f);
 }
 
+TEST_F(Vector2Fixture, test_operator_scalar_mult_vector)
+{
+    Vec2f res{2.0f * v1};
+
+    EXPECT_FLOAT_EQ(res.x, 2.0f);
+    EXPECT_FLOAT_EQ(res.y, 4.0f);
+}
+
 TEST_F(Vector2Fixture, test_operator_vector_div_scalar)
 {
     Vec2f res{v1 / 2.0f};
+
+    EXPECT_FLOAT_EQ(res.x, 0.5f);
+    EXPECT_FLOAT_EQ(res.y, 1.0f);
+}
+
+TEST_F(Vector2Fixture, test_operator_scalar_div_vector)
+{
+    Vec2f res{2.0f / v1};
 
     EXPECT_FLOAT_EQ(res.x, 0.5f);
     EXPECT_FLOAT_EQ(res.y, 1.0f);
