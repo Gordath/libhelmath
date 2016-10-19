@@ -184,6 +184,38 @@ namespace hm {
             return data[idx];
         }
 
+        /**
+         * Performs index based addition between two two dimensional matrices.
+         * @param rhs The matrix whose values will be added
+         * to the left hand side operand.
+         */
+        inline Matrix2<T> &operator+=(const Matrix2<T> &rhs)
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                     data[i][j] += rhs[i][j];
+                }
+            }
+
+            return *this;
+        }
+
+        /**
+         * Performs index based addition between two three dimensional matrices.
+         * @param rhs The matrix whose values will be added
+         * to the left hand side operand.
+         */
+        inline Matrix2<T> &operator-=(const Matrix2<T> &rhs)
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    data[i][j] -= rhs[i][j];
+                }
+            }
+
+            return *this;
+        }
+
         inline Matrix2<T> &operator*=(const Matrix2<T> &rhs)
         {
             Matrix2<T> res;
@@ -198,7 +230,83 @@ namespace hm {
 
             return *this;
         }
+
+        /**
+         * Performs index based addition between a two dimensional matrix and a scalar.
+         * @param rhs The scalar to be added to each value of the matrix.
+         */
+        inline Matrix2<T> &operator+=(const T rhs)
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    data[i][j] += rhs;
+                }
+            }
+
+            return *this;
+        }
+
+        /**
+         * Performs index based subtraction between a two dimensional matrix and a scalar.
+         * @param rhs The scalar to be subtracted from each value of the matrix.
+         */
+        inline Matrix2<T> &operator-=(const T rhs)
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    data[i][j] -= rhs;
+                }
+            }
+
+            return *this;
+        }
+
+        /**
+         * Performs index based multiplication between a two dimensional matrix and a scalar.
+         * @param rhs The scalar to be multiplied with each value of the matrix.
+         */
+        inline Matrix2<T> &operator*=(const T rhs)
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    data[i][j] *= rhs;
+                }
+            }
+
+            return *this;
+        }
+
+        /**
+         * Performs index based division between a two dimensional matrix and a scalar.
+         * @param rhs The scalar to be divided by each value of the matrix.
+         */
+        inline Matrix2<T> &operator/=(const T rhs)
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int j = 0; j < 2; ++j) {
+                    data[i][j] /= rhs;
+                }
+            }
+
+            return *this;
+        }
     };
+
+    template<typename T>
+    inline Matrix2<T> operator+(Matrix2<T> lhs, const Matrix2<T> &rhs)
+    {
+        lhs += rhs;
+
+        return lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator-(Matrix2<T> lhs, const Matrix2<T> &rhs)
+    {
+        lhs -= rhs;
+
+        return lhs;
+    }
 
     /**
      * Performs matrix multiplication.
@@ -211,6 +319,62 @@ namespace hm {
         lhs *= rhs;
 
         return lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator+(Matrix2<T> &lhs, const T &rhs)
+    {
+        lhs += rhs;
+
+        return lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator+(const T lhs, Matrix2<T> &rhs)
+    {
+        return rhs + lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator-(Matrix2<T> lhs, const T rhs)
+    {
+        lhs -= rhs;
+
+        return lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator-(const T lhs, Matrix2<T> rhs)
+    {
+        return rhs - lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator*(Matrix2<T> lhs, const T rhs)
+    {
+        lhs *= rhs;
+
+        return lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator*(const T lhs, Matrix2<T> rhs)
+    {
+        return rhs * lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator/(Matrix2<T> lhs, const T rhs)
+    {
+        lhs /= rhs;
+
+        return lhs;
+    }
+
+    template<typename T>
+    inline Matrix2<T> operator/(const T lhs, Matrix2<T> rhs)
+    {
+        return rhs / lhs;
     }
 
     /**
@@ -950,7 +1114,7 @@ namespace hm {
         }
 
         /**
-         * Performs index based addition between two four dimensional matrices.
+         * Performs index based addition between two three dimensional matrices.
          * @param rhs The matrix whose values will be added
          * to the left hand side operand.
          */
@@ -964,7 +1128,7 @@ namespace hm {
         }
 
         /**
-         * Performs index based subtraction between two four dimensional matrices.
+         * Performs index based subtraction between two three dimensional matrices.
          * @param rhs The matrix whose values will be subtracted
          * from the left hand side operand.
          */
