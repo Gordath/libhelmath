@@ -105,7 +105,7 @@ namespace hm {
 
         /**
          * Sets the matrix's column vector at the specified index.
-         * @param vec A two dimensional vector whose values are asigned to the matrix column.
+         * @param vec A two dimensional vector whose values are assigned to the matrix column.
          * @param idx The index of the column in the matrix.
          * @overload set_column_vector(const Vector2<T> &vec, const unsigned int idx)
          */
@@ -118,7 +118,7 @@ namespace hm {
 
         /**
          * Sets the matrix's column vector at the specified index.
-         * @param v An array of size 2 with whose values are asigned to the matrix's column.
+         * @param v An array of size 2 with whose values are assigned to the matrix's column.
          * @param idx The index of the row in the matrix.
          * @overload set_column_vector(const T (&v)[2], const unsigned int idx)
          */
@@ -379,8 +379,15 @@ namespace hm {
         return rhs / lhs;
     }
 
+    /**
+     * Out stream operator overload.
+     * @details Prints the contents of the matrix to the console for debugging purposes.
+     * @param os The stream that contains the matrix data to be printed.
+     * @param mat The matrix to be printed.
+     * @return A reference to the stream to be outputted.
+     */
     template<typename T>
-    inline std::ostream& operator<<(ostream &os, const Matrix2<T> &mat)
+    inline std::ostream& operator<<(std::ostream &os, const Matrix2<T> &mat)
     {
         os << "\n | Matrix2x2 ---------------------------------- |" << std::endl;
         for (int i = 0; i < 2; ++i) {
@@ -391,6 +398,10 @@ namespace hm {
         return os;
     }
 
+    /**
+     * Prints the contents of the matrix to the console for debugging purposes.
+     * @param mat The matrix to be printed.
+     */
     template<typename T>
     inline void print_matrix(const Matrix2<T> &mat)
     {
@@ -498,7 +509,7 @@ namespace hm {
 
         /**
         * Sets the matrix's row vector at the specified index.
-        * @param vec A three dimensional vector whos values are asigned to the matrix row.
+        * @param vec A three dimensional vector who's values are assigned to the matrix row.
         * @param idx The index of the row in the matrix.
         * @overload set_row_vector(const Vector3<T> &vec, const unsigned int idx)
         */
@@ -511,7 +522,7 @@ namespace hm {
 
         /**
          * Sets the matrix's row vector at the specified index.
-         * @param v An array of size 3 whose values are asigned to the matrix row.
+         * @param v An array of size 3 whose values are assigned to the matrix row.
          * @param idx The index of the the row in the matrix.
          * @overload set_row_vector(const T (&v)[3], const unsigned int idx)
          */
@@ -527,7 +538,7 @@ namespace hm {
          * @warning This function requires enough memory allocated for at least 3 numeric values.
          * If less memory is allocated, this function will cause the program to
          * crash with a segmentation fault.
-         * @param v A pointer to the start of an array whose values are asigned to the
+         * @param v A pointer to the start of an array whose values are assigned to the
          * matrix row.
          * @param idx The index of the row in the matrix.
          * @overload set_row_vector(const T *v, const unsigned int idx)
@@ -646,7 +657,7 @@ namespace hm {
         /**
          * Applies a translation to the matrix.
          * @details Applies a translation to the matrix
-         * using matrix multiplicaiton.
+         * using matrix multiplication.
          * @param v An array of size 2 whose values are used
          * to apply the translation to the matrix.
          * @overload translate(const T (&v)[2])
@@ -731,7 +742,7 @@ namespace hm {
          * If less memory is allocated, this function will cause the program to
          * crash with a segmentation fault.
          * @param v A pointer to the start of an array whose values are used as
-         * a tranlsation for the matrix.
+         * a translation for the matrix.
          * @return A new Matrix3 instance as the result of the translation.
          * @overload translated(const T *v) const
          */
@@ -1007,10 +1018,10 @@ namespace hm {
         }
 
         /**
-         * Calculates a submatrix (Matrix2) from the three dimensional matrix.
+         * Calculates a sub-matrix (Matrix2) from the three dimensional matrix.
          * @param row The matrix row to be excluded.
          * @param col The matrix column to be excluded.
-         * @return A Matrix2 submatrix.
+         * @return A Matrix2 sub-matrix.
          */
         inline Matrix2<T> submatrix(const int row, const int col) const
         {
@@ -1167,7 +1178,7 @@ namespace hm {
 
         /**
          * Performs matrix multiplication.
-         * @details Mutiplies the left hand side matrix operand with the right hand
+         * @details Multiplies the left hand side matrix operand with the right hand
          * side matrix operand.
          * @param rhs The right hand side matrix operand.
          */
@@ -1279,7 +1290,7 @@ namespace hm {
 
     /**
      * Performs matrix multiplication.
-     * @details Mutiplies the left hand side matrix operand with the right hand
+     * @details Multiplies the left hand side matrix operand with the right hand
      * side matrix operand.
      * @param rhs The right hand side matrix operand.
      * @return A new Matrix3 as the result of the matrix multiplication.
