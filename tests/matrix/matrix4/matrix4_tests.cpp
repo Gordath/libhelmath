@@ -766,3 +766,11 @@ TEST_F(Matrix4Fixture, test_operator_matrix_mult_vector4)
     EXPECT_FLOAT_EQ(res.z, 2.0f);
     EXPECT_FLOAT_EQ(res.w, 1.0f);
 }
+
+TEST_F(Matrix4Fixture, test_operator_ostream)
+{
+    Mat4f mat;
+    mat.translate(Vec3f{10.0f, 20.0f, 30.0f});
+
+    std::cout << mat;
+}

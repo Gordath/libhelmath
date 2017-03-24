@@ -6,6 +6,8 @@
  * This file defines the Matrix templated classes.
  */
 
+
+#include <iostream>
 #include "vector.h"
 
 namespace hm {
@@ -193,7 +195,7 @@ namespace hm {
         {
             for (int i = 0; i < 2; ++i) {
                 for (int j = 0; j < 2; ++j) {
-                     data[i][j] += rhs[i][j];
+                    data[i][j] += rhs[i][j];
                 }
             }
 
@@ -375,6 +377,28 @@ namespace hm {
     inline Matrix2<T> operator/(const T lhs, Matrix2<T> rhs)
     {
         return rhs / lhs;
+    }
+
+    template<typename T>
+    inline std::ostream& operator<<(ostream &os, const Matrix2<T> &mat)
+    {
+        os << "\n | Matrix2x2 ---------------------------------- |" << std::endl;
+        for (int i = 0; i < 2; ++i) {
+            os << " | " << mat[i][0] << " " << mat[i][1] << std::endl;
+        }
+        os << " | -------------------------------------------- |" << std::endl;
+
+        return os;
+    }
+
+    template<typename T>
+    inline void print_matrix(const Matrix2<T> &mat)
+    {
+        std::cout << "\n | Matrix2x2 ---------------------------------- |" << std::endl;
+        for (int i = 0; i < 2; ++i) {
+            std::cout << " | " << mat[i][0] << " " << mat[i][1] << std::endl;
+        }
+        std::cout << " | -------------------------------------------- |" << std::endl;
     }
 
     /**
@@ -2419,7 +2443,7 @@ namespace hm {
      * Performs index based division between a four dimensional matrix and a scalar.
      * @param lhs The matrix whose values are going to be divided by the scalar.
      * @param rhs The scalar to divide each value of the matrix by.
-     * @return A new Matrix4 instance resulting from the multiplicaiton.
+     * @return A new Matrix4 instance resulting from the multiplication.
      */
     template<typename T>
     inline Matrix4<T> operator/(Matrix4<T> lhs, const T rhs)
@@ -2433,7 +2457,7 @@ namespace hm {
      * Performs index based division between a four dimensional matrix and a scalar.
      * @param lhs The scalar to divide each value of the matrix by.
      * @param rhs The matrix whose values are going to be divided by the scalar.
-     * @return A new Matrix4 instance resulting from the multiplicaiton.
+     * @return A new Matrix4 instance resulting from the multiplication.
      */
     template<typename T>
     inline Matrix4<T> operator/(const T lhs, Matrix4<T> rhs)
@@ -2458,6 +2482,38 @@ namespace hm {
         }
 
         return res;
+    }
+
+    template<typename T>
+    inline std::ostream &operator<<(std::ostream& os, const Matrix4<T> &mat)
+    {
+        os << "\n | Matrix4x4 ---------------------------------- |" << std::endl;
+        for (int i = 0; i < 4; ++i) {
+            os << " | " << mat[i][0] << " " << mat[i][1] << " " << mat[i][2] << " " << mat[i][3] << " " << std::endl;
+        }
+        os << " | -------------------------------------------- |" << std::endl;
+
+        return os;
+    }
+
+    template<typename T>
+    inline void print_matrix(const Matrix3<T> &mat)
+    {
+        std::cout << "\n | Matrix3x3 ---------------------------------- |" << std::endl;
+        for (int i = 0; i < 3; ++i) {
+            std::cout << " | " << mat[i][0] << " " << mat[i][1] << " " << mat[i][2] << std::endl;
+        }
+        std::cout << " | -------------------------------------------- |" << std::endl;
+    }
+
+    template<typename T>
+    inline void print_matrix(const Matrix4<T> &mat)
+    {
+        std::cout << "\n | Matrix4x4 ---------------------------------- |" << std::endl;
+        for (int i = 0; i < 4; ++i) {
+            std::cout << " | " << mat[i][0] << " " << mat[i][1] << " " << mat[i][2] << " " << mat[i][3] << " " << std::endl;
+        }
+        std::cout << " | -------------------------------------------- |" << std::endl;
     }
 
     /**
